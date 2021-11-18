@@ -20,8 +20,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-import ie.ul.fika.Model.User;
-import ie.ul.fika.R;
+import ie.ul.fika_20.Model.User;
+import ie.ul.fika_20.R;
+
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     private Context mContext;
