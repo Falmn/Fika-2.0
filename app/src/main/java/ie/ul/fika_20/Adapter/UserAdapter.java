@@ -23,7 +23,6 @@ import java.util.List;
 import ie.ul.fika_20.Model.User;
 import ie.ul.fika_20.R;
 
-
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     private Context mContext;
     private List<User> mUsers;

@@ -20,11 +20,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import ie.ul.fika_20.Adapter.UserAdapter;
+import ie.ul.fika_20.Model.User;
+import ie.ul.fika_20.R;
 
 
-/*public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private List<User> mUsers;
@@ -107,4 +113,4 @@ import java.util.ArrayList;
             }
         });
     }
-}*/
+}
