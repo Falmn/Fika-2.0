@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/fika_logo" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginTop="15dp"
+        android:hint="Email"
+        android:padding="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/email"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginTop="15dp"
+        android:hint="Password"
+        android:padding="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/password"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/colorBackground"
+        android:textSize="20dp"
+        android:text="LOG IN"
+        android:padding="10dp"
+        android:id="@+id/login_button"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Not a member? Register here"
+        android:layout_marginTop="10dp"
+        android:id="@+id/create_text"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:visibility="invisible"
+        android:id="@+id/progress_bar"/>
+
+</LinearLayout>

@@ -31,18 +31,18 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        mEmail = findViewById(R.id.Email);
+        mEmail = findViewById(R.id.email);
         mPassword = findViewById(R.id.password);
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progress_bar);
         fAuth = FirebaseAuth.getInstance();
-        mLoginBtn = findViewById(R.id.loginBtn);
-        mCreateBtn = findViewById(R.id.createText);
+        mLoginBtn = findViewById(R.id.login_button);
+        mCreateBtn = findViewById(R.id.create_text);
 
-        /*// If user already exist, it sends them to main activity
+        // If user already exist, it sends them to main activity
         if (fAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
-        }*/
+        }
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,3 +87,4 @@ public class Login extends AppCompatActivity {
 
     }
 }
+
