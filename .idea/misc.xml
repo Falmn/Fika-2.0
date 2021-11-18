@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/drawable-v24/button_background.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/drawable-v24/edit_text_background.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/drawable-v24/ic_action_name.xml" value="0.1" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/drawable-v24/ic_add.xml" value="0.1" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/layout/conversations.xml" value="0.1" />
