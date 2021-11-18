@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/activity_signup.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/activity_start_app.xml" value="0.1796875" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/conversations.xml" value="0.1796875" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/edit_post.xml" value="0.1796875" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/feed.xml" value="0.1796875" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/fragment_user_profile.xml" value="0.1796875" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/user_item.xml" value="0.1796875" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/drawable-v24/button_background.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/drawable-v24/edit_text_background.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/drawable-v24/ic_action_name.xml" value="0.1" />
