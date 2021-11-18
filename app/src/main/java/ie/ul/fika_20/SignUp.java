@@ -1,7 +1,5 @@
 package ie.ul.fika_20;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
