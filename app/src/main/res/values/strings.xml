@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Fika-2.0</string>
+    <string name="log_in">Log In</string>
+    <string name="register">Register</string>
 </resources>

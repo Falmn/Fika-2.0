@@ -32,11 +32,11 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/button_background"
             android:padding="10dp"
-            android:text="Log In"
+            android:text="@string/log_in"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/colorBackground"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <androidx.legacy.widget.Space
             android:layout_width="0dp"
@@ -49,11 +49,11 @@
             android:layout_height="50dp"
             android:background="@drawable/button_background"
             android:padding="10dp"
-            android:text="Register"
+            android:text="@string/register"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/colorBackground"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
 
