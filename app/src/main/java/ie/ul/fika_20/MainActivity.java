@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     ImageView newPost, profile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +30,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //For adding a new post.
-   newPost.setOnClickListener(new View.OnClickListener() {
-       @Override
-       public void onClick(View view) {
-           startActivity(new Intent(getApplicationContext(),NewPost.class));
-       }
-   });
-
+        newPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), NewPost.class));
+            }
+        });
 
 
     }

@@ -229,7 +229,6 @@ public class SignUp extends AppCompatActivity {
     }*/
 
 
-
     //Nisses example
     //Register user to firebase
 /* fAuth.createUserWithEmailAndPassword(txtEmail, txtPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -263,7 +262,6 @@ public class SignUp extends AppCompatActivity {
                     }
 
                 });*/
-
 
 
 }
