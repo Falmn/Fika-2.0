@@ -117,7 +117,6 @@ public class SignUp extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
             }
         });
-
     }
 
     //Pattern for password validation

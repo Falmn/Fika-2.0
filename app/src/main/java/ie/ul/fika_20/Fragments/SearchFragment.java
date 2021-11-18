@@ -1,3 +1,4 @@
+/*
 package ie.ul.fika_20.Fragments;
 
 import android.os.Bundle;
@@ -114,3 +115,4 @@ public class SearchFragment extends Fragment {
         });
     }
 }
+*/
