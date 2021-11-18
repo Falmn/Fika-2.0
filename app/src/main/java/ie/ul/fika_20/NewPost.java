@@ -1,3 +1,4 @@
+/*
 package ie.ul.fika_20;
 
 import android.Manifest;
@@ -137,9 +138,15 @@ public class NewPost extends AppCompatActivity {
 //        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES); // sends pictures to phone gallery
         File image = File.createTempFile( // creating image file
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
+                imageFileName,
+ prefix
+
+                ".jpg",
+ suffix
+
+                storageDir
+ directory
+
         );
 
         // Save a file: path for use with ACTION_VIEW intents
@@ -171,3 +178,4 @@ public class NewPost extends AppCompatActivity {
 
 
 }
+*/

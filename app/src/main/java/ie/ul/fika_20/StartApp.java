@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class StartApp extends AppCompatActivity {
 
     private ImageView iconImage;
@@ -78,7 +80,7 @@ public class StartApp extends AppCompatActivity {
         }
     }
 
-/*    @Override
+    @Override
     protected void onStart(){
         super.onStart();
 
@@ -86,6 +88,7 @@ public class StartApp extends AppCompatActivity {
             startActivity(new Intent(StartApp.this , MainActivity.class));
             finish();
         }
-    }*/
+    }
+
 
 }

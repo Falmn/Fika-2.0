@@ -1,3 +1,4 @@
+/*
 package ie.ul.fika_20.Adapter;
 
 import android.content.Context;
@@ -9,14 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -58,7 +51,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         if (user.getUserID().equals(firebaseUser.getUid())){
             holder.btn_follow.setVisibility(View.GONE);
         }
-       /*
+       */
+/*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +68,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
                     mContext.startActivity(intent);
                 }
             }
-        });*/ //Skicka vänförfrågan
+        });*//*
+ //Skicka vänförfrågan
 
         holder.btn_follow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +92,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         });
     }
     //Här börjar det
-    /*
+    */
+/*
     private void addNotifications(String userid) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
 
@@ -110,7 +106,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         reference.push().setValue(hashMap);
     }//här slutar det
 
-     */
+     *//*
+
 
 
 
@@ -152,3 +149,4 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
 }
 
+*/
