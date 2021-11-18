@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/drawable-v24/ic_action_name.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/drawable-v24/ic_add.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/layout/conversations.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/layout/edit_post.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/layout/feed.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/layout/friends.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/layout/location.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/layout/log_in.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/layout/messages.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/layout/new_post.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/layout/notifications.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/layout/profile.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika20/app/src/main/res/layout/saved_posts.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
