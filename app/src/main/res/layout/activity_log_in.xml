@@ -49,9 +49,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Not a member? Register here"
+        android:text="Not a Fika user? Sign up here"
         android:layout_marginTop="10dp"
         android:id="@+id/create_text"/>
+
 
     <ProgressBar
         android:layout_width="wrap_content"
