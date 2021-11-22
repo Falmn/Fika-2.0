@@ -58,6 +58,7 @@ public class StartApp extends AppCompatActivity {
         });
     }
 
+    //App icon animation that will appear when app starts
     private class MyAnimationListener implements Animation.AnimationListener {
 
         @Override
@@ -80,6 +81,7 @@ public class StartApp extends AppCompatActivity {
         }
     }
 
+    //If user already logged in, it will send them to main
     @Override
     protected void onStart(){
         super.onStart();

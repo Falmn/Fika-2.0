@@ -1,7 +1,5 @@
 package ie.ul.fika_20;
 
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
