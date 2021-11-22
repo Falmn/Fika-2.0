@@ -18,27 +18,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        newPost = findViewById(R.id.newPost);
-        profile = findViewById(R.id.profile);
-
-        // Sends to profile activity
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ContactsContract.Profile.class));
-            }
-        });
-        //For adding a new post.
-
-/*      newPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), NewPost.class));
-            }
-        });*/
-
-
-
     }
 
 
