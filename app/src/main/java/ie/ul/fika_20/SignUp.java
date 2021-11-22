@@ -1,3 +1,4 @@
+
 package ie.ul.fika_20;
 
 import androidx.annotation.NonNull;
@@ -197,7 +198,8 @@ public class SignUp extends AppCompatActivity {
 
     // Example 2
     //Register user to firebase
- /*private void registerUser(final String txtUsername, final String txtFullname, final String txtEmail, String txtPassword) {
+
+/*private void registerUser(final String txtUsername, final String txtFullname, final String txtEmail, String txtPassword) {
         fAuth.createUserWithEmailAndPassword(txtEmail, txtPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -223,13 +225,15 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-    }*/
+    }*//*
+
 
 
 
     //Nisses example
     //Register user to firebase
- /*fAuth.createUserWithEmailAndPassword(txtEmail, txtPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+ */
+/*fAuth.createUserWithEmailAndPassword(txtEmail, txtPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -263,4 +267,6 @@ public class SignUp extends AppCompatActivity {
 
 
 
+
 }
+
