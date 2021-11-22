@@ -1,24 +1,26 @@
 package ie.ul.fika_20.Model;
 
 public class User {
-    private String userID;
+    private String id;
     private String username;
     private String fullName;
     private String email;
+    private String avatar;
 
 
     public User(){
     }
-    public User(String userID, String email, String fullName, String username) {
-        this.userID = userID;
+    public User(String id, String email, String fullName, String username, String avatar) {
+        this.id = id;
         this.email = email;
         this.fullName = fullName;
         this.username = username;
+        this.avatar = avatar;
     }
 
-    public String getUserID(){return userID;}
+    public String getId(){return id;}
 
-    public void setUserID(String userID){this.userID = userID;}
+    public void setId(String id){this.id = id;}
     public String getEmail() {
         return email;
     }
@@ -41,6 +43,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
 }

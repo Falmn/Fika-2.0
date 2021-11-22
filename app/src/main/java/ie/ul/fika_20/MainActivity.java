@@ -1,4 +1,5 @@
 
+
 package ie.ul.fika_20;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +12,7 @@ import android.widget.ImageView;
 
 
 public class MainActivity extends AppCompatActivity {
-    ImageView newPost, profile;
+   /* ImageView newPost, profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,17 +31,21 @@ public class MainActivity extends AppCompatActivity {
         });
         //For adding a new post.
 
-/*      newPost.setOnClickListener(new View.OnClickListener() {
+
+      newPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), NewPost.class));
             }
-        });*/
+        });
+
+
 
 
 
     }
-
+*/
 
 }
+
 
