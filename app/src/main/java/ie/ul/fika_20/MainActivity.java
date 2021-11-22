@@ -1,3 +1,4 @@
+
 package ie.ul.fika_20;
 
 
@@ -30,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //For adding a new post.
-  /*      newPost.setOnClickListener(new View.OnClickListener() {
+
+/*      newPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), NewPost.class));
@@ -38,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
 
+
     }
 
 
 }
+
