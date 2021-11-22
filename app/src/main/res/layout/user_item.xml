@@ -42,8 +42,8 @@
         android:id="@+id/btn_follow"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:visibility="gone"/>
-    <!--android:background="@drawable/...."
-    android:textColor="@color/black"-->
+        android:visibility="gone"
+        android:background="@drawable/button_background"
+        android:textColor="@color/colorBackground"/>
 
 </RelativeLayout>

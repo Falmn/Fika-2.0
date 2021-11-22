@@ -78,7 +78,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
                 }
             }
         });*/
- //Skicka vänförfrågan
+ //Skicka vänförfrågan till personer i listan
 
         holder.btn_follow.setOnClickListener(new View.OnClickListener() {
             @Override
