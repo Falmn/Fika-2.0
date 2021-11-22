@@ -1,4 +1,4 @@
-/*
+
 package ie.ul.fika_20;
 
 import android.Manifest;
@@ -43,15 +43,15 @@ public class NewPost extends AppCompatActivity {
         setContentView(R.layout.activity_new_post);
 
         selectedImage = findViewById(R.id.displayImageView);
-        cameraBtn = findViewById(R.id.cameraButton);
+    //    cameraBtn = findViewById(R.id.cameraButton);
         galleryBtn = findViewById(R.id.gallaryButton);
 
-        cameraBtn.setOnClickListener(new View.OnClickListener() {
+/*        cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 askCameraPermissions();
             }
-        });
+        });*/
 
         galleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,16 +64,16 @@ public class NewPost extends AppCompatActivity {
     }
 
 
-    private void askCameraPermissions() {
+/*    private void askCameraPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERM_CODE);// constant verible 101 -> CAMERA_REQUEST_CODE
         } else {
             dispatchTakePictureIntent();
         }
-    }
+    }*/
 
 
-    @Override
+/*    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == CAMERA_PERM_CODE) {
@@ -83,7 +83,7 @@ public class NewPost extends AppCompatActivity {
                 Toast.makeText(this, "Camera Permission is required to use camera", Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    }*/
 
     //   private void openCamera() {
     //     Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -94,7 +94,7 @@ public class NewPost extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAMERA_REQUEST_CODE) {
+        /*if (requestCode == CAMERA_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 File f = new File(currentPhotoPath);
                 selectedImage.setImageURI(Uri.fromFile(f));
@@ -105,7 +105,7 @@ public class NewPost extends AppCompatActivity {
                 mediaScanIntent.setData(contentUri);
                 this.sendBroadcast(mediaScanIntent);
             }
-        }
+        }*/
         if (requestCode == GALLERY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri contentUri = data.getData();
@@ -131,21 +131,18 @@ public class NewPost extends AppCompatActivity {
     }
 
 
-    private File createImageFile() throws IOException {
+    /*private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()); // creating timestamp
         String imageFileName = "JPEG_" + timeStamp + "_"; // creating file name
 //        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES); // sends pictures to phone gallery
         File image = File.createTempFile( // creating image file
-                imageFileName,
- prefix
+                imageFileName, //prefix
 
-                ".jpg",
- suffix
+                ".jpg", //suffix
 
-                storageDir
- directory
+                storageDir //directory
 
         );
 
@@ -174,8 +171,10 @@ public class NewPost extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
             }
         }
-    }
+    }*/
 
 
 }
-*/
+
+//https://stackoverflow.com/questions/64221188/write-external-storage-when-targeting-android-10
+//https://developer.android.com/training/camera/photobasics#java
