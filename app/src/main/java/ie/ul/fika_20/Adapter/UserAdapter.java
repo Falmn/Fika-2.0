@@ -55,7 +55,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
         holder.username.setText(user.getUsername());
         holder.fullname.setText(user.getFullName());
-        //Picasso.get().load(user.getAvatar()).placeholder(R.drawable.default_avtar).into(holder.avatar);
+        Picasso.get().load(user.getAvatar()).placeholder(R.drawable.ic_account_circle).into(holder.avatar);
         isFollowed(user.getId() , holder.btn_follow);
 
         if (user.getId().equals(firebaseUser.getUid())){
@@ -78,7 +78,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
                 }
             }
         });*/
- //Skicka vänförfrågan
+ //Skicka vänförfrågan till personer i listan
 
         holder.btn_follow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +100,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             }
         });
     }
-    //Här börjar det
+    //Notiser
 
 /*
     private void addNotifications(String userid) {
@@ -113,7 +113,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         hashMap.put("ispost" , false);
 
         reference.push().setValue(hashMap);
-    }//här slutar det
+    }//notis slut
 
      */
 
@@ -139,12 +139,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             btn_follow = itemView.findViewById(R.id.btn_follow);
         }
     }
-    private void isFollowed(final String userid, Button button) {
+    private void isFollowed(final String id, Button button) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid()).child("following");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(userid).exists())
+                if(dataSnapshot.child(id).exists())
                     button.setText("Following");
                 else button.setText("Follow");
             }
