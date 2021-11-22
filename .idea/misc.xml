@@ -3,26 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable-anydpi/ic_account_circle.xml" value="0.20989583333333334" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_add.xml" value="0.20989583333333334" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_bookmark_added.xml" value="0.20989583333333334" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_bookmark_border.xml" value="0.20989583333333334" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_check_green.xml" value="0.20989583333333334" />
         <entry key="app/src/main/res/drawable-anydpi/ic_comment.xml" value="0.25625" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_heart.xml" value="0.20989583333333334" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_heart_border.xml" value="0.20989583333333334" />
         <entry key="app/src/main/res/drawable-v24/ic_action_name.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-v24/ic_add.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.25625" />
+        <entry key="app/src/main/res/drawable/app_bar_main.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.25625" />
-        <entry key="app/src/main/res/layout/activity_conversations.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_feed.xml" value="0.2526041666666667" />
-        <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2526041666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_new_post.xml" value="0.12916666666666668" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/activity_start_app.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/conversations.xml" value="0.2526041666666667" />
+        <entry key="app/src/main/res/layout/copy.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/edit_post.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/fragment_user_profile.xml" value="0.2441123188405797" />
@@ -31,6 +24,8 @@
         <entry key="app/src/main/res/layout/log_in.xml" value="0.12916666666666668" />
         <entry key="app/src/main/res/layout/notifications.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/user_item.xml" value="0.2441123188405797" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/menu/top_menu.xml" value="0.24010416666666667" />
       </map>
     </option>
   </component>
