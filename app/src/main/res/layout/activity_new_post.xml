@@ -7,17 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".NewPost">
 
+
     <ImageView
         android:id="@+id/displayImageView"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_marginTop="150dp"
+        android:layout_width="375dp"
+        android:layout_height="375dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background" />
 
-    <Button
+<!--    <Button
         android:id="@+id/cameraButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,15 +29,26 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />-->
 
     <Button
         android:id="@+id/gallaryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="256dp"
-        android:text="Gallary"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="125dp"
+        android:paddingHorizontal="100dp"
+        android:textSize="20dp"
+        android:text="Choose picture"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+<!--    <Button
+        android:id="@+id/Backbutton_newpost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="41dp" />-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

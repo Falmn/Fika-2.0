@@ -36,6 +36,7 @@ public class NewPost extends AppCompatActivity {
     ImageView selectedImage;
     Button cameraBtn, galleryBtn;
     String currentPhotoPath;
+   // StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,8 @@ public class NewPost extends AppCompatActivity {
         selectedImage = findViewById(R.id.displayImageView);
     //    cameraBtn = findViewById(R.id.cameraButton);
         galleryBtn = findViewById(R.id.gallaryButton);
+
+        // storageReference = FirebaseStorage.getInstance().getReference();
 
 /*        cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +117,7 @@ public class NewPost extends AppCompatActivity {
                 Log.d("tag", "onActivityResult: Gallery Image Uri:  " + imageFileName);
                 selectedImage.setImageURI(contentUri);
 
-                //  uploadImageToFirebase(imageFileName,contentUri);
+                  //uploadImageToFirebase(imageFileName,contentUri);
 
 
             }
@@ -123,6 +126,29 @@ public class NewPost extends AppCompatActivity {
 
 
     }
+
+/*    private void uploadImageToFirebase(String name, Uri contentUri) {
+        final StorageReference image = storageReference.child("pictures/" + name); // puts the images in directory pictures
+        image.putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) { // uri of image
+                        Log.d("tag", "onSuccess: Uploaded Image URl is " + uri.toString());
+                    }
+                });
+
+                Toast.makeText(MainActivity.this, "Image Is Uploaded.", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() { // if it fails
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MainActivity.this, "Upload Failled.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }*/
 
     private String getFileExt(Uri contentUri) {
         ContentResolver c = getContentResolver();
