@@ -1,4 +1,4 @@
-/*
+
 package ie.ul.fika_20.Adapter;
 
 import android.content.Context;
@@ -11,8 +11,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import ie.ul.fika_20.Model.User;
 import ie.ul.fika_20.R;
 
@@ -33,7 +43,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.user_item, parent, false);
-        return new UserAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -45,13 +55,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
         holder.username.setText(user.getUsername());
         holder.fullname.setText(user.getFullName());
-        // Picasso.get().load(user.getImageurl()).placeholder(R.drawable.default_avtar).into(holder.image_profile);
-        isFollowed(user.getUserID() , holder.btn_follow);
+        //Picasso.get().load(user.getAvatar()).placeholder(R.drawable.default_avtar).into(holder.avatar);
+        isFollowed(user.getId() , holder.btn_follow);
 
-        if (user.getUserID().equals(firebaseUser.getUid())){
+        if (user.getId().equals(firebaseUser.getUid())){
             holder.btn_follow.setVisibility(View.GONE);
         }
-       */
 /*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +77,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
                     mContext.startActivity(intent);
                 }
             }
-        });*//*
+        });*/
  //Skicka vänförfrågan
 
         holder.btn_follow.setOnClickListener(new View.OnClickListener() {
@@ -76,23 +85,23 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             public void onClick(View v) {
                 if (holder.btn_follow.getText().toString().equals("follow")){
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
-                            .child("following").child(user.getUserID()).setValue(true);
+                            .child("following").child(user.getId()).setValue(true);
 
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getUserID())
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getId())
                             .child("followers").child(firebaseUser.getUid()).setValue(true);
 // om vi inte följer finns en knapp för "follow" som ändras till "following" när vi trycker på den och tvärt om om det redan står following. Och personen läggs till i firebase som personer man följer
                 } else {
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
-                            .child("following").child(user.getUserID()).removeValue();
+                            .child("following").child(user.getId()).removeValue();
 
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getUserID())
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getId())
                             .child("followers").child(firebaseUser.getUid()).removeValue();
                 }
             }
         });
     }
     //Här börjar det
-    */
+
 /*
     private void addNotifications(String userid) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
@@ -106,7 +115,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         reference.push().setValue(hashMap);
     }//här slutar det
 
-     *//*
+     */
 
 
 
@@ -118,7 +127,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
         public TextView username;
         public TextView fullname;
-        // public CircleImageView image_profile;
+        public CircleImageView avatar;
         public Button btn_follow;
 
         public ViewHolder(@NonNull View itemView) {
@@ -126,7 +135,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
             username = itemView.findViewById(R.id.username);
             fullname = itemView.findViewById(R.id.fullname);
-            // image_profile = itemView.findViewById(R.id.image_profile);
+            avatar = itemView.findViewById(R.id.avatar);
             btn_follow = itemView.findViewById(R.id.btn_follow);
         }
     }
@@ -149,4 +158,3 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
 }
 
-*/
