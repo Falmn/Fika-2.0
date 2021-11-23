@@ -108,7 +108,7 @@ public class userProfile extends Fragment {
 
                 User user = dataSnapshot.getValue(User.class);
 
-                Picasso.get().load(user.getimageurl()).placeholder(R.drawable.).into(image_profile);
+                Picasso.get().load(user.getAvatar()).placeholder(R.drawable.).into(image_profile);
                 userName_profile.setText(user.getUsername());
                 /*fullname.setText(user.getFullname());
                 bio.setText(user.getBio());*/

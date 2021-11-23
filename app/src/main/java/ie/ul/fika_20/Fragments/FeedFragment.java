@@ -59,7 +59,7 @@ public class FeedFragment extends Fragment {
     }
 
     // Method to check which users person follows
-    private void checkFollowingUsers(){
+    private void checkFollowingUsers() {
 
         FirebaseDatabase.getInstance().getReference().child("follow")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -67,7 +67,7 @@ public class FeedFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 followingList.clear();
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     followingList.add(snapshot.getKey());
                 }
 
@@ -84,31 +84,31 @@ public class FeedFragment extends Fragment {
     }
 
     // Method to read all posts from following
-    private void readPosts(){
+    private void readPosts() {
 
         FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener
                 (new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                postList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Post post = snapshot.getValue(Post.class);
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        postList.clear();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Post post = snapshot.getValue(Post.class);
 
-                    for (String id : followingList){
-                        if (post.getPublisher().equals(id)){
-                            postList.add(post);
+                            for (String id : followingList) {
+                                if (post.getPublisher().equals(id)) {
+                                    postList.add(post);
+                                }
+                            }
                         }
+                        postAdapter.notifyDataSetChanged();
+
                     }
-                }
-                postAdapter.notifyDataSetChanged();
 
-            }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                    }
+                });
 
     }
 }
