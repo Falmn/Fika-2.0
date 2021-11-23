@@ -3,6 +3,7 @@ package ie.ul.fika_20.Fragments;
 
 import static java.security.AccessController.getContext;
 
+import android.content.Context;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -26,9 +27,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,25 +45,30 @@ import ie.ul.fika_20.R;
 
 
 
-public class userProfile extends Fragment {
+public class userProfile<Private> extends Fragment {
 
-
-
-    private FirebaseUser firebaseUser;
-    TextView userName_profile;
-    ImageView image_profile;
-    private FirebaseAuth fAuth;
-    private FirebaseDatabase fDBS;
-    String userId;
-
-
+    // Widgets
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     RecyclerViewAdapter recyclerViewAdapter;
+    // Firebase
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth fAuth;
+  //  private FirebaseDatabase fDBS;
+    private DatabaseReference myRef;
+    // Variabels
+    private ArrayList<User>  userList;
+    private Context mContext;
+    TextView userName_profile;
+    ImageView image_profile;
+    String userId;
 
 
 
-    int [] arr = {R.drawable.image1,R.drawable.image22, R.drawable.image4, R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8};
+
+
+
+  //  int [] arr = {R.drawable.image1,R.drawable.image22, R.drawable.image4, R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8};
 
 
 
@@ -74,11 +82,14 @@ public class userProfile extends Fragment {
         // Fetching username
         userName_profile = findViewById(R.id.userName_profile);
         image_profile = findViewById(R.id.image_profile);
-
+// Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
         fAuth = FirebaseAuth.getInstance();
-        fDBS = FirebaseDatabase.getInstance();
+
         userId = FirebaseAuth.getInstance().getUid();
+        myRef = FirebaseDatabase.getInstance().getReference();
+
+        // fDBS = FirebaseDatabase.getInstance();
 
 
 
@@ -86,18 +97,71 @@ public class userProfile extends Fragment {
         recyclerView = findViewById(R.id.recyclerView);
         layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerViewAdapter = new RecyclerViewAdapter(arr);
+        recyclerViewAdapter = new RecyclerViewAdapter(userList);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
+
+
+        // Lists of methods
+
 
         userInfo();
         myFotos();
 
+        userList = new ArrayList<>();
+
+        // Get Data method
+
+         GetDataFromFireBase();
+
+         // Clear List
+        ClearAll();
 
     }
 
-    // Displaying user name in the textView.
-    private void userInfo() {
+    private void GetDataFromFireBase(){
+
+        Query query = myRef.child("Posts");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            ClearAll();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    User user = new User();
+                    user.setImageUrl(snapshot.child("image").getValue().toString());
+                    user.setUsername(snapshot.child("username").getValue().toString());
+
+                    userList.add(user);
+
+                }
+                // mContext ist för getApplicationContext.
+                recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext, userList);
+                recyclerView.setAdapter(recyclerViewAdapter);
+                recyclerViewAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void ClearAll(){
+        if (userList =! null){
+            userList.clear();
+
+            if (recyclerViewAdapter != null){
+                recyclerViewAdapter.notifyDataSetChanged();
+            }
+        }
+        userList = new ArrayList<>();
+
+    }
+
+    // Displaying user name in the textView. Need to fix imageurls.
+   /* private void userInfo() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -110,18 +174,18 @@ public class userProfile extends Fragment {
 
                 Picasso.get().load(user.getAvatar()).placeholder(R.drawable.).into(image_profile);
                 userName_profile.setText(user.getUsername());
-                /*fullname.setText(user.getFullname());
-                bio.setText(user.getBio());*/
+                *//*fullname.setText(user.getFullname());
+                bio.setText(user.getBio());*//*
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
         // Fetching fotos and adding them to the recyclerView
         // Needs more work.
-        private void myFotos() {
+     /*   private void myFotos() {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("posts");
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -143,7 +207,11 @@ public class userProfile extends Fragment {
 
                 }
             });
-        }
+        }*/
     }
+
+
+
+
 
 }
