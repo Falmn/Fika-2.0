@@ -42,7 +42,7 @@ import ie.ul.fika_20.R;
 
 
 
-public class userProfile extends AppCompatActivity {
+public class userProfile extends Fragment {
 
 
 
@@ -98,7 +98,7 @@ public class userProfile extends AppCompatActivity {
 
     // Displaying user name in the textView.
     private void userInfo() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(profileid);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
