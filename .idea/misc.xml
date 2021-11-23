@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/layout/activity_new_post.xml" value="0.12916666666666668" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/activity_start_app.xml" value="0.2441123188405797" />
+        <entry key="app/src/main/res/layout/comment_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/conversations.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/copy.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/edit_post.xml" value="0.2526041666666667" />
