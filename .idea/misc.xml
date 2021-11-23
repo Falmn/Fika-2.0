@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-anydpi/ic_account_circle.xml" value="0.1111111111111111" />
         <entry key="app/src/main/res/drawable-anydpi/ic_comment.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-v24/ic_action_name.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-v24/ic_add.xml" value="0.25625" />
