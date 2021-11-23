@@ -21,12 +21,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.ComponentActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -36,6 +41,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+
+import ie.ul.fika_20.Model.User;
 
 public class NewPost extends AppCompatActivity {
     public static final int CAMERA_PERM_CODE = 101;
@@ -45,7 +53,11 @@ public class NewPost extends AppCompatActivity {
     Button cameraBtn, galleryBtn,Backbuttonnewpost;
     String currentPhotoPath;
     StorageReference storageReference;
-
+    DatabaseReference databaseReference;
+    private String currentUserId;
+    private FirebaseAuth auth;
+    private FirebaseDatabase newpostdatabase;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +69,21 @@ public class NewPost extends AppCompatActivity {
         galleryBtn = findViewById(R.id.gallaryButton);
         Backbuttonnewpost = findViewById(R.id.Backbutton_newpost);
 
-         storageReference = FirebaseStorage.getInstance().getReference();
+        storageReference = FirebaseStorage.getInstance().getReference(); // to store in storage
 
-/*        cameraBtn.setOnClickListener(new View.OnClickListener() {
+      //  databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        // newpostdatabase = FirebaseDatabase.getInstance(); // to save in database
+
+        //get user
+        // auth = FirebaseAuth.getInstance();
+
+        // currentUserId = auth.getCurrentUser().getUid();
+
+
+
+
+        /*        cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 askCameraPermissions();
@@ -131,6 +155,7 @@ public class NewPost extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 Uri contentUri = data.getData();
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()); // the name of the picture
+
                 String imageFileName = "JPEG_" + timeStamp + "." + getFileExt(contentUri);
                 Log.d("tag", "onActivityResult: Gallery Image Uri:  " + imageFileName);
                 selectedImage.setImageURI(contentUri);
@@ -155,7 +180,18 @@ public class NewPost extends AppCompatActivity {
                     public void onSuccess(Uri uri) { // uri of image
                         Picasso.get().load(uri).into(selectedImage);
                         //Log.d("tag", "onSuccess: Uploaded Image URl is " + uri.toString());
-                    }
+                        DatabaseReference imagestore = FirebaseDatabase.getInstance().getReference().child("Users").child("HXiCUYDg88NYNFuqSGc7HBtVW9p1").child("Image");
+
+                        HashMap<String, String> hashMap = new HashMap<>();
+                        hashMap.put("imageurl", String.valueOf(uri));
+
+                        imagestore.setValue(hashMap);
+
+                        Toast.makeText(NewPost.this, "Image Is Uploaded. perfect", Toast.LENGTH_SHORT).show();
+                        //String imageReference = uri.toString();
+                        //databaseReference.child("specimens").child(specimenDTO.getKey()).child("imageUrl").setValue(imageReference);
+                        //specimenDTO.setImageUrl(imageReference);
+                            }
                 });
 
                 Toast.makeText(NewPost.this, "Image Is Uploaded.", Toast.LENGTH_SHORT).show();
