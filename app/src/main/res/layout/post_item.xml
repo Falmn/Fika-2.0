@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:src="@drawable/ic_location"
+        android:id="@+id/location"
         android:layout_margin="15dp"/>
 
     <LinearLayout
@@ -74,7 +75,7 @@
                 android:src="@drawable/ic_comment"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="10dp"
-                android:id="@+id/comment"/>
+                android:id="@+id/comment_post"/>
 
             <ImageView
                 android:layout_width="30dp"
@@ -95,7 +96,6 @@
                 android:layout_marginStart="10dp"
                 android:id="@+id/no_of_likes"
                 android:textStyle="bold"
-                android:text="32 likes"
                 android:textColor="@color/colorBeige"/>
 
             <TextView
@@ -105,7 +105,6 @@
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
                 android:id="@+id/no_of_comments"
-                android:text="2 comments"
                 android:textColor="@color/colorBeige"/>
 
             <TextView
@@ -129,7 +128,6 @@
             android:paddingBottom="5dp"
             android:textStyle="bold"
             android:id="@+id/author"
-            android:text="FrejaFika"
             android:textColor="@color/colorPrimaryDark"/>
 
         <TextView
@@ -137,7 +135,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="5dp"
-            android:text="This is my caption for my beautifulpicture"
             android:textColor="@color/colorPrimary"
             android:id="@+id/caption"/>
 
