@@ -25,6 +25,11 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,9 +41,10 @@ public class NewPost extends AppCompatActivity {
     public static final int CAMERA_REQUEST_CODE = 102;
     public static final int GALLERY_REQUEST_CODE = 105;
     ImageView selectedImage;
-    Button cameraBtn, galleryBtn;
+    Button cameraBtn, galleryBtn,Backbuttonnewpost;
     String currentPhotoPath;
-    // StorageReference storageReference;
+    StorageReference storageReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +54,9 @@ public class NewPost extends AppCompatActivity {
         selectedImage = findViewById(R.id.displayImageView);
     //    cameraBtn = findViewById(R.id.cameraButton);
         galleryBtn = findViewById(R.id.gallaryButton);
+        Backbuttonnewpost = findViewById(R.id.Backbutton_newpost);
 
-        // storageReference = FirebaseStorage.getInstance().getReference();
+         storageReference = FirebaseStorage.getInstance().getReference();
 
 /*        cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +64,14 @@ public class NewPost extends AppCompatActivity {
                 askCameraPermissions();
             }
         });*/
+
+        Backbuttonnewpost.setOnClickListener(new View.OnClickListener() { // is a backbutton to go back to mainpage
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NewPost.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         galleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +134,7 @@ public class NewPost extends AppCompatActivity {
                 Log.d("tag", "onActivityResult: Gallery Image Uri:  " + imageFileName);
                 selectedImage.setImageURI(contentUri);
 
-                  //uploadImageToFirebase(imageFileName,contentUri);
+                  uploadImageToFirebase(imageFileName,contentUri);
 
 
             }
@@ -129,7 +144,7 @@ public class NewPost extends AppCompatActivity {
 
     }
 
-/*    private void uploadImageToFirebase(String name, Uri contentUri) {
+    private void uploadImageToFirebase(String name, Uri contentUri) {
         final StorageReference image = storageReference.child("pictures/" + name); // puts the images in directory pictures
         image.putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -141,16 +156,16 @@ public class NewPost extends AppCompatActivity {
                     }
                 });
 
-                Toast.makeText(MainActivity.this, "Image Is Uploaded.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewPost.this, "Image Is Uploaded.", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() { // if it fails
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MainActivity.this, "Upload Failled.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewPost.this, "Upload Failled.", Toast.LENGTH_SHORT).show();
             }
         });
 
-    }*/
+    }
 
     private String getFileExt(Uri contentUri) {
         ContentResolver c = getContentResolver();
