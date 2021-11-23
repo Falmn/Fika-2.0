@@ -28,6 +28,7 @@ import androidx.core.content.FileProvider;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +41,7 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -54,6 +56,7 @@ public class NewPost extends AppCompatActivity {
     String currentPhotoPath;
     StorageReference storageReference;
     DatabaseReference databaseReference;
+    TextInputLayout Caption;
     private String currentUserId;
     private FirebaseAuth auth;
     private FirebaseDatabase newpostdatabase;
@@ -68,6 +71,7 @@ public class NewPost extends AppCompatActivity {
     //    cameraBtn = findViewById(R.id.cameraButton);
         galleryBtn = findViewById(R.id.gallaryButton);
         Backbuttonnewpost = findViewById(R.id.Backbutton_newpost);
+        Caption = findViewById(R.id.CaptionView);
 
         storageReference = FirebaseStorage.getInstance().getReference(); // to store in storage
 
@@ -97,6 +101,9 @@ public class NewPost extends AppCompatActivity {
             }
         });
 
+
+
+
         galleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +112,16 @@ public class NewPost extends AppCompatActivity {
             }
         });
 
+       /* Caption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String txtcaption = Caption.getEditText().getText().toString();
+            }
+        });*/
+
     }
+
+
 
 
 /*    private void askCameraPermissions() {
@@ -180,13 +196,14 @@ public class NewPost extends AppCompatActivity {
                         Picasso.get().load(uri).into(selectedImage); // takes the picture from firebase and puts it in the image picture
                         //Log.d("tag", "onSuccess: Uploaded Image URl is " + uri.toString());
 
-                        DatabaseReference imagestore = FirebaseDatabase.getInstance().getReference().child("posts");  //creats a post folder in realtime database
+                        DatabaseReference imagestore = FirebaseDatabase.getInstance().getReference().child("Posts");  //creats a post folder in realtime database
 
                         HashMap<String, String> hashMap = new HashMap<>();
                         hashMap.put("caption", "Skriva caption");
                         hashMap.put("imageurl", String.valueOf(uri));
                         hashMap.put("postid", name);
-                        hashMap.put("publisher", "ta bort när vi kör live" ); //firebaseUser.getUid()); // Uploads user id
+                        // caption kanske inte får vara null??
+                        hashMap.put("publisher", Caption.getEditText().getText().toString()); //firebaseUser.getUid()); // Uploads user id
                         imagestore.push().setValue(hashMap); // puts the hashmap into realtime database "posts"
 
                         Toast.makeText(NewPost.this, "Image Is Uploaded. perfect", Toast.LENGTH_SHORT).show();
