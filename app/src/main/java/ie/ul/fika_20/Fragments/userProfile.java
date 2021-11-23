@@ -128,7 +128,7 @@ public class userProfile<Private> extends Fragment {
             ClearAll();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     User user = new User();
-                    user.setImageUrl(snapshot.child("image").getValue().toString());
+                    user.(snapshot.child("image").getValue().toString());
                     user.setUsername(snapshot.child("username").getValue().toString());
 
                     userList.add(user);
