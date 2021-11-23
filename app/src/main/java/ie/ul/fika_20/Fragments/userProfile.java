@@ -1,25 +1,16 @@
 
 package ie.ul.fika_20.Fragments;
 
-import static java.security.AccessController.getContext;
-
+import android.R;
 import android.content.Context;
-import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,23 +20,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
-import ie.ul.fika_20.Adapter.UserAdapter;
-import ie.ul.fika_20.Login;
-import ie.ul.fika_20.Model.User;
-import ie.ul.fika_20.NewPost;
-import ie.ul.fika_20.R;
+import ie.ul.fika_20.Model.Post;
 
 
+// changed array from User.java to Post.java
 
-
-public class userProfile<Private> extends Fragment {
+/*public class userProfile extends Fragment {
 
     // Widgets
     private RecyclerView recyclerView;
@@ -57,7 +41,7 @@ public class userProfile<Private> extends Fragment {
   //  private FirebaseDatabase fDBS;
     private DatabaseReference myRef;
     // Variabels
-    private ArrayList<User>  userList;
+    private ArrayList<Post>  postList;
     private Context mContext;
     TextView userName_profile;
     ImageView image_profile;
@@ -69,8 +53,6 @@ public class userProfile<Private> extends Fragment {
 
 
   //  int [] arr = {R.drawable.image1,R.drawable.image22, R.drawable.image4, R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8};
-
-
 
 
 
@@ -94,10 +76,11 @@ public class userProfile<Private> extends Fragment {
 
 
         // Gridlayout for images
+
         recyclerView = findViewById(R.id.recyclerView);
         layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerViewAdapter = new RecyclerViewAdapter(userList);
+        recyclerViewAdapter = new RecyclerViewAdapter(postList);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
 
@@ -108,7 +91,7 @@ public class userProfile<Private> extends Fragment {
         userInfo();
         myFotos();
 
-        userList = new ArrayList<>();
+        postList = new ArrayList<>();
 
         // Get Data method
 
@@ -127,15 +110,15 @@ public class userProfile<Private> extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             ClearAll();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    User user = new User();
-                    user.(snapshot.child("image").getValue().toString());
-                    user.setUsername(snapshot.child("username").getValue().toString());
+                    Post post = new Post();
+                    post.setImageurl(snapshot.child("imageurl").getValue().toString());
+                    post.setPublisher(snapshot.child("username").getValue().toString());
 
-                    userList.add(user);
+                    postList.add(post);
 
                 }
                 // mContext ist för getApplicationContext.
-                recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext, userList);
+                recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext, postList);
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerViewAdapter.notifyDataSetChanged();
             }
@@ -149,19 +132,19 @@ public class userProfile<Private> extends Fragment {
     }
 
     private void ClearAll(){
-        if (userList =! null){
-            userList.clear();
+        if (postList =! null){
+            postList.clear();
 
             if (recyclerViewAdapter != null){
                 recyclerViewAdapter.notifyDataSetChanged();
             }
         }
-        userList = new ArrayList<>();
+        postList = new ArrayList<>();
 
     }
 
     // Displaying user name in the textView. Need to fix imageurls.
-   /* private void userInfo() {
+   *//* private void userInfo() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -174,18 +157,18 @@ public class userProfile<Private> extends Fragment {
 
                 Picasso.get().load(user.getAvatar()).placeholder(R.drawable.).into(image_profile);
                 userName_profile.setText(user.getUsername());
-                *//*fullname.setText(user.getFullname());
-                bio.setText(user.getBio());*//*
+                *//**//*fullname.setText(user.getFullname());
+                bio.setText(user.getBio());*//**//*
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });*//*
         // Fetching fotos and adding them to the recyclerView
         // Needs more work.
-     /*   private void myFotos() {
+     *//*   private void myFotos() {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("posts");
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -207,11 +190,10 @@ public class userProfile<Private> extends Fragment {
 
                 }
             });
-        }*/
-    }
+        }*//*
+    }*/
 
 
 
 
 
-}

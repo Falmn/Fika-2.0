@@ -26,10 +26,10 @@ import ie.ul.fika_20.R;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 
-    private Context mContext;
-    private List<Post> mPosts;
+    private final Context mContext;
+    private final List<Post> mPosts;
 
-    private FirebaseUser firebaseUser;
+    private final FirebaseUser firebaseUser;
 
     // Constructor for context and posts
     public PostAdapter(Context mContext, List<Post> mPosts) {

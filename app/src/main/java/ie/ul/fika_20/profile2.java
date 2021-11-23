@@ -1,25 +1,17 @@
-/*
+
 package ie.ul.fika_20;
 
-import static java.security.AccessController.getContext;
-
+import android.R;
 import android.content.Context;
-import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,24 +21,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
-import ie.ul.fika_20.Adapter.UserAdapter;
-import ie.ul.fika_20.Login;
 import ie.ul.fika_20.Model.Post;
-import ie.ul.fika_20.Model.User;
-import ie.ul.fika_20.NewPost;
-import ie.ul.fika_20.R;
 
 
 // changed array from User.java to Post.java
 
-public class Profile extends Fragment {
+public class profile2 extends Fragment {
 
     // Widgets
     private RecyclerView recyclerView;
@@ -71,12 +55,13 @@ public class Profile extends Fragment {
 
     //  int [] arr = {R.drawable.image1,R.drawable.image22, R.drawable.image4, R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8};
 
-
+// MÅSTE FIXA onCREATEVIEW!!!! ÄR ngt med fragments.
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreateView(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_profile);
+        //
+        View view = View.inflate(ie.ul.fika_20.R.layout.fragment_profile, layoutManager, false);
 
         // Fetching username
         userName_profile = findViewById(R.id.userName_profile);
@@ -208,7 +193,7 @@ public class Profile extends Fragment {
                 }
             });
         }*/
-//}
+}
 
 
 
