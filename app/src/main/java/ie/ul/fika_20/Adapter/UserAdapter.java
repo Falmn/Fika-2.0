@@ -100,7 +100,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             }
         });
     }
-    //Notiser
+    //Notiser till personen som man börjar följa
 
 /*
     private void addNotifications(String userid) {
