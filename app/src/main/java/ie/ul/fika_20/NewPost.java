@@ -30,6 +30,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
@@ -129,7 +130,7 @@ public class NewPost extends AppCompatActivity {
         if (requestCode == GALLERY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri contentUri = data.getData();
-                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()); // the name of the picture
                 String imageFileName = "JPEG_" + timeStamp + "." + getFileExt(contentUri);
                 Log.d("tag", "onActivityResult: Gallery Image Uri:  " + imageFileName);
                 selectedImage.setImageURI(contentUri);
@@ -152,7 +153,8 @@ public class NewPost extends AppCompatActivity {
                 image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) { // uri of image
-                        Log.d("tag", "onSuccess: Uploaded Image URl is " + uri.toString());
+                        Picasso.get().load(uri).into(selectedImage);
+                        //Log.d("tag", "onSuccess: Uploaded Image URl is " + uri.toString());
                     }
                 });
 
@@ -161,7 +163,7 @@ public class NewPost extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() { // if it fails
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(NewPost.this, "Upload Failled.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewPost.this, "Upload Failed.", Toast.LENGTH_SHORT).show();
             }
         });
 

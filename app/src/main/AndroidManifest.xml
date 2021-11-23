@@ -17,12 +17,12 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <!--         <activity
-                    android:name=".NewPost"
-                    android:exported="true" />
-               <activity
-                    android:name=".Profile"
-                    android:exported="true" />-->
+        <!--   <activity
+               android:name=".NewPost"
+               android:exported="true" />
+                  <activity
+                       android:name=".Profile"
+                       android:exported="true" />-->
         <activity
             android:name=".SignUp"
             android:exported="true" />
@@ -30,7 +30,7 @@
             android:name=".Login"
             android:exported="true"/>
         <activity
-            android:name=".StartApp"
+            android:name=".NewPost"
             android:exported="true">
 
             <intent-filter>
@@ -41,7 +41,7 @@
         </activity>
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="net.smallacademy.android.fileprovider"
+            android:authorities="com.example.android.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
