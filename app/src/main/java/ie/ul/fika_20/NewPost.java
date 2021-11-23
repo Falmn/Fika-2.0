@@ -76,9 +76,8 @@ public class NewPost extends AppCompatActivity {
         // newpostdatabase = FirebaseDatabase.getInstance(); // to save in database
 
         //get user
-        // auth = FirebaseAuth.getInstance();
+         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        // currentUserId = auth.getCurrentUser().getUid();
 
 
 
@@ -178,14 +177,17 @@ public class NewPost extends AppCompatActivity {
                 image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) { // uri of image
-                        Picasso.get().load(uri).into(selectedImage);
+                        Picasso.get().load(uri).into(selectedImage); // takes the picture from firebase and puts it in the image picture
                         //Log.d("tag", "onSuccess: Uploaded Image URl is " + uri.toString());
-                        DatabaseReference imagestore = FirebaseDatabase.getInstance().getReference().child("Users").child("HXiCUYDg88NYNFuqSGc7HBtVW9p1").child("Image");
+
+                        DatabaseReference imagestore = FirebaseDatabase.getInstance().getReference().child("posts");  //creats a post folder in realtime database
 
                         HashMap<String, String> hashMap = new HashMap<>();
+                        hashMap.put("caption", "Skriva caption");
                         hashMap.put("imageurl", String.valueOf(uri));
-
-                        imagestore.setValue(hashMap);
+                        hashMap.put("postid", name);
+                        hashMap.put("publisher", "ta bort när vi kör live" ); //firebaseUser.getUid()); // Uploads user id
+                        imagestore.push().setValue(hashMap); // puts the hashmap into realtime database "posts"
 
                         Toast.makeText(NewPost.this, "Image Is Uploaded. perfect", Toast.LENGTH_SHORT).show();
                         //String imageReference = uri.toString();
