@@ -24,6 +24,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -36,7 +38,7 @@ public class NewPost extends AppCompatActivity {
     ImageView selectedImage;
     Button cameraBtn, galleryBtn;
     String currentPhotoPath;
-   // StorageReference storageReference;
+    // StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
