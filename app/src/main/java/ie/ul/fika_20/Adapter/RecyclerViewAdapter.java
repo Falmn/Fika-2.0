@@ -10,36 +10,33 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ie.ul.fika_20.Model.User;
 import ie.ul.fika_20.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
-    private Context mContext;
-    private List<User> mUsers;
-    private boolean isFragment;
 
-    private FirebaseUser firebaseUser;
 
-    public RecyclerViewAdapter(Context mContext, List<User> mUsers, boolean isFragment) {
+private static final String Tag = "recyclerView";
+private Context mContext;
+private ArrayList<User> userList;
+
+    public RecyclerViewAdapter(Context mContext, ArrayList<User> userList) {
         this.mContext = mContext;
-        this.mUsers = mUsers;
-        this.isFragment = isFragment;
-    }
-    int [] arr;
-
-    public RecyclerViewAdapter(int[] arr) {
-        this.arr = arr;
+        this.userList = userList;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.single_view, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
 
 
@@ -48,13 +45,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.imageView.setImageResource(arr[position]);
+        // Textview username??
+        holder.textView.setText(userList.get(position).getUsername());
+        // Imageview with glidelibary.
+        // KOLLA I User classen efter image url att den e med.
+        Glide.with(mContext)
+        .load(userList.get(position).getImageUrl())
+                .into(holder.imageView);
+
+
+
+        //holder.imageView.setImageResource(arr[position]);
 //Kanske textview
     }
 
     @Override
     public int getItemCount() {
-        return arr.length;
+        return userList.size();
     }
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
@@ -67,4 +74,50 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         }
     }
+
+
+    /*@NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+// get data and put it in this template.
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.single_view, parent, false);
+
+
+        return new MyViewHolder(view);
+
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+
+        ImageView imageView;
+        TextView textView;
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            imageView= itemView.findViewById(R.id.image_profile);
+            textView = itemView.findViewById(R.id.userName_profile);
+
+
+        }
+    }*/
+
+  //  int [] arr;
+  /*  public RecyclerViewAdapter(int[] arr) {
+        this.arr = arr;
+    }*/
+
+
 }
