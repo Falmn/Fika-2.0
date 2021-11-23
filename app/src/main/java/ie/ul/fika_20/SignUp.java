@@ -98,6 +98,7 @@ public class SignUp extends AppCompatActivity {
                 map.put("email", email);
                 map.put("username", username);
                 map.put("id", fAuth.getCurrentUser().getUid());
+                map.put("avatar", "default");
 
                 fRDB.child("Users").child(fAuth.getCurrentUser().getUid()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
