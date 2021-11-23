@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import ie.ul.fika_20.Fragments.FeedFragment;
 import ie.ul.fika_20.Fragments.userProfile;
 
 
@@ -22,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageView navProfile;
     private ImageView navHome;
     private ImageView navNewPost;
-    private Fragment selectorFragment;
     DatabaseReference fRDB;
     FirebaseAuth fAuth;
 
@@ -37,13 +37,20 @@ public class MainActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fRDB = FirebaseDatabase.getInstance().getReference();
 
+        // Starts feed fragment
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new FeedFragment()).commit();
+
+        // Go to profile fragment if user clicks on profile icon
         navProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new userProfile()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new userProfile()).commit();
             }
         });
 
+        // Go to new post if user clicks on add button
         navNewPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,16 +60,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // If user not logged in, sends them to Start activity
     @Override
     protected void onStart(){
         super.onStart();
         FirebaseUser currentUser = fAuth.getCurrentUser();
         if(currentUser == null){
-            startActivity(new Intent(MainActivity.this, Login.class));
+            startActivity(new Intent(MainActivity.this, StartApp.class));
             finish();
         }
     }
-
 
 }
 
