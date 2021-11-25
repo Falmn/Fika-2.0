@@ -139,7 +139,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             caption = itemView.findViewById(R.id.caption);
         }
     }
-
+    
     private void isLiked(String postId, ImageView imageView) {
         FirebaseDatabase.getInstance().getReference().child("Likes").child(postId).
                 addValueEventListener(new ValueEventListener() {
@@ -164,7 +164,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
     }
 
     // Method to count number of likes
-    private void noOfLikes(String postId,TextView  text){
+    private void noOfLikes(String postId, TextView text) {
         FirebaseDatabase.getInstance().getReference().child("Likes").child(postId).
                 addValueEventListener(new ValueEventListener() {
                     @Override

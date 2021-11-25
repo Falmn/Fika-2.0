@@ -55,50 +55,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!--<RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/no_posts">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/fika_logo_only"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/fika_placeholder"
-            android:paddingTop="100dp"></ImageView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="NO FIKA POSTS YET..."
-            android:textColor="@color/colorPrimaryDark"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:paddingTop="15dp"
-            android:layout_below="@+id/fika_placeholder"
-            ></TextView>
-    </RelativeLayout>-->
-
-    <!--<androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/top">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:id="@+id/recycler_view_posts"/>
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>-->
 
 </RelativeLayout>
 
