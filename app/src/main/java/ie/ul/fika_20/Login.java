@@ -91,3 +91,11 @@ public class Login extends AppCompatActivity {
     }
 }
 
+// firebase rules if you are logged in
+// {
+//  "rules": {
+//    ".read": "auth.uid != null",
+//    ".write": "auth.uid != null"
+//  }
+//}
+
