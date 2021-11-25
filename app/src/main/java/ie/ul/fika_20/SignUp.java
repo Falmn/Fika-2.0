@@ -53,7 +53,7 @@ public class SignUp extends AppCompatActivity {
         password = findViewById(R.id.password);
         register = findViewById(R.id.register);
         loginUser = findViewById(R.id.login_user);
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        progressBar = findViewById(R.id.progress_bar);
 
         fRDB = FirebaseDatabase.getInstance().getReference();
         //fStore = FirebaseFirestore.getInstance();

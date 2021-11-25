@@ -27,9 +27,9 @@ import ie.ul.fika_20.Model.User;
 import ie.ul.fika_20.R;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
-    private Context mContext;
-    private List<User> mUsers;
-    private boolean isFragment;
+    private final Context mContext;
+    private final List<User> mUsers;
+    private final boolean isFragment;
 
     private FirebaseUser firebaseUser;
 
@@ -100,7 +100,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             }
         });
     }
-    //Notiser
+    //Notiser till personen som man börjar följa
 
 /*
     private void addNotifications(String userid) {
