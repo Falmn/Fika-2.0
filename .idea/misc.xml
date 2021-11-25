@@ -3,11 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/activity_location.xml" value="0.10190217391304347" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/activity_main.xml" value="0.10190217391304347" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/activity_start_app.xml" value="0.10144927536231885" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/fragment_feed.xml" value="0.10190217391304347" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/fragment_profile2.xml" value="0.1" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/fragment_user_profile.xml" value="0.1" />
+        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/nav_graph.xml" value="0.10190217391304347" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/profile.xml" value="0.10144927536231885" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/single_view.xml" value="0.10144927536231885" />
         <entry key="app/src/main/res/drawable-anydpi/ic_comment.xml" value="0.25625" />

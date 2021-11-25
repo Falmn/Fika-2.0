@@ -4,7 +4,9 @@ package ie.ul.fika_20;
 import android.R;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
 import ie.ul.fika_20.Model.Post;
@@ -58,15 +61,17 @@ public class profile2 extends Fragment {
 // MÅSTE FIXA onCREATEVIEW!!!! ÄR ngt med fragments.
 
     @Override
-    public void onCreateView(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //
-        View view = View.inflate(ie.ul.fika_20.R.layout.fragment_profile, layoutManager, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
+     //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
+
 
         // Fetching username
-        userName_profile = findViewById(R.id.userName_profile);
-        image_profile = findViewById(R.id.image_profile);
-// Firebase
+        userName_profile = (TextView) view.findViewById(R.id.user);
+        image_profile = view.findViewById(R.id.image_profile2);
+
+        // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
         fAuth = FirebaseAuth.getInstance();
 
@@ -79,7 +84,7 @@ public class profile2 extends Fragment {
 
         // Gridlayout for images
 
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.recycler);
         layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
         recyclerViewAdapter = new RecyclerViewAdapter(postList);
