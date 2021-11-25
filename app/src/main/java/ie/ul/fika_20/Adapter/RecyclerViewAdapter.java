@@ -1,3 +1,4 @@
+/*
 package ie.ul.fika_20.Adapter;
 
 import android.content.Context;
@@ -48,9 +49,8 @@ private ArrayList<User> userList;
         // Textview username??
         holder.textView.setText(userList.get(position).getUsername());
         // Imageview with glidelibary.
-        // KOLLA I User classen efter image url att den e med.
         Glide.with(mContext)
-        .load(userList.get(position).getImageUrl())
+        .load(userList.get(position).getAvatar())
                 .into(holder.imageView);
 
 
@@ -76,7 +76,8 @@ private ArrayList<User> userList;
     }
 
 
-    /*@NonNull
+    */
+/*@NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
@@ -112,12 +113,16 @@ private ArrayList<User> userList;
 
 
         }
-    }*/
+    }*//*
+
 
   //  int [] arr;
-  /*  public RecyclerViewAdapter(int[] arr) {
+  */
+/*  public RecyclerViewAdapter(int[] arr) {
         this.arr = arr;
-    }*/
+    }*//*
+
 
 
 }
+*/

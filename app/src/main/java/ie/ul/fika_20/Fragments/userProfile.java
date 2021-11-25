@@ -1,3 +1,4 @@
+/*
 
 package ie.ul.fika_20.Fragments;
 
@@ -161,7 +162,8 @@ public class userProfile<Private> extends Fragment {
     }
 
     // Displaying user name in the textView. Need to fix imageurls.
-   /* private void userInfo() {
+   */
+/* private void userInfo() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -174,18 +176,24 @@ public class userProfile<Private> extends Fragment {
 
                 Picasso.get().load(user.getAvatar()).placeholder(R.drawable.).into(image_profile);
                 userName_profile.setText(user.getUsername());
-                *//*fullname.setText(user.getFullname());
+                *//*
+*/
+/*fullname.setText(user.getFullname());
                 bio.setText(user.getBio());*//*
+*/
+/*
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });*//*
+
         // Fetching fotos and adding them to the recyclerView
         // Needs more work.
-     /*   private void myFotos() {
+     */
+/*   private void myFotos() {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("posts");
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -207,11 +215,6 @@ public class userProfile<Private> extends Fragment {
 
                 }
             });
-        }*/
-    }
+        }*//*
 
-
-
-
-
-}
+    }*/

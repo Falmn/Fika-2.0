@@ -1,54 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".NewPost">
 
-
-    <ImageView
-        android:id="@+id/displayImageView"
-        android:layout_marginTop="150dp"
-        android:layout_width="375dp"
-        android:layout_height="375dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
-
-<!--    <Button
-        android:id="@+id/cameraButton"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginBottom="256dp"
-        android:text="Camera"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />-->
+        android:id="@+id/top"
+        android:layout_alignParentTop="true">
 
-    <Button
-        android:id="@+id/gallaryButton"
-        android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBeige"
+            android:id="@+id/top_toolbar">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_back"
+                android:layout_gravity="left"
+                android:id="@+id/nav_back">
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NEW POST"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"
+                android:layout_gravity="center">
+            </TextView>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="125dp"
-        android:paddingHorizontal="100dp"
-        android:textSize="20dp"
-        android:text="Choose picture"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_below="@+id/top"
+        android:orientation="vertical">
 
-<!--    <Button
-        android:id="@+id/Backbutton_newpost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="41dp" />-->
+        <Button
+            android:id="@+id/gallaryButton"
+            android:layout_width="375dp"
+            android:layout_height="45dp"
+            android:layout_margin="15dp"
+            android:background="@color/colorAccent"
+            android:drawableRight="@drawable/ic_library"
+            android:padding="10dp"
+            android:text="Choose from library"
+            android:textAlignment="center"
+            android:textColor="@color/colorBeige"
+            android:textSize="20sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/displayImageView"
+            android:layout_width="375dp"
+            android:layout_height="375dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView
+            android:id="@+id/write_caption"
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="Write caption..."
+            android:maxLines="5" />
+
+        <Button
+            android:id="@+id/post_button"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="17dp"
+            android:background="@drawable/button_background"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Post"
+            android:textColor="@color/colorBackground"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
+    <!--    <Button
+            android:id="@+id/cameraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="39dp"
+            android:layout_marginBottom="256dp"
+            android:text="Camera"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />-->
+
+</RelativeLayout>
