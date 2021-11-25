@@ -48,7 +48,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/gallaryButton"
+            android:id="@+id/library_button"
             android:layout_width="375dp"
             android:layout_height="45dp"
             android:layout_margin="15dp"
@@ -68,31 +68,47 @@
             android:layout_marginTop="20dp"
             app:srcCompat="@drawable/ic_launcher_background" />
 
-        <com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView
+        <EditText
             android:id="@+id/write_caption"
             android:layout_width="375dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:hint="Write caption..."
-            android:maxLines="5" />
+            android:maxLines="5">
+        </EditText>
 
-        <Button
-            android:id="@+id/post_button"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="bottom|right"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="17dp"
-            android:background="@drawable/button_background"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Post"
-            android:textColor="@color/colorBackground"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_centerHorizontal="true"
+                android:visibility="invisible"
+                android:id="@+id/progress_bar_post"/>
+
+            <Button
+                android:id="@+id/post_button"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="17dp"
+                android:background="@drawable/button_background"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Post"
+                android:textColor="@color/colorBackground"
+                android:textSize="20sp" />
+
+
+        </RelativeLayout>
+
 
     </LinearLayout>
-
 
     <!--    <Button
             android:id="@+id/cameraButton"

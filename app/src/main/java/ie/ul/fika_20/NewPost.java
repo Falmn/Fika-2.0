@@ -14,7 +14,10 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -52,15 +55,14 @@ public class NewPost extends AppCompatActivity {
     public static final int CAMERA_REQUEST_CODE = 102;
     public static final int GALLERY_REQUEST_CODE = 105;
     ImageView selectedImage;
-    Button cameraBtn, galleryBtn,Backbuttonnewpost;
+    ImageView backButtonNewPost;
+    Button postBtn, libraryBtn;
     String currentPhotoPath;
     StorageReference storageReference;
     DatabaseReference databaseReference;
-    TextInputLayout Caption;
-    private String currentUserId;
-    private FirebaseAuth auth;
-    private FirebaseDatabase newpostdatabase;
-    private FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth;
+    EditText Caption;
+    ProgressBar progressBarPost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,19 +70,17 @@ public class NewPost extends AppCompatActivity {
         setContentView(R.layout.activity_new_post);
 
         selectedImage = findViewById(R.id.displayImageView);
-    //    cameraBtn = findViewById(R.id.cameraButton);
-        galleryBtn = findViewById(R.id.gallaryButton);
-        Backbuttonnewpost = findViewById(R.id.Backbutton_newpost);
-        Caption = findViewById(R.id.CaptionView);
+        //    cameraBtn = findViewById(R.id.cameraButton);
+        postBtn = findViewById(R.id.post_button);
+        libraryBtn = findViewById(R.id.library_button);
+        backButtonNewPost = findViewById(R.id.nav_back);
+        Caption = findViewById(R.id.write_caption);
 
         storageReference = FirebaseStorage.getInstance().getReference(); // to store in storage
 
-      //  databaseReference = FirebaseDatabase.getInstance().getReference();
+        //  databaseReference = FirebaseDatabase.getInstance().getReference();
 
         // newpostdatabase = FirebaseDatabase.getInstance(); // to save in database
-
-        //get user
-         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
 
@@ -93,7 +93,7 @@ public class NewPost extends AppCompatActivity {
             }
         });*/
 
-        Backbuttonnewpost.setOnClickListener(new View.OnClickListener() { // is a backbutton to go back to mainpage
+        backButtonNewPost.setOnClickListener(new View.OnClickListener() { // is a backbutton to go back to mainpage
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NewPost.this, MainActivity.class);
@@ -102,15 +102,23 @@ public class NewPost extends AppCompatActivity {
         });
 
 
-
-
-        galleryBtn.setOnClickListener(new View.OnClickListener() {
+        libraryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(gallery, GALLERY_REQUEST_CODE);
             }
         });
+
+        postBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressBarPost.setVisibility(View.VISIBLE);
+                //If we can move upload to firebase here
+            }
+        });
+
+
 
        /* Caption.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,7 +183,7 @@ public class NewPost extends AppCompatActivity {
                 Log.d("tag", "onActivityResult: Gallery Image Uri:  " + imageFileName);
                 selectedImage.setImageURI(contentUri);
 
-                  uploadImageToFirebase(imageFileName,contentUri);
+                uploadImageToFirebase(imageFileName, contentUri);
 
 
             }
@@ -199,21 +207,22 @@ public class NewPost extends AppCompatActivity {
                         DatabaseReference imagestore = FirebaseDatabase.getInstance().getReference().child("Posts");  //creats a post folder in realtime database
 
                         HashMap<String, String> hashMap = new HashMap<>();
-                        hashMap.put("caption", "Skriva caption");
+                        hashMap.put("caption", Caption.getText().toString());
                         //kommentar
                         hashMap.put("imageurl", String.valueOf(uri));
                         hashMap.put("postid", name);
                         // caption kanske inte får vara null??
-                        hashMap.put("publisher", Caption.getEditText().getText().toString()); //firebaseUser.getUid()); // Uploads user id
+                        hashMap.put("publisher", firebaseAuth.getCurrentUser().getUid()); //firebaseUser.getUid()); // Uploads user id
                         imagestore.push().setValue(hashMap); // puts the hashmap into realtime database "posts"
 
-                        Toast.makeText(NewPost.this, "Image Is Uploaded. perfect", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewPost.this, "Perfect! Image Is Uploaded.", Toast.LENGTH_SHORT).show();
                         //String imageReference = uri.toString();
                         //databaseReference.child("specimens").child(specimenDTO.getKey()).child("imageUrl").setValue(imageReference);
                         //specimenDTO.setImageUrl(imageReference);
-                            }
+                    }
                 });
 
+                progressBarPost.setVisibility(View.GONE);
                 Toast.makeText(NewPost.this, "Image Is Uploaded.", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() { // if it fails
