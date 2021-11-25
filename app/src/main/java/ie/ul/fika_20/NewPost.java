@@ -200,6 +200,7 @@ public class NewPost extends AppCompatActivity {
 
                         HashMap<String, String> hashMap = new HashMap<>();
                         hashMap.put("caption", "Skriva caption");
+                        //kommentar
                         hashMap.put("imageurl", String.valueOf(uri));
                         hashMap.put("postid", name);
                         // caption kanske inte får vara null??
