@@ -1,7 +1,6 @@
 
 package ie.ul.fika_20;
 
-import android.R;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,16 +60,17 @@ public class profile2 extends Fragment {
 
 // MÅSTE FIXA onCREATEVIEW!!!! ÄR ngt med fragments.
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,@Nullable
                              Bundle savedInstanceState) {
         View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
      //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
 
 
         // Fetching username
-        userName_profile = (TextView) view.findViewById(R.id.user);
-        image_profile = (ImageView) view.findViewById(R.id.);
+        image_profile  =  view.findViewById(R.id.image_profile);
+        userName_profile =  view.findViewById(R.id.userName_profile);
 
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
@@ -84,7 +85,7 @@ public class profile2 extends Fragment {
 
         // Gridlayout for images
 
-        recyclerView = view.findViewById(R.id.recycler);
+        recyclerView = view.findViewById(R.id.recyclerView);
         layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
         recyclerViewAdapter = new RecyclerViewAdapter(postList);
