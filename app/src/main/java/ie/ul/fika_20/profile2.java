@@ -1,7 +1,6 @@
 
 package ie.ul.fika_20;
 
-import android.R;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -70,8 +69,8 @@ public class profile2 extends Fragment {
 
 
         // Fetching username
-        image_profile  = (TextView) view.findViewById(ie.ul.fika_20.R.id.image_profile);
-        userName_profile = (ImageView) view.findViewById(ie.ul.fika_20.R.id.userName_profile);
+        image_profile  =  view.findViewById(R.id.image_profile);
+        userName_profile =  view.findViewById(R.id.userName_profile);
 
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
@@ -86,7 +85,7 @@ public class profile2 extends Fragment {
 
         // Gridlayout for images
 
-        recyclerView = view.findViewById(R.id.recycler);
+        recyclerView = view.findViewById(R.id.recyclerView);
         layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
         recyclerViewAdapter = new RecyclerViewAdapter(postList);
