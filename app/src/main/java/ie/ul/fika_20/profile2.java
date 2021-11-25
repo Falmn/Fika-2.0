@@ -69,7 +69,7 @@ public class profile2 extends Fragment {
 
         // Fetching username
         userName_profile = (TextView) view.findViewById(R.id.user);
-        image_profile = view.findViewById(R.id.image_profile2);
+        image_profile = (ImageView) view.findViewById(R.id.);
 
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
