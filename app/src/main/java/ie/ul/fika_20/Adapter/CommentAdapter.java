@@ -26,8 +26,8 @@ import ie.ul.fika_20.R;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder>{
 
-    private Context mContext;
-    private List<Comment> mComments;
+    private final Context mContext;
+    private final List<Comment> mComments;
 
     private FirebaseUser fUser;
 

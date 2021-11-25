@@ -1,4 +1,3 @@
-/*
 package ie.ul.fika_20.Adapter;
 
 import android.content.Context;
@@ -17,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 import java.util.List;
 
+import ie.ul.fika_20.Model.Post;
 import ie.ul.fika_20.Model.User;
 import ie.ul.fika_20.R;
 
@@ -24,13 +24,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
 private static final String Tag = "recyclerView";
-private Context mContext;
-private ArrayList<User> userList;
+private final Context mContext;
+private final ArrayList<Post> postList;
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<User> userList) {
+    public RecyclerViewAdapter(Context mContext, ArrayList<Post> postList) {
         this.mContext = mContext;
-        this.userList = userList;
+        this.postList = postList;
     }
+
+
 
     @NonNull
     @Override
@@ -47,10 +49,11 @@ private ArrayList<User> userList;
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         // Textview username??
-        holder.textView.setText(userList.get(position).getUsername());
+        holder.textView.setText(postList.get(position).getPublisher());
         // Imageview with glidelibary.
+        // KOLLA I User classen efter image url att den e med.
         Glide.with(mContext)
-        .load(userList.get(position).getAvatar())
+        .load(postList.get(position).getImageurl())
                 .into(holder.imageView);
 
 
@@ -61,7 +64,7 @@ private ArrayList<User> userList;
 
     @Override
     public int getItemCount() {
-        return userList.size();
+        return postList.size();
     }
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
@@ -76,8 +79,7 @@ private ArrayList<User> userList;
     }
 
 
-    */
-/*@NonNull
+    /*@NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
@@ -113,16 +115,12 @@ private ArrayList<User> userList;
 
 
         }
-    }*//*
-
+    }*/
 
   //  int [] arr;
-  */
-/*  public RecyclerViewAdapter(int[] arr) {
+  /*  public RecyclerViewAdapter(int[] arr) {
         this.arr = arr;
-    }*//*
-
+    }*/
 
 
 }
-*/

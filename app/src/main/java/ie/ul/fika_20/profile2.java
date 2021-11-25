@@ -1,25 +1,19 @@
-/*
+
 package ie.ul.fika_20;
 
-import static java.security.AccessController.getContext;
-
+import android.R;
 import android.content.Context;
-import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,24 +23,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.zip.Inflater;
 
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
-import ie.ul.fika_20.Adapter.UserAdapter;
-import ie.ul.fika_20.Login;
 import ie.ul.fika_20.Model.Post;
-import ie.ul.fika_20.Model.User;
-import ie.ul.fika_20.NewPost;
-import ie.ul.fika_20.R;
 
 
 // changed array from User.java to Post.java
 
-public class Profile extends Fragment {
+public class profile2 extends Fragment {
 
     // Widgets
     private RecyclerView recyclerView;
@@ -71,17 +58,20 @@ public class Profile extends Fragment {
 
     //  int [] arr = {R.drawable.image1,R.drawable.image22, R.drawable.image4, R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8};
 
-
+// MÅSTE FIXA onCREATEVIEW!!!! ÄR ngt med fragments.
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_profile);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
+     //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
+
 
         // Fetching username
-        userName_profile = findViewById(R.id.userName_profile);
-        image_profile = findViewById(R.id.image_profile);
-// Firebase
+        userName_profile = (TextView) view.findViewById(R.id.user);
+        image_profile = view.findViewById(R.id.image_profile2);
+
+        // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
         fAuth = FirebaseAuth.getInstance();
 
@@ -94,7 +84,7 @@ public class Profile extends Fragment {
 
         // Gridlayout for images
 
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.recycler);
         layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
         recyclerViewAdapter = new RecyclerViewAdapter(postList);
@@ -208,7 +198,7 @@ public class Profile extends Fragment {
                 }
             });
         }*/
-//}
+}
 
 
 
