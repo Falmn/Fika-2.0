@@ -15,7 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import ie.ul.fika_20.Fragments.FeedFragment;
-import ie.ul.fika_20.Fragments.userProfile;
+import ie.ul.fika_20.Fragments.profile2;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new userProfile()).commit();
+                        new profile2()).commit();
             }
         });
 
