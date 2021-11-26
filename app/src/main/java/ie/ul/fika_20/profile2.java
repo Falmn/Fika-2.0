@@ -152,7 +152,7 @@ public class profile2 extends Fragment {
     }
 
     private void ClearAll(){
-        if (postList =! null){
+        if (postList != null){
             postList.clear();
 
             if (recyclerViewAdapter != null){

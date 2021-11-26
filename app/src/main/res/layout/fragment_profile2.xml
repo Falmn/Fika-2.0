@@ -18,8 +18,9 @@
             android:id="@+id/image_profile2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="58dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
@@ -29,10 +30,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="48dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/image_profile2" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="86dp"
+            android:layout_height="82dp"
+            android:src="@drawable/ic_notification"
+            tools:layout_editor_absoluteX="288dp"
+            tools:layout_editor_absoluteY="160dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_name2"
+            tools:layout_editor_absoluteX="41dp"
+            tools:layout_editor_absoluteY="56dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
