@@ -121,6 +121,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             }
         });
 
+       /* holder.save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });*/
+
     }
 
     // Returns number of posts
