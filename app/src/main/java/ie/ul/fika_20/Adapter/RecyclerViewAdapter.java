@@ -23,9 +23,9 @@ import ie.ul.fika_20.R;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
 
-private static final String Tag = "recyclerView";
-private final Context mContext;
-private final ArrayList<Post> postList;
+    private static final String Tag = "recyclerView";
+    private final Context mContext;
+    private final ArrayList<Post> postList;
 
     public RecyclerViewAdapter(Context mContext, ArrayList<Post> postList) {
         this.mContext = mContext;
@@ -33,13 +33,11 @@ private final ArrayList<Post> postList;
     }
 
 
-
-
     @NonNull
     @Override
     public RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.single_view, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
 
