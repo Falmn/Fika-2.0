@@ -34,6 +34,7 @@ private final ArrayList<Post> postList;
 
 
 
+
     @NonNull
     @Override
     public RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -72,7 +73,7 @@ private final ArrayList<Post> postList;
         TextView textView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView= itemView.findViewById(R.id.image_profile);
+            imageView= itemView.findViewById(R.id.image_singleview);
 
 
         }

@@ -65,7 +65,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                } else{
                    mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit().putString("profileId", notification.getUserid()).apply();
 
-                   ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new );
+          //         ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new );
                }
            }
        });
