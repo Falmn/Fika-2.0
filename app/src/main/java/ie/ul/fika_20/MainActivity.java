@@ -50,7 +50,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        
+        // Fika button starts feed activity
+        navHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new FeedFragment()).commit();
+            }
+        });
+
 
         // Go to new post if user clicks on add button
         navNewPost.setOnClickListener(new View.OnClickListener() {
