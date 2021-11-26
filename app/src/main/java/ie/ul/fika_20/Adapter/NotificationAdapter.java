@@ -58,15 +58,18 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
        }else{//annars är det inget, använder gone för att inte platsen ska vara "sparad"
            holder.postImage.setVisibility(View.GONE);
        }
-//Är ej klar, förstår ej funktionen
+//Är ej klar,
        holder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                if(notification.isPost()){
-                   mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postId", notification.getPostId()).apply();
-
+                   mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).
+                           edit().putString("postId", notification.getPostId()).apply();
+                   ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container ,
+                           new profile2()).commit();
                } else{
-                   mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit().putString("profileId", notification.getUserid()).apply();
+                   mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE).
+                           edit().putString("profileId", notification.getUserid()).apply();
 
                    ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new profile2()).commit();
                }
@@ -111,7 +114,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             }
         });
     }
-//Hämta användarnamn och profilbild från firebase
+//Hämta användarnamn och profilbild från firebase och lägg till kommentar
     private void getUser(ImageView imageView, TextView textView, String userId){
         FirebaseDatabase.getInstance().getReference().child("Users").child(userId).addValueEventListener(new ValueEventListener() {
             @Override
