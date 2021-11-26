@@ -83,9 +83,6 @@ public class NewPost extends AppCompatActivity {
         // newpostdatabase = FirebaseDatabase.getInstance(); // to save in database
 
 
-
-
-
         /*        cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,7 +99,6 @@ public class NewPost extends AppCompatActivity {
             }
         });
 
-
         libraryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,10 +106,6 @@ public class NewPost extends AppCompatActivity {
                 startActivityForResult(gallery, GALLERY_REQUEST_CODE);
             }
         });
-
-
-
-
 
        /* Caption.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,36 +115,6 @@ public class NewPost extends AppCompatActivity {
         });*/
 
     }
-
-
-
-
-/*    private void askCameraPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERM_CODE);// constant verible 101 -> CAMERA_REQUEST_CODE
-        } else {
-            dispatchTakePictureIntent();
-        }
-    }*/
-
-
-/*    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == CAMERA_PERM_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                dispatchTakePictureIntent();
-            } else {
-                Toast.makeText(this, "Camera Permission is required to use camera", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
-
-    //   private void openCamera() {
-    //     Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-    //     startActivityForResult(camera, CAMERA_REQUEST_CODE); // constant verible 102 -> CAMERA_REQUEST_CODE
-
-    // }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -187,14 +149,8 @@ public class NewPost extends AppCompatActivity {
                         //If we can move upload to firebase here
                     }
                 });
-
-
-
             }
-
         }
-
-
     }
 
     private void uploadImageToFirebase(String name, Uri contentUri) {
@@ -225,7 +181,7 @@ public class NewPost extends AppCompatActivity {
                     }
                 });
 
-               // progressBarPost.setVisibility(View.GONE);
+                // progressBarPost.setVisibility(View.GONE);
                 Toast.makeText(NewPost.this, "Image Is Uploaded.", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() { // if it fails
@@ -234,7 +190,6 @@ public class NewPost extends AppCompatActivity {
                 Toast.makeText(NewPost.this, "Upload Failed.", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private String getFileExt(Uri contentUri) {
@@ -242,7 +197,35 @@ public class NewPost extends AppCompatActivity {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(c.getType(contentUri));
     }
+}
 
+
+/*    private void askCameraPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERM_CODE);// constant verible 101 -> CAMERA_REQUEST_CODE
+        } else {
+            dispatchTakePictureIntent();
+        }
+    }*/
+
+
+/*    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == CAMERA_PERM_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                dispatchTakePictureIntent();
+            } else {
+                Toast.makeText(this, "Camera Permission is required to use camera", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }*/
+
+    //   private void openCamera() {
+    //     Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    //     startActivityForResult(camera, CAMERA_REQUEST_CODE); // constant verible 102 -> CAMERA_REQUEST_CODE
+
+    // }
 
     /*private File createImageFile() throws IOException {
         // Create an image file name
@@ -287,7 +270,6 @@ public class NewPost extends AppCompatActivity {
     }*/
 
 
-}
 
 //https://stackoverflow.com/questions/64221188/write-external-storage-when-targeting-android-10
 //https://developer.android.com/training/camera/photobasics#java

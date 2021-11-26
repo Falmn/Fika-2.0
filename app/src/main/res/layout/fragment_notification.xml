@@ -8,28 +8,31 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bar"
-        android:background="@drawable/ic_launcher_background">
+        android:id="@+id/top"
+        android:layout_alignParentTop="true">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/toolbar"
-            android:background="@drawable/ic_launcher_background">
+            android:layout_height="match_parent"
+            android:background="@color/colorBeige"
+            android:id="@+id/top_toolbar">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_back"
+                android:layout_gravity="left"
+                android:id="@+id/nav_back">
+            </ImageView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NOTIFICATION"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimaryDark"/>
-
-            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOTIFICATIONS"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"
+                android:layout_gravity="center">
+            </TextView>
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -39,6 +42,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recycler_view"
-        android:layout_below="@id/bar"/>
+        android:layout_below="@id/top"/>
 
 </RelativeLayout>

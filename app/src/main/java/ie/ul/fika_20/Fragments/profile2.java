@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
 import ie.ul.fika_20.Model.Post;
@@ -41,9 +42,9 @@ public class profile2 extends Fragment {
     // Widgets
     private RecyclerView recyclerView;
     //  private MyFotosAdapter myFotosAdapter;
-    private ArrayList<Post> postList;
-   private RecyclerView.LayoutManager layoutManager;
-   private RecyclerViewAdapter recyclerViewAdapter;
+    private List<Post> postList;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerViewAdapter recyclerViewAdapter;
     // Firebase
     private FirebaseUser firebaseUser;
     private FirebaseAuth fAuth;
@@ -68,7 +69,7 @@ public class profile2 extends Fragment {
         View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         // Fetching username
-        image_profile = view.findViewById(R.id.image_singleview);
+        image_profile = view.findViewById(R.id.image_profile);
         userName_profile = view.findViewById(R.id.username_profile);
         // Imagebuttons
         searchUser = view.findViewById(R.id.searchUser);
@@ -86,18 +87,17 @@ public class profile2 extends Fragment {
         layoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
         postList = new ArrayList<>();
-         recyclerViewAdapter = new RecyclerViewAdapter(getContext(), postList);
+        // recyclerViewAdapter = new RecyclerViewAdapter(postList);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(recyclerViewAdapter);
         // från den nya
-
-        /*recyclerView = view.findViewById(R.id.recycler_view);
+       /*
+        recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(mLayoutManager);
         postList = new ArrayList<>();
-       // myFotosAdapter = new MyFotosAdapter(getContext(), postList);
+        myFotosAdapter = new MyFotosAdapter(getContext(), postList);
         recyclerView.setAdapter(RecyclerViewAdapter);*/
 
         // Lists of methods
@@ -117,16 +117,6 @@ public class profile2 extends Fragment {
 
 
     }
-
-
-  /*  public void onCreated(@Nullable Bundle savedInstanceState) {
-        super.onViewCreated(@NonNull View view);
-        recyclerView.setAdapter(recyclerViewAdapter);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new GridLayoutManager(getContext(), 3);
-        recyclerView.setLayoutManager(layoutManager);
-    }*/
-
     private void GetDataFromFireBase () {
 
         Query query = myRef.child("Posts");
@@ -137,13 +127,13 @@ public class profile2 extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Post post = new Post();
                     post.setImageurl(snapshot.child("imageurl").getValue().toString());
-                    post.setPublisher(snapshot.child("publisher").getValue().toString());
+                    post.setPublisher(snapshot.child("username").getValue().toString());
 
                     postList.add(post);
 
                 }
                 // mContext ist för getApplicationContext. la till arraylist<Post>.
-                recyclerViewAdapter = new RecyclerViewAdapter(mContext, postList);
+                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerViewAdapter.notifyDataSetChanged();
             }
