@@ -81,6 +81,7 @@ public class profile2 extends Fragment {
         userId = FirebaseAuth.getInstance().getUid();
         myRef = FirebaseDatabase.getInstance().getReference();
         // fDBS = FirebaseDatabase.getInstance();
+
         // Gridlayout for images
         recyclerView = view.findViewById(R.id.recyclerView);
         layoutManager = new GridLayoutManager(getContext(), 3);
