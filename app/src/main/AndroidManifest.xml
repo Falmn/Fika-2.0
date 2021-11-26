@@ -20,11 +20,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <!--
+
          <activity
                     android:name=".NewPost"
-                    android:exported="true" />
-               <activity
+                    android:exported="true"/>
+<!--               <activity
                     android:name=".Profile"
                     android:exported="true" />
         -->

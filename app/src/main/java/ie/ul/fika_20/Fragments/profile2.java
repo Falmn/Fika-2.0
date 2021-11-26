@@ -2,6 +2,7 @@
 package ie.ul.fika_20.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +33,9 @@ import java.util.zip.Inflater;
 
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
 import ie.ul.fika_20.Model.Post;
+import ie.ul.fika_20.NewPost;
 import ie.ul.fika_20.R;
+import ie.ul.fika_20.StartApp;
 
 
 // changed array from User.java to Post.java
@@ -91,6 +94,20 @@ public class profile2 extends Fragment {
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
         // från den nya
+
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(profile2.this, StartApp.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
        /*
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -105,6 +122,7 @@ public class profile2 extends Fragment {
 
        /* userInfo();
         myFotos();
+
 */
         // Get Data method
         GetDataFromFireBase();
@@ -114,9 +132,8 @@ public class profile2 extends Fragment {
 
         return view;
 
-
-
     }
+
     private void GetDataFromFireBase () {
 
         Query query = myRef.child("Posts");
