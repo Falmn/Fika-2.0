@@ -111,13 +111,7 @@ public class NewPost extends AppCompatActivity {
             }
         });
 
-        postBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                progressBarPost.setVisibility(View.VISIBLE);
-                //If we can move upload to firebase here
-            }
-        });
+
 
 
 
@@ -184,7 +178,16 @@ public class NewPost extends AppCompatActivity {
                 Log.d("tag", "onActivityResult: Gallery Image Uri:  " + imageFileName);
                 selectedImage.setImageURI(contentUri);
 
-                uploadImageToFirebase(imageFileName, contentUri);
+                postBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        uploadImageToFirebase(imageFileName, contentUri);
+
+                        //progressBarPost.setVisibility(View.VISIBLE);
+                        //If we can move upload to firebase here
+                    }
+                });
+
 
 
             }
