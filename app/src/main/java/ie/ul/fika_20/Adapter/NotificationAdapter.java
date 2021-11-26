@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import ie.ul.fika_20.Fragments.profile2;
 import ie.ul.fika_20.Model.Notification;
 import ie.ul.fika_20.Model.Post;
 import ie.ul.fika_20.Model.User;
@@ -55,7 +56,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
        }else{//annars är det inget, använder gone för att inte platsen ska vara "sparad"
            holder.postImage.setVisibility(View.GONE);
        }
-
+//Är ej klar, förstår ej funktionen
        holder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -65,7 +66,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                } else{
                    mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit().putString("profileId", notification.getUserid()).apply();
 
-                   ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new )
+                   ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new profile2()).commit();
                }
            }
        });
