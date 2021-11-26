@@ -69,7 +69,7 @@ public class profile2 extends Fragment {
         View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         // Fetching username
-        image_profile = view.findViewById(R.id.image_profile);
+        image_profile = view.findViewById(R.id.image_profile2);
         userName_profile = view.findViewById(R.id.username_profile);
         // Imagebuttons
         searchUser = view.findViewById(R.id.searchUser);
