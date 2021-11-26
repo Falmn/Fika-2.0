@@ -45,7 +45,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         View view = LayoutInflater.from(mContext).inflate(R.layout.user_item, parent, false);
         return new ViewHolder(view);
     }
-
+//koppling till firebase
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
