@@ -21,11 +21,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
-    EditText mEmail, mPassword;
-    Button mLoginBtn;
-    TextView mCreateBtn;
-    ProgressBar progressBar;
-    FirebaseAuth fAuth;
+    private EditText mEmail, mPassword;
+    private Button mLoginBtn;
+    private TextView mCreateBtn;
+    private ProgressBar progressBar;
+    private FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,4 +90,12 @@ public class Login extends AppCompatActivity {
 
     }
 }
+
+// firebase rules if you are logged in
+// {
+//  "rules": {
+//    ".read": "auth.uid != null",
+//    ".write": "auth.uid != null"
+//  }
+//}
 

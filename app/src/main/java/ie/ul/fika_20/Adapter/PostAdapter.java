@@ -1,6 +1,7 @@
 package ie.ul.fika_20.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,16 +21,17 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import ie.ul.fika_20.CommentActivity;
 import ie.ul.fika_20.Model.Post;
 import ie.ul.fika_20.Model.User;
 import ie.ul.fika_20.R;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 
-    private Context mContext;
-    private List<Post> mPosts;
+    private final Context mContext;
+    private final List<Post> mPosts;
 
-    private FirebaseUser firebaseUser;
+    private final FirebaseUser firebaseUser;
 
     // Constructor for context and posts
     public PostAdapter(Context mContext, List<Post> mPosts) {
@@ -80,6 +82,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         // Call on methods
         isLiked(post.getPostid(), holder.like);
         noOfLikes(post.getPostid(), holder.noOfLikes);
+        getComments(post.getPostid(),holder.noOfComments);
 
         // Like pictures
         holder.like.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +98,35 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                 }
             }
         });
+
+        // Comment on pictures
+        holder.comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, CommentActivity.class);
+                intent.putExtra("postId", post.getPostid());
+                intent.putExtra("authorId", post.getPublisher());
+                mContext.startActivity(intent);
+            }
+        });
+
+        // Number of comments
+        holder.noOfComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, CommentActivity.class);
+                intent.putExtra("postId", post.getPostid());
+                intent.putExtra("authorId", post.getPublisher());
+                mContext.startActivity(intent);
+            }
+        });
+
+       /* holder.save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });*/
 
     }
 
@@ -139,7 +171,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             caption = itemView.findViewById(R.id.caption);
         }
     }
-
+    
     private void isLiked(String postId, ImageView imageView) {
         FirebaseDatabase.getInstance().getReference().child("Likes").child(postId).
                 addValueEventListener(new ValueEventListener() {
@@ -164,7 +196,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
     }
 
     // Method to count number of likes
-    private void noOfLikes(String postId,TextView  text){
+    private void noOfLikes(String postId, TextView text) {
         FirebaseDatabase.getInstance().getReference().child("Likes").child(postId).
                 addValueEventListener(new ValueEventListener() {
                     @Override
@@ -179,5 +211,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                     }
                 });
 
+    }
+
+    private void getComments (String postId, final TextView text){
+        FirebaseDatabase.getInstance().getReference().child("Comments").child(postId)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        text.setText(dataSnapshot.getChildrenCount() + " Comments");
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 }

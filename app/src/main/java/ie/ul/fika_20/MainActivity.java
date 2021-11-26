@@ -2,7 +2,6 @@
 package ie.ul.fika_20;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -10,14 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import ie.ul.fika_20.Fragments.FeedFragment;
-import ie.ul.fika_20.Fragments.userProfile;
+import ie.ul.fika_20.Fragments.profile2;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,9 +47,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new userProfile()).commit();
+                        new profile2()).commit();
             }
         });
+
+        // Fika button starts feed activity
+        navHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new FeedFragment()).commit();
+            }
+        });
+
 
         // Go to new post if user clicks on add button
         navNewPost.setOnClickListener(new View.OnClickListener() {

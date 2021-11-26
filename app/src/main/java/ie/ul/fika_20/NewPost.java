@@ -14,31 +14,55 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.ComponentActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+
+import ie.ul.fika_20.Model.User;
 
 public class NewPost extends AppCompatActivity {
     public static final int CAMERA_PERM_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 102;
     public static final int GALLERY_REQUEST_CODE = 105;
     ImageView selectedImage;
-    Button cameraBtn, galleryBtn;
+    ImageView backButtonNewPost;
+    Button postBtn, libraryBtn;
     String currentPhotoPath;
-    // StorageReference storageReference;
+    StorageReference storageReference;
+    DatabaseReference databaseReference;
+    FirebaseAuth firebaseAuth;
+    EditText Caption;
+    ProgressBar progressBarPost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,19 +70,40 @@ public class NewPost extends AppCompatActivity {
         setContentView(R.layout.activity_new_post);
 
         selectedImage = findViewById(R.id.displayImageView);
-    //    cameraBtn = findViewById(R.id.cameraButton);
-        galleryBtn = findViewById(R.id.gallaryButton);
+        //    cameraBtn = findViewById(R.id.cameraButton);
+        postBtn = findViewById(R.id.post_button);
+        libraryBtn = findViewById(R.id.library_button);
+        backButtonNewPost = findViewById(R.id.nav_back);
+        Caption = findViewById(R.id.write_caption);
 
-        // storageReference = FirebaseStorage.getInstance().getReference();
+        storageReference = FirebaseStorage.getInstance().getReference(); // to store in storage
 
-/*        cameraBtn.setOnClickListener(new View.OnClickListener() {
+        //  databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        // newpostdatabase = FirebaseDatabase.getInstance(); // to save in database
+
+
+
+
+
+        /*        cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 askCameraPermissions();
             }
         });*/
 
-        galleryBtn.setOnClickListener(new View.OnClickListener() {
+        backButtonNewPost.setOnClickListener(new View.OnClickListener() { // is a backbutton to go back to mainpage
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NewPost.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+        libraryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -66,7 +111,20 @@ public class NewPost extends AppCompatActivity {
             }
         });
 
+
+
+
+
+       /* Caption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String txtcaption = Caption.getEditText().getText().toString();
+            }
+        });*/
+
     }
+
+
 
 
 /*    private void askCameraPermissions() {
@@ -114,12 +172,22 @@ public class NewPost extends AppCompatActivity {
         if (requestCode == GALLERY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri contentUri = data.getData();
-                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()); // the name of the picture
+
                 String imageFileName = "JPEG_" + timeStamp + "." + getFileExt(contentUri);
                 Log.d("tag", "onActivityResult: Gallery Image Uri:  " + imageFileName);
                 selectedImage.setImageURI(contentUri);
 
-                  //uploadImageToFirebase(imageFileName,contentUri);
+                postBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        uploadImageToFirebase(imageFileName, contentUri);
+
+                        //progressBarPost.setVisibility(View.VISIBLE);
+                        //If we can move upload to firebase here
+                    }
+                });
+
 
 
             }
@@ -129,7 +197,7 @@ public class NewPost extends AppCompatActivity {
 
     }
 
-/*    private void uploadImageToFirebase(String name, Uri contentUri) {
+    private void uploadImageToFirebase(String name, Uri contentUri) {
         final StorageReference image = storageReference.child("pictures/" + name); // puts the images in directory pictures
         image.putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -137,20 +205,37 @@ public class NewPost extends AppCompatActivity {
                 image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) { // uri of image
-                        Log.d("tag", "onSuccess: Uploaded Image URl is " + uri.toString());
+                        Picasso.get().load(uri).into(selectedImage); // takes the picture from firebase and puts it in the image picture
+                        //Log.d("tag", "onSuccess: Uploaded Image URl is " + uri.toString());
+
+                        DatabaseReference imagestore = FirebaseDatabase.getInstance().getReference().child("Posts");  //creats a post folder in realtime database
+
+                        HashMap<String, String> hashMap = new HashMap<>();
+                        hashMap.put("caption", Caption.getText().toString());
+                        //kommentar
+                        hashMap.put("imageurl", String.valueOf(uri));
+                        hashMap.put("postid", name);
+                        hashMap.put("publisher", "firebaseAuth.getCurrentUser().getUid()"); //firebaseUser.getUid()); // Uploads user id
+                        imagestore.push().setValue(hashMap); // puts the hashmap into realtime database "posts"
+
+                        Toast.makeText(NewPost.this, "Perfect! Image Is Uploaded.", Toast.LENGTH_SHORT).show();
+                        //String imageReference = uri.toString();
+                        //databaseReference.child("specimens").child(specimenDTO.getKey()).child("imageUrl").setValue(imageReference);
+                        //specimenDTO.setImageUrl(imageReference);
                     }
                 });
 
-                Toast.makeText(MainActivity.this, "Image Is Uploaded.", Toast.LENGTH_SHORT).show();
+               // progressBarPost.setVisibility(View.GONE);
+                Toast.makeText(NewPost.this, "Image Is Uploaded.", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() { // if it fails
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MainActivity.this, "Upload Failled.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewPost.this, "Upload Failed.", Toast.LENGTH_SHORT).show();
             }
         });
 
-    }*/
+    }
 
     private String getFileExt(Uri contentUri) {
         ContentResolver c = getContentResolver();
