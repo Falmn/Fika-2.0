@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        
+
         // Go to new post if user clicks on add button
         navNewPost.setOnClickListener(new View.OnClickListener() {
             @Override
