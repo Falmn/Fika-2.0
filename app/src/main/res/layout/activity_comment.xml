@@ -4,34 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     tools:context=".CommentActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <!--<RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/top"
+        android:layout_alignParentTop="true">
 
-            <ImageButton
-                android:id="@+id/back"
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBeige"
+            android:id="@+id/top_toolbar">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_back"
+                android:layout_gravity="left"
+                android:id="@+id/nav_back_comment">
+            </ImageView>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/ic_back" />
-        </RelativeLayout>-->
+                android:text="COMMENTS"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"
+                android:layout_gravity="center">
+            </TextView>
 
+        </androidx.appcompat.widget.Toolbar>
 
-    </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:id="@+id/recycler_view"
-        android:layout_below="@id/toolbar"
+        android:layout_below="@id/top"
         android:layout_above="@id/Buttom"/>
 
     <RelativeLayout
