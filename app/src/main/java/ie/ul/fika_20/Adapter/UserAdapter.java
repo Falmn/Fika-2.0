@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -70,7 +71,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
                     editor.putString("profileid", user.getId());
                     editor.apply();
 
-                    ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+                    ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new profile2()).commit();
                 } else {
                     Intent intent = new Intent(mContext , MainActivity.class);
                     intent.putExtra("publisherid" , user.getId());
@@ -89,7 +90,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getId())
                             .child("Followers").child(firebaseUser.getUid()).setValue(true);
-// om vi inte följer finns en knapp för "follow" som ändras till "following" när vi trycker på den och tvärt om om det redan står following. Och personen läggs till i firebase som personer man följer
+
+                    addNotifications(user.getId());
+                    // om vi inte följer finns en knapp för "follow" som ändras till "following" när vi trycker på den och tvärt om om det redan står following. Och personen läggs till i firebase som personer man följer
                 } else {
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
                             .child("Following").child(user.getId()).removeValue();
@@ -102,20 +105,20 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     }
     //Notiser till personen som man börjar följa
 
-/*
+
     private void addNotifications(String userid) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
 
-        HashMap<String , Object> hashMap = new HashMap<>();
-        hashMap.put("userid" , firebaseUser.getUid());
-        hashMap.put("text" , "started following you");
-        hashMap.put("postid" , "");
-        hashMap.put("ispost" , false);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("userId", userid);
+        map.put("text", "started following you.");
+        map.put("postId", "");
+        map.put("isPost", false);
 
-        reference.push().setValue(hashMap);
-    }//notis slut
+        FirebaseDatabase.getInstance().getReference().child("Notification").child(firebaseUser.getUid()).push().setValue(map);
+    }
 
-     */
+
 
 
 

@@ -1,6 +1,6 @@
 package ie.ul.fika_20.Adapter;
 
-import android.app.Fragment;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,10 +46,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-       Notification notification = mNotification.get(position);
+       final Notification notification = mNotification.get(position);
 
        getUser(holder.avatar, holder.username, notification.getUserid());
-//om bilden är postad
+
+       holder.text.setText(notification.getText());
+       //om bilden är postad
        if (notification.isPost()){
            holder.postImage.setVisibility(View.VISIBLE);
            getPostImage(holder.postImage, notification.getUserid());

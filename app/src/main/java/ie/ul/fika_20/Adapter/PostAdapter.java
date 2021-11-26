@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
 import java.util.List;
 
 import ie.ul.fika_20.CommentActivity;
@@ -92,6 +93,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                 if (holder.like.getTag().equals("like")) {
                     FirebaseDatabase.getInstance().getReference().child("Likes").child(post.
                             getPostid()).child(firebaseUser.getUid()).setValue(true);
+
+                    addNotification(post.getPostid(), post.getPublisher());
                 } else {
                     FirebaseDatabase.getInstance().getReference().child("Likes").child(post.
                             getPostid()).child(firebaseUser.getUid()).removeValue();
@@ -236,4 +239,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                     }
                 });
     }
+//when we get a like vi get a notification
+    private void addNotification(String postId, String publisherId){
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("userId", publisherId);
+        map.put("text", "liked your post.");
+        map.put("postId", postId);
+        map.put("isPost", true);
+
+        FirebaseDatabase.getInstance().getReference().child("Notification").child(firebaseUser.getUid()).push().setValue(map);
+   }
 }
