@@ -29,27 +29,36 @@
             android:id="@+id/username_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginBottom="48dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="40dp"
             android:text="TextView"
+            android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/image_profile2" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="86dp"
-            android:layout_height="82dp"
-            android:src="@drawable/ic_notification"
-            tools:layout_editor_absoluteX="288dp"
-            tools:layout_editor_absoluteY="160dp" />
-
-        <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/searchUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_name2"
-            tools:layout_editor_absoluteX="41dp"
-            tools:layout_editor_absoluteY="56dp" />
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/colorBackground"
+            android:src="@drawable/ic_action_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_profile2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="65dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/colorBackground"
+            android:src="@drawable/ic_notification"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
