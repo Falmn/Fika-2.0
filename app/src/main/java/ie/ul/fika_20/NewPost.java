@@ -98,6 +98,7 @@ public class NewPost extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(NewPost.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -211,8 +212,7 @@ public class NewPost extends AppCompatActivity {
                         //kommentar
                         hashMap.put("imageurl", String.valueOf(uri));
                         hashMap.put("postid", name);
-                        // caption kanske inte får vara null??
-                        hashMap.put("publisher", firebaseAuth.getCurrentUser().getUid()); //firebaseUser.getUid()); // Uploads user id
+                        hashMap.put("publisher", "firebaseAuth.getCurrentUser().getUid()"); //firebaseUser.getUid()); // Uploads user id
                         imagestore.push().setValue(hashMap); // puts the hashmap into realtime database "posts"
 
                         Toast.makeText(NewPost.this, "Perfect! Image Is Uploaded.", Toast.LENGTH_SHORT).show();
@@ -222,7 +222,7 @@ public class NewPost extends AppCompatActivity {
                     }
                 });
 
-                progressBarPost.setVisibility(View.GONE);
+               // progressBarPost.setVisibility(View.GONE);
                 Toast.makeText(NewPost.this, "Image Is Uploaded.", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() { // if it fails
