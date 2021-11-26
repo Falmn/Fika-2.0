@@ -65,9 +65,9 @@ public class profile2 extends Fragment {
 
 // MÅSTE FIXA onCREATEVIEW!!!! ÄR ngt med fragments.
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
@@ -96,6 +96,7 @@ public class profile2 extends Fragment {
         // från den nya
 
 
+/*
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +106,16 @@ public class profile2 extends Fragment {
                 finish();
             }
         });
-
+*/
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), StartApp.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 
 
        /*

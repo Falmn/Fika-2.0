@@ -22,13 +22,12 @@
         <entry key="app/src/main/res/layout/copy.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/edit_post.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.22604166666666667" />
-        <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.22604166666666667" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/fragment_user_profile.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/friends.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/location.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/log_in.xml" value="0.12916666666666668" />
-        <entry key="app/src/main/res/layout/notification_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/notifications.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/user_item.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.3098958333333333" />

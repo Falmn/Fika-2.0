@@ -1,3 +1,4 @@
+/*
 
 package ie.ul.fika_20.Fragments;
 
@@ -29,7 +30,7 @@ import ie.ul.fika_20.Model.Post;
 
 // changed array from User.java to Post.java
 
-/*public class userProfile extends Fragment {
+public class userProfile extends Fragment {
 
     // Widgets
     private RecyclerView recyclerView;
@@ -144,7 +145,7 @@ import ie.ul.fika_20.Model.Post;
     }
 
     // Displaying user name in the textView. Need to fix imageurls.
-   *//* private void userInfo() {
+    private void userInfo() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -157,18 +158,23 @@ import ie.ul.fika_20.Model.Post;
 
                 Picasso.get().load(user.getAvatar()).placeholder(R.drawable.).into(image_profile);
                 userName_profile.setText(user.getUsername());
-                *//**//*fullname.setText(user.getFullname());
-                bio.setText(user.getBio());*//**//*
+                */
+/*fullname.setText(user.getFullname());
+                bio.setText(user.getBio());*//*
+*/
+/*
+
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*//*
+        });
         // Fetching fotos and adding them to the recyclerView
         // Needs more work.
-     *//*   private void myFotos() {
+        private void myFotos() {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("posts");
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -190,10 +196,11 @@ import ie.ul.fika_20.Model.Post;
 
                 }
             });
-        }*//*
-    }*/
+        }
+    }
 
 
 
 
 
+*/
