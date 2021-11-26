@@ -121,12 +121,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             }
         });
 
-       /* holder.save.setOnClickListener(new View.OnClickListener() {
+
+        // Save picture/remove save - and update database
+        holder.save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (holder.save.getTag().equals("save")) {
+                    FirebaseDatabase.getInstance().getReference().child("Saves")
+                            .child(firebaseUser.getUid()).child(post.getPostid()).setValue(true);
+                }else {
+                    FirebaseDatabase.getInstance().getReference().child("Saves")
+                            .child(firebaseUser.getUid()).child(post.getPostid()).removeValue();
+                }
 
             }
-        });*/
+        });
 
     }
 
