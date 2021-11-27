@@ -274,7 +274,7 @@ private void userProfile(){
             }
         }
 
-        userName_profile.setText("Welcome "+ displayName);
+        userName_profile.setText(displayName);
     }
 }
 
