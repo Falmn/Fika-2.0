@@ -110,34 +110,6 @@ public class Profile extends AppCompatActivity {
 
     }
 
-    /*private void GetDataFromFireBase () {
-
-        Query query = myRef.child("Posts");
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ClearAll();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Post post = new Post();
-                    post.setImageurl(snapshot.child("imageurl").getValue().toString());
-                    post.setPublisher(snapshot.child("username").getValue().toString());
-
-                    postList.add(post);
-
-                }
-                // mContext ist för getApplicationContext. la till arraylist<Post>.
-                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
-                recyclerView.setAdapter(recyclerViewAdapter);
-                recyclerViewAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }*/
-
 
     private void myFotos() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
@@ -166,42 +138,9 @@ public class Profile extends AppCompatActivity {
         });
     }
 
-    /*private void userInfo(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(profileid);
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (getContext() == null){
-                    return;
-                }
-                User user = dataSnapshot.getValue(User.class);
 
-                Glide.with(getContext()).load(user.getImageUrl()).into(image_profile);
-                userName_profile.setText(user.getUsername());
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-//wtf
-            }
-        });
-    }*/
 
-    // Fetching userdata from firebase.
-    public void userProfile() {
-
-        if (firebaseUser != null) {
-            // User is Login
-            String displayName = firebaseUser.getDisplayName();
-            for (UserInfo userInfo : firebaseUser.getProviderData()) {
-                if (displayName == null && userInfo.getDisplayName() != null) {
-                    displayName = userInfo.getDisplayName();
-                }
-            }
-
-            userName_profile.setText(displayName);
-        }
-    }
 
 
     private void ClearAll() {
@@ -217,7 +156,33 @@ public class Profile extends AppCompatActivity {
     }
 }
 
+ /*private void GetDataFromFireBase () {
 
+        Query query = myRef.child("Posts");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ClearAll();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Post post = new Post();
+                    post.setImageurl(snapshot.child("imageurl").getValue().toString());
+                    post.setPublisher(snapshot.child("username").getValue().toString());
+
+                    postList.add(post);
+
+                }
+                // mContext ist för getApplicationContext. la till arraylist<Post>.
+                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
+                recyclerView.setAdapter(recyclerViewAdapter);
+                recyclerViewAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }*/
 /*
 package ie.ul.fika_20;
 
