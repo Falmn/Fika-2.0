@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +38,7 @@ import java.util.zip.Inflater;
 
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
 import ie.ul.fika_20.Model.Post;
+import ie.ul.fika_20.Model.User;
 import ie.ul.fika_20.NewPost;
 import ie.ul.fika_20.R;
 import ie.ul.fika_20.StartApp;
@@ -153,6 +155,7 @@ public class profile2 extends Fragment {
         // Clear List
         ClearAll();
         myFotos();
+       // userInfo();
 
 
         return view;
@@ -214,6 +217,27 @@ public class profile2 extends Fragment {
             }
         });
     }
+
+   /* private void userInfo(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(profileid);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (getContext() == null){
+                    return;
+                }
+                User user = dataSnapshot.getValue(User.class);
+
+                Glide.with(getContext()).load(user.getImageUrl()).into(image_profile);
+                userName_profile.setText(user.getUsername());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }*/
 
 
 
