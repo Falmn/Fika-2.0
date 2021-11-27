@@ -75,7 +75,6 @@ public class NewPost extends AppCompatActivity {
         libraryBtn = findViewById(R.id.library_button);
         backButtonNewPost = findViewById(R.id.nav_back);
         Caption = findViewById(R.id.write_caption);
-
         storageReference = FirebaseStorage.getInstance().getReference(); // to store in storage
 
         //  databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -171,7 +170,7 @@ public class NewPost extends AppCompatActivity {
                         //kommentar
                         hashMap.put("imageurl", String.valueOf(uri));
                         hashMap.put("postid", name);
-                        hashMap.put("publisher", "firebaseAuth.getCurrentUser().getUid()"); //firebaseUser.getUid()); // Uploads user id
+                        hashMap.put("publisher", FirebaseAuth.getInstance().getCurrentUser().getUid()); //firebaseAuth.getCurrentUser().getUid(),firebaseAuth.getCurrentUser().getUid()firebaseUser.getUid()); // Uploads user id
                         imagestore.push().setValue(hashMap); // puts the hashmap into realtime database "posts"
 
                         Toast.makeText(NewPost.this, "Perfect! Image Is Uploaded.", Toast.LENGTH_SHORT).show();
