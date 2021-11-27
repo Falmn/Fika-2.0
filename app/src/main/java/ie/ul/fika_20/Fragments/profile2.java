@@ -259,15 +259,14 @@ public class profile2 extends Fragment {
         });
     }*/
 
+// Fetching userdata from firebase.
+public void userProfile(){
 
-private void userProfile(){
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     if (user != null) {
         // User is Login
         String displayName = user.getDisplayName();
 
-        // If the above were null, iterate the provider data
-        // and set with the first non null data
+
         for (UserInfo userInfo : user.getProviderData()) {
             if (displayName == null && userInfo.getDisplayName() != null) {
                 displayName = userInfo.getDisplayName();
