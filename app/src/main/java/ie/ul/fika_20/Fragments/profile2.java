@@ -2,6 +2,7 @@
 package ie.ul.fika_20.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,13 +28,14 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.zip.Inflater;
 
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
 import ie.ul.fika_20.Model.Post;
+import ie.ul.fika_20.NewPost;
 import ie.ul.fika_20.R;
+import ie.ul.fika_20.StartApp;
 
 
 // changed array from User.java to Post.java
@@ -63,19 +65,19 @@ public class profile2 extends Fragment {
 
 // MÅSTE FIXA onCREATEVIEW!!!! ÄR ngt med fragments.
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         // Fetching username
-        image_profile = view.findViewById(R.id.image_profile2);
+        image_profile = view.findViewById(R.id.image_avatar);
         userName_profile = view.findViewById(R.id.username_profile);
         // Imagebuttons
-        searchUser = view.findViewById(R.id.searchUser);
-        notification = view.findViewById(R.id.notification);
-        logout = view.findViewById(R.id.logout);
+        searchUser = view.findViewById(R.id.search_user);
+        notification = view.findViewById(R.id.notifications);
+        logout = view.findViewById(R.id.log_out);
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         fAuth = FirebaseAuth.getInstance();
@@ -84,7 +86,7 @@ public class profile2 extends Fragment {
         // fDBS = FirebaseDatabase.getInstance();
 
         // Gridlayout for images
-        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.recycler_view_profile);
         layoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
         postList = new ArrayList<>();
@@ -92,6 +94,31 @@ public class profile2 extends Fragment {
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
         // från den nya
+
+
+/*
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(profile2.this, StartApp.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+*/
+        //logout button returns to startpage
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), StartApp.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+
+
        /*
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -106,6 +133,7 @@ public class profile2 extends Fragment {
 
        /* userInfo();
         myFotos();
+
 */
         // Get Data method
         GetDataFromFireBase();
@@ -115,9 +143,8 @@ public class profile2 extends Fragment {
 
         return view;
 
-
-
     }
+
     private void GetDataFromFireBase () {
 
         Query query = myRef.child("Posts");
@@ -146,29 +173,6 @@ public class profile2 extends Fragment {
         });
     }
 
- /*   private void myFotos(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                postList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Post post = snapshot.getValue(Post.class);
-                    if (post.getPublisher().equals(profileid)){
-                        postList.add(post);
-                    }
-                }
-                Collections.reverse(postList);
-                myFotosAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-*/
 
     private void ClearAll () {
         if (postList != null) {
