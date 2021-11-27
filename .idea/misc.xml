@@ -6,8 +6,6 @@
         <entry key="..\:/Users/Oliver Knorn/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/activity_new_post.xml" value="0.1" />
         <entry key="..\:/Users/Oliver Knorn/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/activity_signup.xml" value="0.14537037037037037" />
         <entry key="..\:/Users/Oliver Knorn/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/fragment_profile.xml" value="0.1597222222222222" />
-        <entry key="..\:/Users/Oliver Knorn/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/fragment_profile2.xml" value="0.1" />
-        <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/fragment_profile2.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/nilsk/AndroidStudioProjects/Fika-2.0/app/src/main/res/layout/single_view.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.25625" />
@@ -22,7 +20,9 @@
         <entry key="app/src/main/res/drawable-anydpi/ic_location.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-anydpi/ic_logout.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-anydpi/ic_notification.xml" value="0.25625" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_notifications.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-anydpi/ic_saved.xml" value="0.25625" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_search_user.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-v24/ic_action_name.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-v24/ic_add.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.25625" />
@@ -41,6 +41,7 @@
         <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.22604166666666667" />
         <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_profile2.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_saved_.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/fragment_user_profile.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/friends.xml" value="0.2526041666666667" />
