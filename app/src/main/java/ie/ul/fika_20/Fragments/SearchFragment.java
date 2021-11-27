@@ -1,6 +1,7 @@
 
 package ie.ul.fika_20.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -8,12 +9,14 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +39,7 @@ public class SearchFragment extends Fragment {
     private List<User> mUsers;
     private UserAdapter userAdapter;
     private SocialAutoCompleteTextView search_bar;
+    ImageView back;
 
 
     @Override
@@ -50,6 +54,7 @@ public class SearchFragment extends Fragment {
         userAdapter = new UserAdapter(getContext(),mUsers, true);
         recyclerView.setAdapter(userAdapter);
         search_bar = view.findViewById(R.id.search_bar);
+        back = view.findViewById(R.id.nav_back);
 
         readUsers();
         search_bar.addTextChangedListener(new TextWatcher() {
@@ -67,6 +72,16 @@ public class SearchFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), profile2.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
         return view;
