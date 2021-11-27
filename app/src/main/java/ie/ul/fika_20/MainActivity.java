@@ -22,7 +22,6 @@ import ie.ul.fika_20.Fragments.profile2;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView navProfile;
-    private ImageView navHome;
     private ImageView navNewPost;
     DatabaseReference fRDB;
     FirebaseAuth fAuth;
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         navProfile = findViewById(R.id.nav_profile);
-        navHome = findViewById(R.id.nav_home);
         navNewPost = findViewById(R.id.nav_add_post);
         fAuth = FirebaseAuth.getInstance();
         fRDB = FirebaseDatabase.getInstance().getReference();
@@ -42,21 +40,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new FeedFragment()).commit();
 
-        // Go to profile fragment if user clicks on profile icon
+        // Go to profile if user clicks on profile icon
         navProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new profile2()).commit();
-            }
-        });
-
-        // Fika button starts feed activity
-        navHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new FeedFragment()).commit();
+                startActivity(new Intent(MainActivity.this, Profile.class));
             }
         });
 
