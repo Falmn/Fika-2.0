@@ -1,8 +1,11 @@
 
 package ie.ul.fika_20.Fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +38,7 @@ import java.util.zip.Inflater;
 
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
 import ie.ul.fika_20.Model.Post;
+import ie.ul.fika_20.Model.User;
 import ie.ul.fika_20.NewPost;
 import ie.ul.fika_20.R;
 import ie.ul.fika_20.StartApp;
@@ -59,8 +64,10 @@ public class profile2 extends Fragment {
     private Context mContext;
     TextView userName_profile;
     ImageView image_profile;
-    String userId;
+    String userId, profileid;
     ImageButton searchUser, notification, logout;
+
+
 
     //  int [] arr = {R.drawable.image1,R.drawable.image22, R.drawable.image4, R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8};
 
@@ -71,6 +78,14 @@ public class profile2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
+
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        SharedPreferences prefs = getContext().getSharedPreferences("PREFS", MODE_PRIVATE);
+        profileid = prefs.getString("profileid", "none");
+
+
         //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         // Fetching username
         image_profile = view.findViewById(R.id.image_avatar);
@@ -94,20 +109,12 @@ public class profile2 extends Fragment {
         // recyclerViewAdapter = new RecyclerViewAdapter(postList);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
+
+
+
+
         // från den nya
 
-
-/*
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(profile2.this, StartApp.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-            }
-        });
-*/
         //logout button returns to startpage
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,14 +127,14 @@ public class profile2 extends Fragment {
         });
 
 
-       /*
-        recyclerView = view.findViewById(R.id.recycler_view);
+
+     /*   recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(mLayoutManager);
         postList = new ArrayList<>();
-        myFotosAdapter = new MyFotosAdapter(getContext(), postList);
-        recyclerView.setAdapter(RecyclerViewAdapter);*/
+        recyclerViewAdapter = new RecyclerViewAdapter(getContext(), postList);
+        recyclerView.setAdapter(recyclerViewAdapter);*/
 
         // Lists of methods
 
@@ -137,16 +144,18 @@ public class profile2 extends Fragment {
 
 */
         // Get Data method
-        GetDataFromFireBase();
+     //   GetDataFromFireBase();
         // Clear List
         ClearAll();
+        myFotos();
+       // userInfo();
 
 
         return view;
 
     }
 
-    private void GetDataFromFireBase () {
+    /*private void GetDataFromFireBase () {
 
         Query query = myRef.child("Posts");
         query.addValueEventListener(new ValueEventListener() {
@@ -172,10 +181,10 @@ public class profile2 extends Fragment {
 
             }
         });
-    }
+    }*/
 
 
- /*   private void myFotos(){
+    private void myFotos(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -187,8 +196,33 @@ public class profile2 extends Fragment {
                         postList.add(post);
                     }
                 }
-                Collections.reverse(postList);
-                myFotosAdapter.notifyDataSetChanged();
+                // mContext ist för getApplicationContext. la till arraylist<Post>.
+                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
+                recyclerView.setAdapter(recyclerViewAdapter);
+                recyclerViewAdapter.notifyDataSetChanged();
+                /*Collections.reverse(postList);
+                RecyclerViewAdapter.notifyDataSetChanged();*/
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+   /* private void userInfo(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(profileid);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (getContext() == null){
+                    return;
+                }
+                User user = dataSnapshot.getValue(User.class);
+
+                Glide.with(getContext()).load(user.getImageUrl()).into(image_profile);
+                userName_profile.setText(user.getUsername());
             }
 
             @Override
