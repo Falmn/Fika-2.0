@@ -27,6 +27,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.zip.Inflater;
 
@@ -145,6 +146,29 @@ public class profile2 extends Fragment {
         });
     }
 
+ /*   private void myFotos(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                postList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Post post = snapshot.getValue(Post.class);
+                    if (post.getPublisher().equals(profileid)){
+                        postList.add(post);
+                    }
+                }
+                Collections.reverse(postList);
+                myFotosAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+*/
 
     private void ClearAll () {
         if (postList != null) {
