@@ -30,6 +30,7 @@ import java.util.List;
 
 import ie.ul.fika_20.Adapter.UserAdapter;
 import ie.ul.fika_20.Model.User;
+import ie.ul.fika_20.Profile;
 import ie.ul.fika_20.R;
 
 
@@ -75,14 +76,12 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), profile2.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
+      /* back.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               startActivity(new Intent(SearchFragment.this , Profile.class));
+           }
+       });*/
         return view;
 
 
