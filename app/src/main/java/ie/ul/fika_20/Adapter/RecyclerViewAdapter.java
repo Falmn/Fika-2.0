@@ -29,9 +29,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 private static final String Tag = "recyclerView";
 private final Context mContext;
-private final ArrayList<Post> postList;
+private List<Post> postList;
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<Post> postList) {
+    public RecyclerViewAdapter(Context mContext, List<Post> postList) {
         this.mContext = mContext;
         this.postList = postList;
     }
