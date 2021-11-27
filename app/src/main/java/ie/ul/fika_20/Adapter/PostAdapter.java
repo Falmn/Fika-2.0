@@ -84,6 +84,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         isLiked(post.getPostid(), holder.like);
         noOfLikes(post.getPostid(), holder.noOfLikes);
         getComments(post.getPostid(),holder.noOfComments);
+        isSaved(post.getPostid(), holder.save);
 
         // Like pictures
         holder.like.setOnClickListener(new View.OnClickListener() {
@@ -182,6 +183,28 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             author = itemView.findViewById(R.id.author);
             caption = itemView.findViewById(R.id.caption);
         }
+    }
+
+    // Check if post is saved and sets tags & changes icon accordingly
+    private void isSaved(String postId, ImageView image){
+        FirebaseDatabase.getInstance().getReference().child("Saves").child(FirebaseAuth
+                .getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child(postId).exists()){
+                    image.setImageResource(R.drawable.ic_bookmark_added);
+                    image.setTag("saved");
+                }else {
+                    image.setImageResource(R.drawable.ic_bookmark_border);
+                    image.setTag("save");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
     
     private void isLiked(String postId, ImageView imageView) {
