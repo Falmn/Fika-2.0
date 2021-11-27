@@ -141,7 +141,7 @@ public class profile2 extends Fragment {
         // Get Data method
 
         myFotos();
-        userInfo();
+      //  userInfo();
         // Clear List
         ClearAll();
         // userInfo();
