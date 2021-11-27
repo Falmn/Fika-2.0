@@ -22,8 +22,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -172,7 +174,8 @@ public class profile2 extends Fragment {
         // Get Data method
 
         myFotos();
-      //  userInfo();
+      // userInfo();
+        userProfile();
         // Clear List
         ClearAll();
         // userInfo();
@@ -237,8 +240,8 @@ public class profile2 extends Fragment {
             }
         });
     }
-/*
-    private void userInfo(){
+
+    /*private void userInfo(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(profileid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -259,6 +262,24 @@ public class profile2 extends Fragment {
         });
     }*/
 
+
+private void userProfile(){
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    if (user != null) {
+        // User is Login
+        String displayName = user.getDisplayName();
+
+        // If the above were null, iterate the provider data
+        // and set with the first non null data
+        for (UserInfo userInfo : user.getProviderData()) {
+            if (displayName == null && userInfo.getDisplayName() != null) {
+                displayName = userInfo.getDisplayName();
+            }
+        }
+
+        userName_profile.setText("Welcome "+ displayName);
+    }
+}
 
 
     private void ClearAll () {
