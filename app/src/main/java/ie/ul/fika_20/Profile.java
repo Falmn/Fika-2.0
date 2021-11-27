@@ -1,3 +1,188 @@
+package ie.ul.fika_20;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
+import ie.ul.fika_20.Fragments.NotificationFragment;
+import ie.ul.fika_20.Fragments.SearchFragment;
+import ie.ul.fika_20.Model.Post;
+
+
+public class Profile extends AppCompatActivity {
+
+
+    // Widgets
+    private RecyclerView recyclerView;
+
+    //  private MyFotosAdapter myFotosAdapter;
+    private List<Post> postList;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerViewAdapter recyclerViewAdapter;
+    // Firebase
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth fAuth;
+    //  private FirebaseDatabase fDBS;
+    private DatabaseReference myRef;
+    // Variabels
+    // private ArrayList<Post>  postList;
+    private Context mContext;
+    private TextView userName_profile;
+    private ImageView image_profile;
+    private String userId, profileid;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile);
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("PREFS", MODE_PRIVATE);
+        profileid = prefs.getString("profileid", "none");
+
+
+        // Fetching username
+        image_profile = findViewById(R.id.image_avatar);
+        userName_profile = findViewById(R.id.username_profile);
+
+
+        // Firebase
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        fAuth = FirebaseAuth.getInstance();
+        userId = FirebaseAuth.getInstance().getUid();
+        myRef = FirebaseDatabase.getInstance().getReference();
+        // fDBS = FirebaseDatabase.getInstance();
+
+        // Gridlayout for images
+        recyclerView = findViewById(R.id.recycler_view_profile);
+        layoutManager = new GridLayoutManager(getApplicationContext(), 3);
+        recyclerView.setLayoutManager(layoutManager);
+        postList = new ArrayList<>();
+        //  recyclerViewAdapter = new RecyclerViewAdapter(postList);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setHasFixedSize(true);
+
+
+        // från den nya
+
+
+        // Lists of methods
+
+
+        /* userInfo();
+
+
+         */
+        // Get Data method
+
+        myFotos();
+        // userInfo();
+        userProfile();
+        // Clear List
+        ClearAll();
+        // userInfo();
+        //   GetDataFromFireBase();
+
+        //   return view;
+
+    }
+
+
+    private void myFotos() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                postList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Post post = snapshot.getValue(Post.class);
+                    if (post.getPublisher().equals(profileid)) {
+                        postList.add(post);
+                    }
+                }
+                // mContext ist för getApplicationContext. la till arraylist<Post>.
+                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
+                recyclerView.setAdapter(recyclerViewAdapter);
+                recyclerViewAdapter.notifyDataSetChanged();
+                /*Collections.reverse(postList);
+                RecyclerViewAdapter.notifyDataSetChanged();*/
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+
+
+
+
+    private void ClearAll() {
+        if (postList != null) {
+            postList.clear();
+
+            if (recyclerViewAdapter != null) {
+                recyclerViewAdapter.notifyDataSetChanged();
+            }
+        }
+        postList = new ArrayList<>();
+
+    }
+}
+
+ /*private void GetDataFromFireBase () {
+
+        Query query = myRef.child("Posts");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ClearAll();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Post post = new Post();
+                    post.setImageurl(snapshot.child("imageurl").getValue().toString());
+                    post.setPublisher(snapshot.child("username").getValue().toString());
+
+                    postList.add(post);
+
+                }
+                // mContext ist för getApplicationContext. la till arraylist<Post>.
+                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
+                recyclerView.setAdapter(recyclerViewAdapter);
+                recyclerViewAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }*/
 /*
 package ie.ul.fika_20;
 
@@ -183,8 +368,8 @@ public class Profile extends Fragment {
 
             }
         });*/
-    // Fetching fotos and adding them to the recyclerView
-    // Needs more work.
+// Fetching fotos and adding them to the recyclerView
+// Needs more work.
      /*   private void myFotos() {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("posts");
             reference.addValueEventListener(new ValueEventListener() {

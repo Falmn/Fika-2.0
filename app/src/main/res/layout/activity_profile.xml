@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    tools:context=".Profile">
 
     <LinearLayout
         android:id="@+id/upper_profile"
@@ -51,7 +51,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
                 android:background="@color/colorBackground"
-                android:src="@drawable/ic_notifications"></ImageButton>
+                android:src="@drawable/ic_notification"></ImageButton>
 
             <ImageButton
                 android:id="@+id/saved_posts"
@@ -90,5 +90,4 @@
         </ScrollView>
 
     </LinearLayout>
-
 </RelativeLayout>
