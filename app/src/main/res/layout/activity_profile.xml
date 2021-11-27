@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile">
+    android:background="@color/colorBackground">
 
     <LinearLayout
         android:id="@+id/upper_profile"
@@ -31,45 +31,24 @@
             android:textColor="@color/colorPrimary"
             android:textSize="28sp" />
 
-        <LinearLayout
-            android:id="@+id/menu_options"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:id="@+id/menu_bar">
 
-            <ImageButton
-                android:id="@+id/search_user"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="30dp"
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/menu_navigation"
+                app:itemIconTint="@color/selector"
+                app:labelVisibilityMode="unlabeled"
                 android:background="@color/colorBackground"
-                android:src="@drawable/ic_search_user"></ImageButton>
+                app:menu="@menu/profile_menu"/>
 
-            <ImageButton
-                android:id="@+id/notifications"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="50dp"
-                android:background="@color/colorBackground"
-                android:src="@drawable/ic_notification"></ImageButton>
 
-            <ImageButton
-                android:id="@+id/saved_posts"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="50dp"
-                android:background="@color/colorBackground"
-                android:src="@drawable/ic_saved"></ImageButton>
+        </com.google.android.material.appbar.AppBarLayout>
 
-            <ImageButton
-                android:id="@+id/log_out"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="50dp"
-                android:background="@color/colorBackground"
-                android:src="@drawable/ic_logout"></ImageButton>
 
-        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -78,7 +57,8 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/menu_options">
+                android:id="@+id/fragment_container_profile"
+                android:layout_below="@+id/menu_bar">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view_profile"
@@ -90,4 +70,5 @@
         </ScrollView>
 
     </LinearLayout>
+
 </RelativeLayout>
