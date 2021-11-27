@@ -1,8 +1,11 @@
 
 package ie.ul.fika_20.Fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,8 +62,9 @@ public class profile2 extends Fragment {
     private Context mContext;
     TextView userName_profile;
     ImageView image_profile;
-    String userId;
+    String userId, profileid;
     ImageButton searchUser, notification, logout;
+
 
     //  int [] arr = {R.drawable.image1,R.drawable.image22, R.drawable.image4, R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8};
 
@@ -71,6 +75,14 @@ public class profile2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
+
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        SharedPreferences prefs = getContext().getSharedPreferences("PREFS", MODE_PRIVATE);
+        profileid = prefs.getString("profileid", "none");
+
+
         //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         // Fetching username
         image_profile = view.findViewById(R.id.image_avatar);
@@ -137,16 +149,17 @@ public class profile2 extends Fragment {
 
 */
         // Get Data method
-        GetDataFromFireBase();
+     //   GetDataFromFireBase();
         // Clear List
         ClearAll();
+        myFotos();
 
 
         return view;
 
     }
 
-    private void GetDataFromFireBase () {
+    /*private void GetDataFromFireBase () {
 
         Query query = myRef.child("Posts");
         query.addValueEventListener(new ValueEventListener() {
@@ -172,10 +185,10 @@ public class profile2 extends Fragment {
 
             }
         });
-    }
+    }*/
 
 
- /*   private void myFotos(){
+    private void myFotos(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -187,8 +200,12 @@ public class profile2 extends Fragment {
                         postList.add(post);
                     }
                 }
-                Collections.reverse(postList);
-                myFotosAdapter.notifyDataSetChanged();
+                // mContext ist för getApplicationContext. la till arraylist<Post>.
+                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
+                recyclerView.setAdapter(recyclerViewAdapter);
+                recyclerViewAdapter.notifyDataSetChanged();
+                /*Collections.reverse(postList);
+                RecyclerViewAdapter.notifyDataSetChanged();*/
             }
 
             @Override
@@ -196,7 +213,7 @@ public class profile2 extends Fragment {
 
             }
         });
-    }*/
+    }
 
 
 
