@@ -1,6 +1,7 @@
 package ie.ul.fika_20.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,12 +29,14 @@ import ie.ul.fika_20.Adapter.NotificationAdapter;
 
 import ie.ul.fika_20.Model.Notification;
 import ie.ul.fika_20.R;
+import ie.ul.fika_20.StartApp;
 
 public class NotificationFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private NotificationAdapter notificationAdapter;
     private List<Notification> notificationList;
+    ImageView back;
 
 
 
@@ -47,8 +51,19 @@ public class NotificationFragment extends Fragment {
         notificationList = new ArrayList<>();
         notificationAdapter = new NotificationAdapter(getContext() , notificationList);
         recyclerView.setAdapter(notificationAdapter);
+        back = view.findViewById(R.id.nav_back);
 
         readNotifications();
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), profile2.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 
 
         return view;
