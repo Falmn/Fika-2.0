@@ -70,10 +70,6 @@ public class profile2 extends Fragment {
     private ImageButton searchUser, notification, saved, logout;
 
 
-
-    //  int [] arr = {R.drawable.image1,R.drawable.image22, R.drawable.image4, R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8};
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -81,7 +77,6 @@ public class profile2 extends Fragment {
 
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
         SharedPreferences prefs = getContext().getSharedPreferences("PREFS", MODE_PRIVATE);
         profileid = prefs.getString("profileid", "none");
 
@@ -172,12 +167,13 @@ public class profile2 extends Fragment {
 
 */
         // Get Data method
-     //   GetDataFromFireBase();
+
+        myFotos();
+      //  userInfo();
         // Clear List
         ClearAll();
-        myFotos();
-       // userInfo();
-
+        // userInfo();
+        //   GetDataFromFireBase();
 
         return view;
 
@@ -238,8 +234,8 @@ public class profile2 extends Fragment {
             }
         });
     }
-
-   /* private void userInfo(){
+/*
+    private void userInfo(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(profileid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -255,7 +251,7 @@ public class profile2 extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+//wtf
             }
         });
     }*/
