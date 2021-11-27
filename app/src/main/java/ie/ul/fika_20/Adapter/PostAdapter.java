@@ -206,7 +206,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             }
         });
     }
-    
+
+    // Check if post is liked and sets tags and like-icon accordingly
     private void isLiked(String postId, ImageView imageView) {
         FirebaseDatabase.getInstance().getReference().child("Likes").child(postId).
                 addValueEventListener(new ValueEventListener() {
@@ -248,6 +249,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 
     }
 
+    // Method to get comments
     private void getComments (String postId, final TextView text){
         FirebaseDatabase.getInstance().getReference().child("Comments").child(postId)
                 .addValueEventListener(new ValueEventListener() {
