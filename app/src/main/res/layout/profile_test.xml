@@ -31,28 +31,59 @@
             android:layout_alignBottom="@+id/image_profile2"
              />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:id="@+id/menu_options">
 
             <ImageButton
-                android:id="@+id/searchUser"
+                android:id="@+id/search_user"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="30dp"
                 android:background="@color/colorBackground"
                 android:src="@drawable/ic_search_user">
             </ImageButton>
 
             <ImageButton
-                android:id="@+id/searchUser"
+                android:id="@+id/notifications"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="50dp"
                 android:background="@color/colorBackground"
-                android:src="@drawable/ic_friends">
+                android:src="@drawable/ic_notification">
             </ImageButton>
 
-        </RelativeLayout>
+            <ImageButton
+                android:id="@+id/saved_posts"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="50dp"
+                android:background="@color/colorBackground"
+                android:src="@drawable/ic_saved">
+            </ImageButton>
+
+            <ImageButton
+                android:id="@+id/log_out"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="50dp"
+                android:background="@color/colorBackground"
+                android:src="@drawable/ic_logout">
+            </ImageButton>
+
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/menu_options">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
 
     </LinearLayout>
 
