@@ -107,6 +107,7 @@ public class profile2 extends Fragment {
             }
         });
 */
+        //logout button returns to startpage
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
