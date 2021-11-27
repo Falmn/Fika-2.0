@@ -111,7 +111,6 @@ public class profile2 extends Fragment {
         GetDataFromFireBase();
         // Clear List
         ClearAll();
-        myFotos();
 
 
         return view;
@@ -147,7 +146,7 @@ public class profile2 extends Fragment {
         });
     }
 
-  /* private void myFotos(){
+ /*   private void myFotos(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -155,15 +154,12 @@ public class profile2 extends Fragment {
                 postList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Post post = snapshot.getValue(Post.class);
-                    if (post.getPublisher().equals(userId){
+                    if (post.getPublisher().equals(profileid)){
                         postList.add(post);
                     }
                 }
-                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
-                recyclerView.setAdapter(recyclerViewAdapter);
-                recyclerViewAdapter.notifyDataSetChanged();
-                *//*Collections.reverse(postList);
-                RecyclerViewAdapter.notifyDataSetChanged();*//*
+                Collections.reverse(postList);
+                myFotosAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -171,8 +167,8 @@ public class profile2 extends Fragment {
 
             }
         });
-    }*/
-
+    }
+*/
 
     private void ClearAll () {
         if (postList != null) {
