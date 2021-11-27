@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -67,7 +67,7 @@ public class profile2 extends Fragment {
     private TextView userName_profile;
     private ImageView image_profile;
     private String userId, profileid;
-    private ImageButton searchUser, notification, logout;
+    private ImageButton searchUser, notification, saved, logout;
 
 
 
@@ -93,6 +93,7 @@ public class profile2 extends Fragment {
         // Imagebuttons
         searchUser = view.findViewById(R.id.search_user);
         notification = view.findViewById(R.id.notifications);
+        saved = view.findViewById(R.id.save);
         logout = view.findViewById(R.id.log_out);
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -114,6 +115,36 @@ public class profile2 extends Fragment {
 
 
         // från den nya
+        //search users button
+        searchUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), SearchFragment.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+        //notifications button
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), NotificationFragment.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+        // saved posts button
+       /* saved.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), SavedFragment.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });*/
 
         //logout button returns to startpage
         logout.setOnClickListener(new View.OnClickListener() {
