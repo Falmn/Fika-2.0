@@ -52,7 +52,6 @@ public class Profile extends AppCompatActivity {
     private TextView userName_profile;
     private ImageView image_profile;
     private String userId, profileid;
-    private ImageButton searchUser, notification, saved, logout;
 
 
     @Override
@@ -65,15 +64,11 @@ public class Profile extends AppCompatActivity {
         profileid = prefs.getString("profileid", "none");
 
 
-
         // Fetching username
         image_profile = findViewById(R.id.image_avatar);
         userName_profile = findViewById(R.id.username_profile);
-        // Imagebuttons
-        searchUser = findViewById(R.id.search_user);
-        notification = findViewById(R.id.notifications);
-        saved = findViewById(R.id.save);
-        logout = findViewById(R.id.log_out);
+
+
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         fAuth = FirebaseAuth.getInstance();
@@ -86,70 +81,21 @@ public class Profile extends AppCompatActivity {
         layoutManager = new GridLayoutManager(getApplicationContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
         postList = new ArrayList<>();
-       //  recyclerViewAdapter = new RecyclerViewAdapter(postList);
+        //  recyclerViewAdapter = new RecyclerViewAdapter(postList);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
 
 
-
-
         // från den nya
-        //search users button
-        searchUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SearchFragment.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
-        //notifications button
-        notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), NotificationFragment.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
-        // saved posts button
-       /* saved.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), SavedFragment.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });*/
 
-        //logout button returns to startpage
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), StartApp.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
-
-
-
-     /*   recyclerView = view.findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
-        recyclerView.setLayoutManager(mLayoutManager);
-        postList = new ArrayList<>();
-        recyclerViewAdapter = new RecyclerViewAdapter(getContext(), postList);
-        recyclerView.setAdapter(recyclerViewAdapter);*/
 
         // Lists of methods
 
 
-       /* userInfo();
-        myFotos();
+        /* userInfo();
 
-*/
+
+         */
         // Get Data method
 
         myFotos();
@@ -160,7 +106,7 @@ public class Profile extends AppCompatActivity {
         // userInfo();
         //   GetDataFromFireBase();
 
-     //   return view;
+        //   return view;
 
     }
 
@@ -193,15 +139,15 @@ public class Profile extends AppCompatActivity {
     }*/
 
 
-    private void myFotos(){
+    private void myFotos() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 postList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Post post = snapshot.getValue(Post.class);
-                    if (post.getPublisher().equals(profileid)){
+                    if (post.getPublisher().equals(profileid)) {
                         postList.add(post);
                     }
                 }
@@ -242,7 +188,7 @@ public class Profile extends AppCompatActivity {
     }*/
 
     // Fetching userdata from firebase.
-    public void userProfile(){
+    public void userProfile() {
 
         if (firebaseUser != null) {
             // User is Login
@@ -258,7 +204,7 @@ public class Profile extends AppCompatActivity {
     }
 
 
-    private void ClearAll () {
+    private void ClearAll() {
         if (postList != null) {
             postList.clear();
 
