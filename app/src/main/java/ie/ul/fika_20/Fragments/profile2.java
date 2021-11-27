@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.bumptech.glide.Glide;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
@@ -70,6 +70,7 @@ public class profile2 extends Fragment {
     private ImageView image_profile;
     private String userId, profileid;
     private ImageButton searchUser, notification, saved, logout;
+    private DatabaseReference mDatabase;
 
 
     @Override
@@ -109,7 +110,7 @@ public class profile2 extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // från den nya
         //search users button
@@ -171,8 +172,8 @@ public class profile2 extends Fragment {
         // Get Data method
 
         myFotos();
-      // userInfo();
-        userProfile();
+        userInfo();
+        //userProfile();
         // Clear List
         ClearAll();
         // userInfo();
@@ -238,28 +239,29 @@ public class profile2 extends Fragment {
         });
     }
 
-    /*private void userInfo(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(profileid);
+    // adds username on profile
+    private void userInfo(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (getContext() == null){
                     return;
                 }
-                User user = dataSnapshot.getValue(User.class);
-
-                Glide.with(getContext()).load(user.getImageUrl()).into(image_profile);
-                userName_profile.setText(user.getUsername());
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    // Glide.with(getContext()).load(user.getImageUrl()).into(image_profile);
+                    userName_profile.setText(snapshot.getValue().toString());
+                }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-//wtf
             }
         });
-    }*/
+    }
 
 
+
+/*
 private void userProfile(){
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     if (user != null) {
@@ -277,6 +279,7 @@ private void userProfile(){
         userName_profile.setText(displayName);
     }
 }
+*/
 
 
     private void ClearAll () {
