@@ -13,7 +13,7 @@
         android:id="@+id/upper_profile">
 
         <ImageView
-            android:id="@+id/image_profile2"
+            android:id="@+id/image_avatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -80,7 +80,7 @@
             android:layout_below="@+id/menu_options">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
+                android:id="@+id/recycler_view_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>

@@ -72,12 +72,12 @@ public class profile2 extends Fragment {
         View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         // Fetching username
-        image_profile = view.findViewById(R.id.image_profile);
+        image_profile = view.findViewById(R.id.image_avatar);
         userName_profile = view.findViewById(R.id.username_profile);
         // Imagebuttons
-        searchUser = view.findViewById(R.id.searchUser);
-        notification = view.findViewById(R.id.notification);
-        logout = view.findViewById(R.id.logout);
+        searchUser = view.findViewById(R.id.search_user);
+        notification = view.findViewById(R.id.notifications);
+        logout = view.findViewById(R.id.log_out);
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         fAuth = FirebaseAuth.getInstance();
@@ -86,7 +86,7 @@ public class profile2 extends Fragment {
         // fDBS = FirebaseDatabase.getInstance();
 
         // Gridlayout for images
-        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.recycler_view_profile);
         layoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
         postList = new ArrayList<>();
