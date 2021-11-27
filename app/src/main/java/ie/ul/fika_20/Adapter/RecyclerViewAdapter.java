@@ -40,8 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.single_view, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
-
-
+        
         return myViewHolder;
     }
 
