@@ -1,6 +1,9 @@
 package ie.ul.fika_20.Adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -41,14 +45,17 @@ private final ArrayList<Post> postList;
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.single_view, parent, false);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
+        return new RecyclerViewAdapter.MyViewHolder(view);
+       /* MyViewHolder myViewHolder = new MyViewHolder(view);
 
 
-        return myViewHolder;
+        return myViewHolder;*/
     }
 
-    @Override
+   /* @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+
         // Textview username??
         holder.textView.setText(postList.get(position).getPublisher());
         // Imageview with glidelibary.
@@ -62,7 +69,28 @@ private final ArrayList<Post> postList;
         //holder.imageView.setImageResource(arr[position]);
 //Kanske textview
     }
+*/
 
+    @Override
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+
+        final Post post = postList.get(position);
+
+        Glide.with(mContext).load(post.getImageurl()).into(holder.imageView);
+
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", MODE_PRIVATE).edit();
+                editor.putString("postid", post.getPostid());
+                editor.apply();
+/*
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new PostDetailFragment()).commit();*/
+            }
+        });
+
+    }
     @Override
     public int getItemCount() {
         return postList.size();
