@@ -68,6 +68,7 @@ public class profile2 extends Fragment {
     ImageButton searchUser, notification, logout;
 
 
+
     //  int [] arr = {R.drawable.image1,R.drawable.image22, R.drawable.image4, R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8};
 
 // MÅSTE FIXA onCREATEVIEW!!!! ÄR ngt med fragments.
@@ -108,20 +109,12 @@ public class profile2 extends Fragment {
         // recyclerViewAdapter = new RecyclerViewAdapter(postList);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
+
+
+
+
         // från den nya
 
-
-/*
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(profile2.this, StartApp.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-            }
-        });
-*/
         //logout button returns to startpage
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,14 +127,14 @@ public class profile2 extends Fragment {
         });
 
 
-       /*
-        recyclerView = view.findViewById(R.id.recycler_view);
+
+     /*   recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(mLayoutManager);
         postList = new ArrayList<>();
-        myFotosAdapter = new MyFotosAdapter(getContext(), postList);
-        recyclerView.setAdapter(RecyclerViewAdapter);*/
+        recyclerViewAdapter = new RecyclerViewAdapter(getContext(), postList);
+        recyclerView.setAdapter(recyclerViewAdapter);*/
 
         // Lists of methods
 
