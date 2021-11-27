@@ -7,35 +7,35 @@
     android:background="@color/colorBackground">
 
     <LinearLayout
+        android:id="@+id/upper_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/upper_profile">
+        android:background="@color/colorBackground"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/image_avatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
             tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/username_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/image_profile2"
             android:layout_gravity="center_horizontal"
             android:text="Username"
             android:textColor="@color/colorPrimary"
-            android:textSize="28sp"
-            android:layout_alignBottom="@+id/image_profile2"
-            />
+            android:textSize="28sp" />
 
         <LinearLayout
+            android:id="@+id/menu_options"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:id="@+id/menu_options">
+            android:padding="10dp">
 
             <ImageButton
                 android:id="@+id/search_user"
@@ -43,8 +43,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="30dp"
                 android:background="@color/colorBackground"
-                android:src="@drawable/ic_search_user">
-            </ImageButton>
+                android:src="@drawable/ic_search_user"></ImageButton>
 
             <ImageButton
                 android:id="@+id/notifications"
@@ -52,8 +51,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
                 android:background="@color/colorBackground"
-                android:src="@drawable/ic_notification">
-            </ImageButton>
+                android:src="@drawable/ic_notification"></ImageButton>
 
             <ImageButton
                 android:id="@+id/saved_posts"
@@ -61,8 +59,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
                 android:background="@color/colorBackground"
-                android:src="@drawable/ic_saved">
-            </ImageButton>
+                android:src="@drawable/ic_saved"></ImageButton>
 
             <ImageButton
                 android:id="@+id/log_out"
@@ -70,8 +67,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
                 android:background="@color/colorBackground"
-                android:src="@drawable/ic_logout">
-            </ImageButton>
+                android:src="@drawable/ic_logout"></ImageButton>
 
         </LinearLayout>
 
