@@ -37,59 +37,49 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/image_profile2" />
 
-        <ImageButton
-            android:id="@+id/searchUser"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginEnd="48dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/colorBackground"
-            android:minHeight="48dp"
-            android:src="@drawable/ic_action_name"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/image_profile2"
-            app:layout_constraintHorizontal_bias="0.0"
+        <RelativeLayout
+            android:layout_width="400dp"
+            android:layout_height="38dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/username_profile">
 
-        <ImageButton
-            android:id="@+id/notification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="91dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="180dp"
-            android:layout_marginBottom="4dp"
-            android:backgroundTint="@color/colorBackground"
-            android:minHeight="48dp"
-            android:src="@drawable/ic_notification"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/searchUser"
-            app:layout_constraintTop_toBottomOf="@+id/username_profile"
-            app:layout_constraintVertical_bias="1.0"
-            tools:ignore="SpeakableTextPresentCheck" />
+            <ImageButton
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="130dp"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/colorBackground"
+                android:minHeight="48dp"
+                android:src="@drawable/ic_logout"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-        <ImageButton
-            android:id="@+id/logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="130dp"
-            android:layout_marginEnd="2dp"
-            android:backgroundTint="@color/colorBackground"
-            android:minHeight="48dp"
-            android:src="@drawable/ic_logout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/notification"
-            app:layout_constraintTop_toBottomOf="@+id/username_profile"
-            app:layout_constraintVertical_bias="1.0"
-            tools:ignore="SpeakableTextPresentCheck" />
+            <ImageButton
+                android:id="@+id/notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="91dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="180dp"
+                android:layout_marginBottom="4dp"
+                android:backgroundTint="@color/colorBackground"
+                android:minHeight="48dp"
+                android:src="@drawable/ic_notification"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageButton
+                android:id="@+id/searchUser"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/colorBackground"
+                android:minHeight="48dp"
+                android:src="@drawable/ic_search_user" />
+        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

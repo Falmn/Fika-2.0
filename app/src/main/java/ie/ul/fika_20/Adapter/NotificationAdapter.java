@@ -1,6 +1,6 @@
 package ie.ul.fika_20.Adapter;
 
-
+import android.app.Fragment;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +20,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import ie.ul.fika_20.Fragments.profile2;
 import ie.ul.fika_20.Model.Notification;
 import ie.ul.fika_20.Model.Post;
 import ie.ul.fika_20.Model.User;
@@ -46,32 +45,27 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-       final Notification notification = mNotification.get(position);
+       Notification notification = mNotification.get(position);
 
        getUser(holder.avatar, holder.username, notification.getUserid());
-
-       holder.text.setText(notification.getText());
-       //om bilden är postad
+//om bilden är postad
        if (notification.isPost()){
            holder.postImage.setVisibility(View.VISIBLE);
            getPostImage(holder.postImage, notification.getUserid());
        }else{//annars är det inget, använder gone för att inte platsen ska vara "sparad"
            holder.postImage.setVisibility(View.GONE);
        }
-//Är ej klar,
+
        holder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                if(notification.isPost()){
-                   mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).
-                           edit().putString("postId", notification.getPostId()).apply();
-                   ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container ,
-                           new profile2()).commit();
-               } else{
-                   mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE).
-                           edit().putString("profileId", notification.getUserid()).apply();
+                   mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postId", notification.getPostId()).apply();
 
-                   ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new profile2()).commit();
+               } else{
+                   mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit().putString("profileId", notification.getUserid()).apply();
+
+          //         ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new );
                }
            }
        });
@@ -114,7 +108,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             }
         });
     }
-//Hämta användarnamn och profilbild från firebase och lägg till kommentar
+//Hämta användarnamn och profilbild från firebase
     private void getUser(ImageView imageView, TextView textView, String userId){
         FirebaseDatabase.getInstance().getReference().child("Users").child(userId).addValueEventListener(new ValueEventListener() {
             @Override
