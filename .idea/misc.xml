@@ -19,8 +19,6 @@
         <entry key="app/src/main/res/drawable-anydpi/ic_liked.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-anydpi/ic_location.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-anydpi/ic_logout.xml" value="0.25625" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_notification.xml" value="0.25625" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_saved.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-v24/ic_action_name.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-v24/ic_add.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.25625" />
@@ -30,7 +28,6 @@
         <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.11676798378926039" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_new_post.xml" value="0.12916666666666668" />
-        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/activity_start_app.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/conversations.xml" value="0.2526041666666667" />

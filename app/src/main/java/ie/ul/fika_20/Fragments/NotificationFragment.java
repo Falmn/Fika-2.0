@@ -1,5 +1,6 @@
 package ie.ul.fika_20.Fragments;
 
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 import ie.ul.fika_20.Adapter.NotificationAdapter;
+
 import ie.ul.fika_20.Model.Notification;
 import ie.ul.fika_20.R;
 
@@ -49,6 +52,9 @@ public class NotificationFragment extends Fragment {
 
 
         return view;
+
+
+
     }
 
     private void readNotifications() {
@@ -71,5 +77,6 @@ public class NotificationFragment extends Fragment {
             }
         });
     }
+
 
 }
