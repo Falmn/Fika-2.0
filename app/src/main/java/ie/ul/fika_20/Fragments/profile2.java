@@ -254,7 +254,7 @@ public class profile2 extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+//wtf
             }
         });
     }*/
