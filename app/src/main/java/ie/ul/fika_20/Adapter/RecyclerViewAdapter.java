@@ -41,9 +41,9 @@ private final ArrayList<Post> postList;
 
     @NonNull
     @Override
-    public RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.single_view, parent, false);
         return new RecyclerViewAdapter.MyViewHolder(view);
        /* MyViewHolder myViewHolder = new MyViewHolder(view);
