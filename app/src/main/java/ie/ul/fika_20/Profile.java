@@ -1,21 +1,21 @@
 package ie.ul.fika_20;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +27,9 @@ import java.util.List;
 
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
 import ie.ul.fika_20.Fragments.NotificationFragment;
+import ie.ul.fika_20.Fragments.SavedFragment;
 import ie.ul.fika_20.Fragments.SearchFragment;
+import ie.ul.fika_20.Fragments.profile2;
 import ie.ul.fika_20.Model.Post;
 
 
@@ -53,7 +55,8 @@ public class Profile extends AppCompatActivity {
     private ImageView image_profile;
     private String userId, profileid;
 
-
+    private BottomNavigationView bottomNavigationView;
+    private Fragment selectorFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,9 +89,6 @@ public class Profile extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
 
-        // från den nya
-
-
         // Lists of methods
 
 
@@ -100,13 +100,57 @@ public class Profile extends AppCompatActivity {
 
         myFotos();
         // userInfo();
-        userProfile();
+
         // Clear List
         ClearAll();
         // userInfo();
         //   GetDataFromFireBase();
 
-        //   return view;
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                switch (menuItem.getItemId()){
+                    case R.id.nav_grid_profile:
+                        selectorFragment = new profile2();
+                        break;
+                    case R.id.nav_search_user :
+                        selectorFragment = new SearchFragment();
+                        break;
+
+                    case R.id.nav_notifications :
+                        selectorFragment = new NotificationFragment();
+                        break;
+                    case R.id.nav_saved_posts:
+                        selectorFragment = new SavedFragment();
+                        break;
+                    case R.id.nav_logout:
+                        selectorFragment = new logout();
+                        break;
+                }
+
+                if (selectorFragment != null){
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , selectorFragment).commit();
+                }
+
+                return  true;
+
+            }
+        });
+
+        Bundle intent = getIntent().getExtras();
+        if (intent != null) {
+            String profileId = intent.getString("publisherId");
+
+            getSharedPreferences("PROFILE", MODE_PRIVATE).edit().putString("profileId", profileId).apply();
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new profile2()).commit();
+            bottomNavigationView.setSelectedItemId(R.id.nav_profile);
+        }/* else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
+        }*/
 
     }
 
