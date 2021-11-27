@@ -36,6 +36,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.zip.Inflater;
 
+import ie.ul.fika_20.Adapter.PostAdapter;
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
 import ie.ul.fika_20.Model.Post;
 import ie.ul.fika_20.Model.User;
@@ -50,6 +51,7 @@ public class profile2 extends Fragment {
 
     // Widgets
     private RecyclerView recyclerView;
+
     //  private MyFotosAdapter myFotosAdapter;
     private List<Post> postList;
     RecyclerView.LayoutManager layoutManager;
@@ -62,16 +64,14 @@ public class profile2 extends Fragment {
     // Variabels
     // private ArrayList<Post>  postList;
     private Context mContext;
-    TextView userName_profile;
-    ImageView image_profile;
-    String userId, profileid;
-    ImageButton searchUser, notification, logout;
+    private TextView userName_profile;
+    private ImageView image_profile;
+    private String userId, profileid;
+    private ImageButton searchUser, notification, logout;
 
 
 
     //  int [] arr = {R.drawable.image1,R.drawable.image22, R.drawable.image4, R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8};
-
-// MÅSTE FIXA onCREATEVIEW!!!! ÄR ngt med fragments.
 
 
     @Override
