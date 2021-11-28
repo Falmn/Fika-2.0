@@ -73,7 +73,6 @@ public class FeedFragment extends Fragment {
 
                 followingList.add(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 readPosts();
-
             }
 
             @Override
