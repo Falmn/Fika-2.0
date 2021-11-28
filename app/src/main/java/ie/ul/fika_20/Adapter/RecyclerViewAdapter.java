@@ -16,10 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ie.ul.fika_20.Fragments.profile2;
 import ie.ul.fika_20.Model.Post;
 import ie.ul.fika_20.Model.User;
 import ie.ul.fika_20.R;
@@ -37,7 +39,7 @@ private List<Post> postList;
     }
 
 
-
+/*
 
     @NonNull
     @Override
@@ -46,13 +48,13 @@ private List<Post> postList;
         View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.single_view, parent, false);
         return new RecyclerViewAdapter.MyViewHolder(view);
-       /* MyViewHolder myViewHolder = new MyViewHolder(view);
+       *//* MyViewHolder myViewHolder = new MyViewHolder(view);
 
 
-        return myViewHolder;*/
+        return myViewHolder;*//*
     }
 
-   /* @Override
+   *//* @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
 
@@ -69,7 +71,7 @@ private List<Post> postList;
         //holder.imageView.setImageResource(arr[position]);
 //Kanske textview
     }
-*/
+*//*
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
@@ -84,9 +86,9 @@ private List<Post> postList;
                 SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", MODE_PRIVATE).edit();
                 editor.putString("postid", post.getPostid());
                 editor.apply();
-/*
+*//*
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new PostDetailFragment()).commit();*/
+                        new PostDetailFragment()).commit();*//*
             }
         });
 
@@ -105,7 +107,89 @@ private List<Post> postList;
 
 
         }
+    }*/
+
+    // new code!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.single_view, parent, false);
+        return  new RecyclerViewAdapter.MyViewHolder(view);
     }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+        final Post post = postList.get(position);
+        Picasso.get().load(post.getImageurl()).placeholder(R.mipmap.ic_launcher).into(holder.postImage);
+
+        holder.postImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postid", post.getPostid()).apply();
+
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new profile2()).commit();
+            }
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return postList.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+        public ImageView postImage;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            postImage = itemView.findViewById(R.id.post_image);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /*@NonNull
