@@ -28,10 +28,8 @@ import ie.ul.fika_20.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
-
-private static final String Tag = "recyclerView";
-private final Context mContext;
-private List<Post> postList;
+    private final Context mContext;
+    private List<Post> postList;
 
     public RecyclerViewAdapter(Context mContext, List<Post> postList) {
         this.mContext = mContext;
