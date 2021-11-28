@@ -206,7 +206,7 @@ public class Profile extends AppCompatActivity {
             }
         });
     }
-
+// Displays username
     private void userInfo(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         reference.addValueEventListener(new ValueEventListener() {
@@ -226,7 +226,33 @@ public class Profile extends AppCompatActivity {
         });
     }
 
+ /*private void GetDataFromFireBase () {
 
+        Query query = myRef.child("Posts");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ClearAll();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Post post = new Post();
+                    post.setImageurl(snapshot.child("imageurl").getValue().toString());
+                    post.setPublisher(snapshot.child("username").getValue().toString());
+
+                    postList.add(post);
+
+                }
+                // mContext ist för getApplicationContext. la till arraylist<Post>.
+                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
+                recyclerView.setAdapter(recyclerViewAdapter);
+                recyclerViewAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }*/
 
 
 
