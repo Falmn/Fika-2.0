@@ -1,7 +1,7 @@
 
 package ie.ul.fika_20.Fragments;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -9,14 +9,13 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +29,6 @@ import java.util.List;
 
 import ie.ul.fika_20.Adapter.UserAdapter;
 import ie.ul.fika_20.Model.User;
-import ie.ul.fika_20.Profile;
 import ie.ul.fika_20.R;
 
 

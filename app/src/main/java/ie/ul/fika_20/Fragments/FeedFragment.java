@@ -61,7 +61,7 @@ public class FeedFragment extends Fragment {
     // Method to check which users person follows
     private void checkFollowingUsers() {
 
-        FirebaseDatabase.getInstance().getReference().child("follow")
+        FirebaseDatabase.getInstance().getReference().child("Follow")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("following").addValueEventListener(new ValueEventListener() {
             @Override
