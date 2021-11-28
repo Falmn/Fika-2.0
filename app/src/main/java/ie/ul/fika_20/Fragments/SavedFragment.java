@@ -34,7 +34,6 @@ public class SavedFragment extends Fragment {
     private RecyclerView recyclerViewSaves;
     private RecyclerViewAdapter postAdapterSaves;
     private List<Post> mySavedPosts;
-    private ImageView backSaved;
     private FirebaseUser fUser;
 
     @Override
