@@ -79,21 +79,14 @@ public class profile2 extends Fragment {
             Bundle savedInstanceState) {
         View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
 
-
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         SharedPreferences prefs = getContext().getSharedPreferences("PREFS", MODE_PRIVATE);
         profileid = prefs.getString("profileid", "none");
 
 
-        //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         // Fetching username
         image_profile = view.findViewById(R.id.image_avatar);
-        userName_profile = view.findViewById(R.id.username_profile);
-        // Imagebuttons
-       /* searchUser = view.findViewById(R.id.search_user);
-        notification = view.findViewById(R.id.notifications);
-        logout = view.findViewById(R.id.log_out);*/
-        saved = view.findViewById(R.id.save);
+      //  userName_profile = view.findViewById(R.id.username_profile);
+
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         fAuth = FirebaseAuth.getInstance();
@@ -105,9 +98,6 @@ public class profile2 extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_profile);
         layoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
-
-
-
         recyclerViewAdapter = new RecyclerViewAdapter(getContext(), postList);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
@@ -115,10 +105,9 @@ public class profile2 extends Fragment {
         // new array
 
         myPostList = new ArrayList<>();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // Get Data method
-        myFotos();
+        myPhotos();
 
 
         return view;
@@ -126,7 +115,7 @@ public class profile2 extends Fragment {
     }
 
 
-    private void myFotos(){
+    private void myPhotos(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
