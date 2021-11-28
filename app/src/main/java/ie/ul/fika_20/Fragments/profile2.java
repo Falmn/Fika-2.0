@@ -112,57 +112,8 @@ public class profile2 extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        // från den nya
-        //search users button
-     /*   searchUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), SearchFragment.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
-        //notifications button
-        notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), NotificationFragment.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });*/
-        // saved posts button
-       /* saved.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), SavedFragment.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });*/
-
-      /*  //logout button returns to startpage
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getContext(), StartApp.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });*/
-
-
-
      /*   recyclerView = view.findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
-        recyclerView.setLayoutManager(mLayoutManager);
-        postList = new ArrayList<>();
-        recyclerViewAdapter = new RecyclerViewAdapter(getContext(), postList);
-        recyclerView.setAdapter(recyclerViewAdapter);*/
 
-        // Lists of methods
 
 
        /* userInfo();
@@ -170,46 +121,12 @@ public class profile2 extends Fragment {
 
 */
         // Get Data method
-
         myFotos();
-        //userInfo();
-        //userProfile();
-        // Clear List
-       // ClearAll();
-        // userInfo();
-        //   GetDataFromFireBase();
+
 
         return view;
 
     }
-
-    /*private void GetDataFromFireBase () {
-
-        Query query = myRef.child("Posts");
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ClearAll();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Post post = new Post();
-                    post.setImageurl(snapshot.child("imageurl").getValue().toString());
-                    post.setPublisher(snapshot.child("username").getValue().toString());
-
-                    postList.add(post);
-
-                }
-                // mContext ist för getApplicationContext. la till arraylist<Post>.
-                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
-                recyclerView.setAdapter(recyclerViewAdapter);
-                recyclerViewAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }*/
 
 
     private void myFotos(){
@@ -239,60 +156,13 @@ public class profile2 extends Fragment {
         });
     }
 
-    // adds username on profile
-/*    private void userInfo(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (getContext() == null){
-                    return;
-                }
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    // Glide.with(getContext()).load(user.getImageUrl()).into(image_profile);
-                    userName_profile.setText(snapshot.getValue().toString());
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-    }*/
 
 
 
-/*
-private void userProfile(){
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    if (user != null) {
-        // User is Login
-        String displayName = user.getDisplayName();
 
-        // If the above were null, iterate the provider data
-        // and set with the first non null data
-        for (UserInfo userInfo : user.getProviderData()) {
-            if (displayName == null && userInfo.getDisplayName() != null) {
-                displayName = userInfo.getDisplayName();
-            }
-        }
 
-        userName_profile.setText(displayName);
-    }
-}
-*/
 
-/*
-    private void ClearAll () {
-        if (postList != null) {
-            postList.clear();
 
-            if (recyclerViewAdapter != null) {
-                recyclerViewAdapter.notifyDataSetChanged();
-            }
-        }
-        postList = new ArrayList<>();
-
-    }*/
     }
 
 

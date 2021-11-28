@@ -141,7 +141,7 @@ public class Profile extends AppCompatActivity {
                 }
 
                 if (selectorFragment != null){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , selectorFragment).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_profile , selectorFragment).commit();
                 }
 
                 return  true;
@@ -155,7 +155,7 @@ public class Profile extends AppCompatActivity {
 
             getSharedPreferences("PROFILE", MODE_PRIVATE).edit().putString("profileId", profileId).apply();
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new profile2()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_profile, new profile2()).commit();
             bottomNavigationView.setSelectedItemId(R.id.nav_profile);
         }/* else {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
@@ -173,6 +173,7 @@ public class Profile extends AppCompatActivity {
         nav_back_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               startActivity(new Intent(Profile.this, MainActivity.class));
                 finish();
             }
         });
@@ -206,7 +207,7 @@ public class Profile extends AppCompatActivity {
             }
         });
     }
-
+// Displays username
     private void userInfo(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         reference.addValueEventListener(new ValueEventListener() {
@@ -226,7 +227,33 @@ public class Profile extends AppCompatActivity {
         });
     }
 
+ /*private void GetDataFromFireBase () {
 
+        Query query = myRef.child("Posts");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ClearAll();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Post post = new Post();
+                    post.setImageurl(snapshot.child("imageurl").getValue().toString());
+                    post.setPublisher(snapshot.child("username").getValue().toString());
+
+                    postList.add(post);
+
+                }
+                // mContext ist för getApplicationContext. la till arraylist<Post>.
+                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
+                recyclerView.setAdapter(recyclerViewAdapter);
+                recyclerViewAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }*/
 
 
 
