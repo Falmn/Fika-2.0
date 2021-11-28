@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,7 +43,6 @@ public class profile2 extends Fragment {
             Bundle savedInstanceState) {
         View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
 
-
         fUser = FirebaseAuth.getInstance().getCurrentUser();
 
         String data = getContext().getSharedPreferences("PROFILE", Context.MODE_PRIVATE).getString("profileId", "none");
@@ -64,44 +65,37 @@ public class profile2 extends Fragment {
         // new array
 
         // Get Data method
-        myFotos();
+        myPhotos();
 
 
         return view;
 
     }
 
+    private void myPhotos(){
+        FirebaseDatabase.getInstance().getReference().child("Posts")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        postList.clear();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            Post post = snapshot.getValue(Post.class);
 
-    private void myFotos(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                postList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Post post = snapshot.getValue(Post.class);
+                            if (post.getPublisher().equals(profileId)){
+                                postList.add(post);
+                            }
+                        }
 
-                      if (post.getPublisher().equals(profileId)) {
-                          postList.add(post);
-                      }
+                        Collections.reverse(postList);
+                        photoAdapter.notifyDataSetChanged();
+                    }
 
-                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                Collections.reverse(postList);
-                photoAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+                    }
+                });
     }
-
-
-
-
-
 
 
 
