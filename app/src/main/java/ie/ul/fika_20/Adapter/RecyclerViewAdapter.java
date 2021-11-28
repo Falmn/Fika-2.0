@@ -13,27 +13,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import ie.ul.fika_20.Fragments.profile2;
 import ie.ul.fika_20.Model.Post;
-import ie.ul.fika_20.Model.User;
 import ie.ul.fika_20.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
-
-private static final String Tag = "recyclerView";
-private final Context mContext;
-private List<Post> postList;
-private FirebaseUser firebaseUser;
+    private final Context mContext;
+    private List<Post> postList;
 
     public RecyclerViewAdapter(Context mContext, List<Post> postList) {
         this.mContext = mContext;
@@ -126,8 +116,6 @@ private FirebaseUser firebaseUser;
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        // La till firebaseuser??
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         final Post post = postList.get(position);
         Picasso.get().load(post.getImageurl()).placeholder(R.mipmap.ic_launcher).into(holder.postImage);
