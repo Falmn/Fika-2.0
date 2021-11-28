@@ -126,7 +126,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postid", post.getPostid()).apply();
 
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new profile2()).commit();
+                        .replace(R.id.fragment_container_profile, new profile2()).commit();
             }
         });
 
@@ -144,7 +144,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            postImage = itemView.findViewById(R.id.post_image);
+            postImage = itemView.findViewById(R.id.image_singleview);
         }
     }
 
