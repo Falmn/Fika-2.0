@@ -141,7 +141,7 @@ public class Profile extends AppCompatActivity {
                 }
 
                 if (selectorFragment != null){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , selectorFragment).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_profile , selectorFragment).commit();
                 }
 
                 return  true;
@@ -155,7 +155,7 @@ public class Profile extends AppCompatActivity {
 
             getSharedPreferences("PROFILE", MODE_PRIVATE).edit().putString("profileId", profileId).apply();
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new profile2()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_profile, new profile2()).commit();
             bottomNavigationView.setSelectedItemId(R.id.nav_profile);
         }/* else {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
@@ -173,6 +173,7 @@ public class Profile extends AppCompatActivity {
         nav_back_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               startActivity(new Intent(Profile.this, MainActivity.class));
                 finish();
             }
         });
