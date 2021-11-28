@@ -40,7 +40,6 @@ public class SearchFragment extends Fragment {
     private List<User> mUsers;
     private UserAdapter userAdapter;
     private SocialAutoCompleteTextView search_bar;
-    ImageView back;
 
 
     @Override
@@ -55,7 +54,6 @@ public class SearchFragment extends Fragment {
         userAdapter = new UserAdapter(getContext(),mUsers, true);
         recyclerView.setAdapter(userAdapter);
         search_bar = view.findViewById(R.id.search_bar);
-        back = view.findViewById(R.id.nav_back);
 
         readUsers();
         search_bar.addTextChangedListener(new TextWatcher() {
@@ -76,12 +74,6 @@ public class SearchFragment extends Fragment {
             }
         });
 
-      /* back.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               startActivity(new Intent(SearchFragment.this , Profile.class));
-           }
-       });*/
         return view;
 
 

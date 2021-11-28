@@ -36,7 +36,6 @@ public class NotificationFragment extends Fragment {
     private RecyclerView recyclerView;
     private NotificationAdapter notificationAdapter;
     private List<Notification> notificationList;
-    ImageView back;
 
 
 
@@ -51,7 +50,6 @@ public class NotificationFragment extends Fragment {
         notificationList = new ArrayList<>();
         notificationAdapter = new NotificationAdapter(getContext() , notificationList);
         recyclerView.setAdapter(notificationAdapter);
-        back = view.findViewById(R.id.nav_back);
 
         readNotifications();
 

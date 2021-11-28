@@ -47,7 +47,6 @@ public class SavedFragment extends Fragment {
         recyclerViewSaves.setLayoutManager(new GridLayoutManager(getContext(), 3));
         mySavedPosts = new ArrayList<>();
         postAdapterSaves = new RecyclerViewAdapter(getContext(), mySavedPosts);
-        backSaved = view.findViewById(R.id.nav_back_saved);
         recyclerViewSaves.setAdapter(postAdapterSaves);
         fUser = FirebaseAuth.getInstance().getCurrentUser();
 
