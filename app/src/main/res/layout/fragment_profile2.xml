@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
-
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -18,7 +16,7 @@
                 android:layout_below="@+id/menu_options">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_profile"
+                    android:id="@+id/recycler_view_grid_profile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
