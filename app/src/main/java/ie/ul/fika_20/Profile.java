@@ -7,9 +7,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,6 +57,7 @@ public class Profile extends AppCompatActivity {
     private TextView userName_profile;
     private ImageView image_profile;
     private String userId, profileid;
+    private ImageButton logout;
 
     private BottomNavigationView bottomNavigationView;
     private Fragment selectorFragment;
@@ -70,7 +74,8 @@ public class Profile extends AppCompatActivity {
         // Fetching username
         image_profile = findViewById(R.id.image_avatar);
         userName_profile = findViewById(R.id.username_profile);
-
+//ImageButton
+        logout = findViewById(R.id.logout);
 
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -106,7 +111,7 @@ public class Profile extends AppCompatActivity {
         // userInfo();
         //   GetDataFromFireBase();
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.menu_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -126,9 +131,7 @@ public class Profile extends AppCompatActivity {
                     case R.id.nav_saved_posts:
                         selectorFragment = new SavedFragment();
                         break;
-                    case R.id.nav_logout:
-                        selectorFragment = new logout();
-                        break;
+
                 }
 
                 if (selectorFragment != null){
@@ -152,6 +155,15 @@ public class Profile extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
         }*/
 
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), StartApp.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
 
 
@@ -198,6 +210,7 @@ public class Profile extends AppCompatActivity {
         postList = new ArrayList<>();
 
     }
+
 }
 
  /*private void GetDataFromFireBase () {
