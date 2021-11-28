@@ -55,7 +55,7 @@ public class profile2 extends Fragment {
     private RecyclerView recyclerView;
 
     //  private MyFotosAdapter myFotosAdapter;
-    private List<Post> postList;
+    private List<Post> myPostList;
     RecyclerView.LayoutManager layoutManager;
     RecyclerViewAdapter recyclerViewAdapter;
     // Firebase
@@ -104,7 +104,7 @@ public class profile2 extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_profile);
         layoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
-        postList = new ArrayList<>();
+        myPostList = new ArrayList<>();
         // recyclerViewAdapter = new RecyclerViewAdapter(postList);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
@@ -112,14 +112,6 @@ public class profile2 extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-     /*   recyclerView = view.findViewById(R.id.recycler_view);
-
-
-
-       /* userInfo();
-        myFotos();
-
-*/
         // Get Data method
         myFotos();
 
@@ -134,18 +126,21 @@ public class profile2 extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                postList.clear();
+                myPostList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Post post = snapshot.getValue(Post.class);
                     if (post.getPublisher().equals(profileid)){
-                        postList.add(post);
+                        myPostList.add(post);
                     }
                 }
-                // mContext ist för getApplicationContext. la till arraylist<Post>.
-                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
+
+                Collections.reverse(myPostList);
+                recyclerViewAdapter.notifyDataSetChanged();
+                /*// mContext ist för getApplicationContext. la till arraylist<Post>.
+                recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) myPostList);
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerViewAdapter.notifyDataSetChanged();
-                /*Collections.reverse(postList);
+                *//*Collections.reverse(postList);
                 RecyclerViewAdapter.notifyDataSetChanged();*/
             }
 
