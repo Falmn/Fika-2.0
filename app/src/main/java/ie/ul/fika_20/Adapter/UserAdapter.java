@@ -86,19 +86,19 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             public void onClick(View v) {
                 if (holder.btn_follow.getText().toString().equals("follow")){
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
-                            .child("Following").child(user.getId()).setValue(true);
+                            .child("following").child(user.getId()).setValue(true);
 
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getId())
-                            .child("Followers").child(firebaseUser.getUid()).setValue(true);
+                            .child("followers").child(firebaseUser.getUid()).setValue(true);
 
                     addNotifications(user.getId());
                     // om vi inte följer finns en knapp för "follow" som ändras till "following" när vi trycker på den och tvärt om om det redan står following. Och personen läggs till i firebase som personer man följer
                 } else {
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
-                            .child("Following").child(user.getId()).removeValue();
+                            .child("following").child(user.getId()).removeValue();
 
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getId())
-                            .child("Followers").child(firebaseUser.getUid()).removeValue();
+                            .child("followers").child(firebaseUser.getUid()).removeValue();
                 }
             }
         });
@@ -148,8 +148,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child(id).exists())
-                    button.setText("Following");
-                else button.setText("Follow");
+                    button.setText("following");
+                else button.setText("follow");
             }
 
             @Override
