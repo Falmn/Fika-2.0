@@ -131,8 +131,7 @@ public class profile2 extends Fragment {
 
 
     private void myFotos(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-        reference.addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener()  {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 postList.clear();
