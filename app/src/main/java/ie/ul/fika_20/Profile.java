@@ -109,7 +109,7 @@ public class Profile extends AppCompatActivity {
          */
         // Get Data method
 
-        myFotos();
+      //  myFotos();
         userInfo();
 
         // Clear List
@@ -170,7 +170,6 @@ public class Profile extends AppCompatActivity {
                 finish();
             }
         });
-
         nav_back_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,6 +179,8 @@ public class Profile extends AppCompatActivity {
         });
     }
 
+
+/*
     private void myFotos() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
@@ -196,8 +197,8 @@ public class Profile extends AppCompatActivity {
                 recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) postList);
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerViewAdapter.notifyDataSetChanged();
-                /*Collections.reverse(postList);
-                RecyclerViewAdapter.notifyDataSetChanged();*/
+                *//*Collections.reverse(postList);
+                RecyclerViewAdapter.notifyDataSetChanged();*//*
             }
 
             @Override
@@ -205,7 +206,7 @@ public class Profile extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 // Displays username
     private void userInfo(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
