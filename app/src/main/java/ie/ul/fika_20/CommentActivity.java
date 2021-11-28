@@ -66,6 +66,10 @@ public class CommentActivity extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        postId = intent.getStringExtra("postId");
+        authorId = intent.getStringExtra("authorId");
+
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -78,10 +82,6 @@ public class CommentActivity extends AppCompatActivity {
         addComment = findViewById(R.id.add_comment);
         avatar = findViewById(R.id.avatar);
         post = findViewById(R.id.post);
-
-        Intent intent = getIntent();
-        postId = intent.getStringExtra("postId");
-        authorId = intent.getStringExtra("authorId");
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
 

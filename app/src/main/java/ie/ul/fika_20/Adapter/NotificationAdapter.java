@@ -1,6 +1,5 @@
 package ie.ul.fika_20.Adapter;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -45,13 +43,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-       Notification notification = mNotification.get(position);
+       final Notification notification = mNotification.get(position);
 
        getUser(holder.avatar, holder.username, notification.getUserid());
+       holder.comment.setText(notification.getText());
 //om bilden är postad
        if (notification.isPost()){
            holder.postImage.setVisibility(View.VISIBLE);
-           getPostImage(holder.postImage, notification.getUserid());
+           getPostImage(holder.postImage, notification.getPostid());
        }else{//annars är det inget, använder gone för att inte platsen ska vara "sparad"
            holder.postImage.setVisibility(View.GONE);
        }
@@ -60,8 +59,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
            @Override
            public void onClick(View view) {
                if(notification.isPost()){
-                   mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postId", notification.getPostId()).apply();
+                   mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postid", notification.getPostid()).apply();
 
+                  /* ((FragmentActivity)mContext).getSupportFragmentManager()
+                           .beginTransaction().replace(R.id.fragment_container, new PostDetailFragment()).commit();*/
                } else{
                    mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit().putString("profileId", notification.getUserid()).apply();
 
@@ -81,7 +82,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public ImageView avatar;
         public ImageView postImage;
         public TextView username;
-        public TextView text;
+        public TextView comment;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -90,7 +91,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             avatar = itemView.findViewById(R.id.avatar);
             postImage = itemView.findViewById(R.id.post_image);
             username = itemView.findViewById(R.id.username);
-            text = itemView.findViewById(R.id.comment);
+            comment = itemView.findViewById(R.id.comment);
         }
     }
 
@@ -109,7 +110,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         });
     }
 //Hämta användarnamn och profilbild från firebase
-    private void getUser(ImageView imageView, TextView textView, String userId){
+    private void getUser(final ImageView imageView, final TextView textView, String userId){
         FirebaseDatabase.getInstance().getReference().child("Users").child(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

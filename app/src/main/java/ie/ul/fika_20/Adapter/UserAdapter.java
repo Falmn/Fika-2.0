@@ -30,7 +30,7 @@ import ie.ul.fika_20.R;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     private final Context mContext;
     private final List<User> mUsers;
-    private final boolean isFragment;
+    private boolean isFragment;
 
     private FirebaseUser firebaseUser;
 
@@ -44,7 +44,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.user_item, parent, false);
-        return new ViewHolder(view);
+        return new UserAdapter.ViewHolder(view);
     }
 //koppling till firebase
     @Override
@@ -107,15 +107,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
 
     private void addNotifications(String userid) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
+        //DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
 
         HashMap<String, Object> map = new HashMap<>();
-        map.put("userId", userid);
+        map.put("userid", userid);
         map.put("text", "started following you.");
-        map.put("postId", "");
+        map.put("postid", "");
         map.put("isPost", false);
 
-        FirebaseDatabase.getInstance().getReference().child("Notification").child(firebaseUser.getUid()).push().setValue(map);
+       FirebaseDatabase.getInstance().getReference().child("Notification").child(firebaseUser.getUid()).push().setValue(map);
+
+        //reference.push().setValue(map);
     }
 
 
@@ -142,14 +144,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             btn_follow = itemView.findViewById(R.id.btn_follow);
         }
     }
-    private void isFollowed(final String id, Button button) {
+    private void isFollowed(final String id, final Button button) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid()).child("following");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(id).exists())
+                if (dataSnapshot.child(id).exists()) {
                     button.setText("following");
-                else button.setText("follow");
+                } else {
+                    button.setText("follow");
+                }
             }
 
             @Override
