@@ -53,7 +53,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
 
         // Get post image and set caption from user
-        Post post = mPosts.get(position);
+        final Post post = mPosts.get(position);
         Picasso.get().load(post.getImageurl()).into(holder.postImage);
         holder.caption.setText(post.getCaption());
 
