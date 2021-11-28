@@ -102,7 +102,7 @@ public class profile2 extends Fragment {
         // fDBS = FirebaseDatabase.getInstance();
 
         // Gridlayout for images
-        recyclerView = view.findViewById(R.id.recycler_view_profile);
+        recyclerView = view.findViewById(R.id.recycler_view_grid_profile);
         layoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
 
