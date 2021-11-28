@@ -57,11 +57,11 @@ public class profile2 extends Fragment {
 
     //  private MyFotosAdapter myFotosAdapter;
     private List<Post> postList;
-    private List<String> myPostList;
+  //  private List<String> myPostList;
 /*    RecyclerView.LayoutManager layoutManager;
     RecyclerViewAdapter recyclerViewAdapter;*/
     // Firebase
-    private FirebaseUser firebaseUser;
+    private FirebaseUser fUser;
     private FirebaseAuth fAuth;
     //  private FirebaseDatabase fDBS;
     private DatabaseReference myRef;
@@ -74,6 +74,7 @@ public class profile2 extends Fragment {
     private ImageButton searchUser, notification, saved, logout;
     private DatabaseReference mDatabase;
 
+    String profileId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,9 +82,16 @@ public class profile2 extends Fragment {
         View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
 
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        SharedPreferences prefs = getContext().getSharedPreferences("PREFS", MODE_PRIVATE);
-        profileid = prefs.getString("profileid", "none");
+        fUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        String data = getContext().getSharedPreferences("PROFILE", Context.MODE_PRIVATE).getString("profileId", "none");
+
+        if (data.equals("none")) {
+            profileId = fUser.getUid();
+        } else {
+            profileId = data;
+            getContext().getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit().clear().apply();
+        }
 
 
         //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
@@ -96,7 +104,7 @@ public class profile2 extends Fragment {
         logout = view.findViewById(R.id.log_out);*/
         saved = view.findViewById(R.id.save);
         // Firebase
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        //firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         fAuth = FirebaseAuth.getInstance();
         userId = FirebaseAuth.getInstance().getUid();
         myRef = FirebaseDatabase.getInstance().getReference();
@@ -110,7 +118,7 @@ public class profile2 extends Fragment {
         postList = new ArrayList<>();
         // new array
 
-        myPostList = new ArrayList<>();
+      //  myPostList = new ArrayList<>();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // Get Data method
@@ -130,11 +138,11 @@ public class profile2 extends Fragment {
                 postList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Post post = snapshot.getValue(Post.class);
-                  for (String id : myPostList) {
-                      if (post.getPublisher().equals(id)) {
+
+                      if (post.getPublisher().equals(profileid)) {
                           postList.add(post);
                       }
-                  }
+
                 }
 
                 Collections.reverse(postList);
