@@ -143,6 +143,9 @@ public class NewPost extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         uploadImageToFirebase(imageFileName, contentUri);
+                        Intent intent = new Intent(NewPost.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
 
                         //progressBarPost.setVisibility(View.VISIBLE);
                         //If we can move upload to firebase here
@@ -173,7 +176,7 @@ public class NewPost extends AppCompatActivity {
                         hashMap.put("publisher", FirebaseAuth.getInstance().getCurrentUser().getUid()); //firebaseAuth.getCurrentUser().getUid(),firebaseAuth.getCurrentUser().getUid()firebaseUser.getUid()); // Uploads user id
                         imagestore.push().setValue(hashMap); // puts the hashmap into realtime database "posts"
 
-                        Toast.makeText(NewPost.this, "Perfect! Image Is Uploaded.", Toast.LENGTH_SHORT).show();
+
                         //String imageReference = uri.toString();
                         //databaseReference.child("specimens").child(specimenDTO.getKey()).child("imageUrl").setValue(imageReference);
                         //specimenDTO.setImageUrl(imageReference);
