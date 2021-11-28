@@ -18,24 +18,21 @@
             android:layout_height="wrap_content">
 
             <ImageButton
+                android:id="@+id/nav_back_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_back"
-                android:background="@color/colorBackground"
                 android:layout_margin="8dp"
-                android:id="@+id/nav_back_profile">
-            </ImageButton>
+                android:background="@color/colorBackground"
+                android:src="@drawable/ic_back"></ImageButton>
 
             <ImageButton
+                android:id="@+id/nav_logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_logout"
                 android:layout_gravity="right"
-                android:background="@color/colorBackground"
                 android:layout_margin="8dp"
-                android:id="@+id/nav_logout">
-            </ImageButton>
-
+                android:background="@color/colorBackground"
+                android:src="@drawable/ic_logout"></ImageButton>
 
         </FrameLayout>
 
@@ -58,18 +55,18 @@
             android:textSize="28sp" />
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/menu_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/menu_bar">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/menu_navigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/menu_navigation"
+                android:background="@color/colorBackground"
                 app:itemIconTint="@color/selector"
                 app:labelVisibilityMode="unlabeled"
-                android:background="@color/colorBackground"
-                app:menu="@menu/profile_menu"/>
+                app:menu="@menu/profile_menu" />
 
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -80,9 +77,9 @@
             android:layout_height="wrap_content">
 
             <FrameLayout
+                android:id="@+id/fragment_container_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/fragment_container_profile"
                 android:layout_below="@+id/menu_bar">
 
                 <androidx.recyclerview.widget.RecyclerView
