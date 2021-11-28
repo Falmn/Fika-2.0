@@ -144,7 +144,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            postImage = itemView.findViewById(R.id.post_image);
+            postImage = itemView.findViewById(R.id.image_singleview);
         }
     }
 
