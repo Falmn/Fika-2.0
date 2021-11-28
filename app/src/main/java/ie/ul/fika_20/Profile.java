@@ -170,6 +170,7 @@ public class Profile extends AppCompatActivity {
                 finish();
             }
         });
+
         nav_back_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,8 +179,6 @@ public class Profile extends AppCompatActivity {
             }
         });
     }
-
-
 
     private void myFotos() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");

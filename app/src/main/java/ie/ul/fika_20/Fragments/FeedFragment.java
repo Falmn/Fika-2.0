@@ -71,6 +71,7 @@ public class FeedFragment extends Fragment {
                     followingList.add(snapshot.getKey());
                 }
 
+                followingList.add(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 readPosts();
 
             }
