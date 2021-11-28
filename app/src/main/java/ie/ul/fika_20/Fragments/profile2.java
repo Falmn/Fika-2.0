@@ -47,15 +47,11 @@ import ie.ul.fika_20.R;
 import ie.ul.fika_20.StartApp;
 
 
-// changed array from User.java to Post.java
-
 public class profile2 extends Fragment {
 
     // Widgets
     private RecyclerView recyclerView;
     private RecyclerViewAdapter photoAdapter;
-
-    //  private MyFotosAdapter myFotosAdapter;
     private List<Post> postList;
   //  private List<String> myPostList;
 /*    RecyclerView.LayoutManager layoutManager;
@@ -93,8 +89,6 @@ public class profile2 extends Fragment {
             getContext().getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit().clear().apply();
         }
 
-
-        //   View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
         // Fetching username
         image_profile = view.findViewById(R.id.image_avatar);
         userName_profile = view.findViewById(R.id.username_profile);
@@ -111,12 +105,14 @@ public class profile2 extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_grid_profile);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        photoAdapter = new RecyclerViewAdapter(getContext(), postList);
         postList = new ArrayList<>();
+        photoAdapter = new RecyclerViewAdapter(getContext(), postList);
+        recyclerView.setAdapter(photoAdapter);
+
         // new array
 
       //  myPostList = new ArrayList<>();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+      //  mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // Get Data method
         myFotos();
