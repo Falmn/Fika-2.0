@@ -53,12 +53,13 @@ public class profile2 extends Fragment {
 
     // Widgets
     private RecyclerView recyclerView;
+    private RecyclerViewAdapter photoAdapter;
 
     //  private MyFotosAdapter myFotosAdapter;
     private List<Post> postList;
     private List<String> myPostList;
-    RecyclerView.LayoutManager layoutManager;
-    RecyclerViewAdapter recyclerViewAdapter;
+/*    RecyclerView.LayoutManager layoutManager;
+    RecyclerViewAdapter recyclerViewAdapter;*/
     // Firebase
     private FirebaseUser firebaseUser;
     private FirebaseAuth fAuth;
@@ -103,14 +104,9 @@ public class profile2 extends Fragment {
 
         // Gridlayout for images
         recyclerView = view.findViewById(R.id.recycler_view_grid_profile);
-        layoutManager = new GridLayoutManager(getContext(), 3);
-        recyclerView.setLayoutManager(layoutManager);
-
-
-
-        recyclerViewAdapter = new RecyclerViewAdapter(getContext(), postList);
-        recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        photoAdapter = new RecyclerViewAdapter(getContext(), postList);
         postList = new ArrayList<>();
         // new array
 
@@ -142,7 +138,7 @@ public class profile2 extends Fragment {
                 }
 
                 Collections.reverse(postList);
-                recyclerViewAdapter.notifyDataSetChanged();
+                photoAdapter.notifyDataSetChanged();
                 /*// mContext ist för getApplicationContext. la till arraylist<Post>.
                 recyclerViewAdapter = new RecyclerViewAdapter(mContext, (ArrayList<Post>) myPostList);
                 recyclerView.setAdapter(recyclerViewAdapter);
