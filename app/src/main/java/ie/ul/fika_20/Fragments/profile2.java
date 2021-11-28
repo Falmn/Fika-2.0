@@ -89,10 +89,10 @@ public class profile2 extends Fragment {
         image_profile = view.findViewById(R.id.image_avatar);
         userName_profile = view.findViewById(R.id.username_profile);
         // Imagebuttons
-        searchUser = view.findViewById(R.id.search_user);
+       /* searchUser = view.findViewById(R.id.search_user);
         notification = view.findViewById(R.id.notifications);
+        logout = view.findViewById(R.id.log_out);*/
         saved = view.findViewById(R.id.save);
-        logout = view.findViewById(R.id.log_out);
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         fAuth = FirebaseAuth.getInstance();
@@ -114,7 +114,7 @@ public class profile2 extends Fragment {
 
         // från den nya
         //search users button
-        searchUser.setOnClickListener(new View.OnClickListener() {
+     /*   searchUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SearchFragment.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -130,7 +130,7 @@ public class profile2 extends Fragment {
                 startActivity(intent);
                 getActivity().finish();
             }
-        });
+        });*/
         // saved posts button
        /* saved.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +141,7 @@ public class profile2 extends Fragment {
             }
         });*/
 
-        //logout button returns to startpage
+      /*  //logout button returns to startpage
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,7 +150,7 @@ public class profile2 extends Fragment {
                 startActivity(intent);
                 getActivity().finish();
             }
-        });
+        });*/
 
 
 
