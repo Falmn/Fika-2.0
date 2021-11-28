@@ -130,6 +130,7 @@ public class NewPost extends AppCompatActivity {
                 this.sendBroadcast(mediaScanIntent);
             }
         }*/
+        //takes the pictures selected in image view and makes a name for it and puts it in the upload to firebase class
         if (requestCode == GALLERY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri contentUri = data.getData();
