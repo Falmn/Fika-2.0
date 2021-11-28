@@ -89,10 +89,10 @@ public class profile2 extends Fragment {
         image_profile = view.findViewById(R.id.image_avatar);
         userName_profile = view.findViewById(R.id.username_profile);
         // Imagebuttons
-        searchUser = view.findViewById(R.id.search_user);
+       /* searchUser = view.findViewById(R.id.search_user);
         notification = view.findViewById(R.id.notifications);
+        logout = view.findViewById(R.id.log_out);*/
         saved = view.findViewById(R.id.save);
-        logout = view.findViewById(R.id.log_out);
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         fAuth = FirebaseAuth.getInstance();
