@@ -57,10 +57,13 @@ public class Profile extends AppCompatActivity {
     private TextView userName_profile;
     private ImageView image_profile;
     private String userId, profileid;
-    private ImageButton logout;
+    private ImageButton logout, nav_back_profile;
 
     private BottomNavigationView bottomNavigationView;
     private Fragment selectorFragment;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +78,8 @@ public class Profile extends AppCompatActivity {
         image_profile = findViewById(R.id.image_avatar);
         userName_profile = findViewById(R.id.username_profile);
 //ImageButton
-        logout = findViewById(R.id.logout);
+        logout = findViewById(R.id.nav_logout);
+        nav_back_profile = findViewById(R.id.nav_back_profile);
 
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -161,10 +165,17 @@ public class Profile extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(), StartApp.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                getActivity().finish();
+                finish();
+            }
+        });
+        nav_back_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
+
 
 
     private void myFotos() {
