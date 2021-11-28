@@ -106,7 +106,7 @@ public class Profile extends AppCompatActivity {
         // userInfo();
         //   GetDataFromFireBase();
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.menu_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
