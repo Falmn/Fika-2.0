@@ -1,5 +1,7 @@
 package ie.ul.fika_20;
 
+import static java.security.AccessController.getContext;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -108,7 +110,7 @@ public class Profile extends AppCompatActivity {
         // Get Data method
 
         myFotos();
-        // userInfo();
+        userInfo();
 
         // Clear List
         ClearAll();
@@ -201,6 +203,25 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+    }
+
+    private void userInfo(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (getContext() == null){
+                    return;
+                }
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    // Glide.with(getContext()).load(user.getImageUrl()).into(image_profile);
+                    userName_profile.setText(snapshot.getValue().toString());
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
             }
         });
     }

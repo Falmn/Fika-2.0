@@ -172,10 +172,10 @@ public class profile2 extends Fragment {
         // Get Data method
 
         myFotos();
-        userInfo();
+        //userInfo();
         //userProfile();
         // Clear List
-        ClearAll();
+       // ClearAll();
         // userInfo();
         //   GetDataFromFireBase();
 
@@ -240,7 +240,7 @@ public class profile2 extends Fragment {
     }
 
     // adds username on profile
-    private void userInfo(){
+/*    private void userInfo(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -257,7 +257,7 @@ public class profile2 extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-    }
+    }*/
 
 
 
@@ -281,7 +281,7 @@ private void userProfile(){
 }
 */
 
-
+/*
     private void ClearAll () {
         if (postList != null) {
             postList.clear();
@@ -292,7 +292,7 @@ private void userProfile(){
         }
         postList = new ArrayList<>();
 
-    }
+    }*/
     }
 
 
