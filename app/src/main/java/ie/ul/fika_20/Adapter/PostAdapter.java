@@ -65,7 +65,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 
                 //Set avatar and username from User class (otherwise launcher avatar)
                 if (user.getAvatar().equals("default")) {
-                    holder.avatarImage.setImageResource(R.mipmap.ic_launcher);
+                    holder.avatarImage.setImageResource(R.drawable.ic_account_circle);
                 } else {
                     Picasso.get().load(user.getAvatar()).into(holder.avatarImage);
                 }
