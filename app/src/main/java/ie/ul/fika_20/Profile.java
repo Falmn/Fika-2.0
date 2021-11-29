@@ -90,8 +90,7 @@ public class Profile extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-              //   Fragment selectorFragment = null;
-              //  Fragment selectorFrament = new ProfileFragment();
+
                 switch (menuItem.getItemId()) {
                     case R.id.nav_grid_profile:
                         selectorFragment = new ProfileFragment();
