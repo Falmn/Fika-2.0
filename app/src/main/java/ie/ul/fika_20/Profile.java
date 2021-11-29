@@ -174,7 +174,11 @@ public class Profile extends AppCompatActivity {
                     User user =dataSnapshot.getValue(User.class);
                     // Glide.with(getContext()).load(user.getImageUrl()).into(image_profile);
                     userName_profile.setText(snapshot.getValue().toString());
+                   if (user.getAvatar().equals("default")){
+                       imageAvatar.setImageResource(R.drawable.ic_launcher_background);
+                   } else {
                     Picasso.get().load(user.getAvatar()).into(imageAvatar);
+                }
                 }
             }
 
