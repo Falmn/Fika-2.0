@@ -39,8 +39,9 @@ public class SavedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_saved_,  container, false);
+        View view = inflater.inflate(R.layout.fragment_saved_, container, false);
 
+        // Declare variables and set Grid layout
         recyclerViewSaves = view.findViewById(R.id.recycler_view_saved);
         recyclerViewSaves.setHasFixedSize(true);
         recyclerViewSaves.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -54,15 +55,17 @@ public class SavedFragment extends Fragment {
         return view;
     }
 
-    private void getSavedPosts(){
+    // Method to display saved posts
+    private void getSavedPosts() {
 
+        //List which we add all saved posts to
         final List<String> savedIds = new ArrayList<>();
 
         FirebaseDatabase.getInstance().getReference().child("Saves").child(fUser.getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             savedIds.add(snapshot.getKey());
                         }
 
@@ -72,11 +75,11 @@ public class SavedFragment extends Fragment {
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
                                         mySavedPosts.clear();
 
-                                        for (DataSnapshot snapshot1 : dataSnapshot1.getChildren()){
+                                        for (DataSnapshot snapshot1 : dataSnapshot1.getChildren()) {
                                             Post post = snapshot1.getValue(Post.class);
 
-                                            for (String id : savedIds){
-                                                if (post.getPostid().equals(id)){
+                                            for (String id : savedIds) {
+                                                if (post.getPostid().equals(id)) {
                                                     mySavedPosts.add(post);
                                                 }
                                             }
