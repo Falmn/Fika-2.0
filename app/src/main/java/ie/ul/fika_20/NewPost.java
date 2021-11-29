@@ -88,8 +88,8 @@ public class NewPost extends AppCompatActivity {
                 askCameraPermissions();
             }
         });*/
-
-        backButtonNewPost.setOnClickListener(new View.OnClickListener() { // is a backbutton to go back to mainpage
+        // is a backbutton to go back to mainpage
+        backButtonNewPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NewPost.this, MainActivity.class);
@@ -98,6 +98,7 @@ public class NewPost extends AppCompatActivity {
             }
         });
 
+        //opens the phone photogallery
         libraryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,15 +107,11 @@ public class NewPost extends AppCompatActivity {
             }
         });
 
-       /* Caption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String txtcaption = Caption.getEditText().getText().toString();
-            }
-        });*/
+
 
     }
 
+    //Gives name to picture, Post button for adding to profile and old camera on click
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -156,6 +153,7 @@ public class NewPost extends AppCompatActivity {
         }
     }
 
+    //uploads the image to firebase and creates a folder for the picture
     private void uploadImageToFirebase(String name, Uri contentUri) {
         final StorageReference image = storageReference.child("pictures/" + name); // puts the images in directory pictures
         image.putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

@@ -56,9 +56,9 @@ public class CommentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comment);
 
         /*Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Comments");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+/*        setSupportActionBar(toolbar);
+        getActionBar().setTitle("Comments");
+       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,19 +109,21 @@ public class CommentActivity extends AppCompatActivity {
         });
     }
 
-    private void getComment() {
 
-        FirebaseDatabase.getInstance().getReference().child("Comments").child(postId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                commentList.clear();
+private void getComment() {
 
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Comment comment = dataSnapshot.getValue(Comment.class);
-                    commentList.add(comment);
-                }
-                commentAdapter.notifyDataSetChanged();
+    FirebaseDatabase.getInstance().getReference().child("Comments").child(postId).addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            commentList.clear();
+
+            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                Comment comment = snapshot.getValue(Comment.class);
+                commentList.add(comment);
             }
+
+            commentAdapter.notifyDataSetChanged();
+        }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -130,6 +132,7 @@ public class CommentActivity extends AppCompatActivity {
         });
     }
 
+    // putting comment in firebase
     private void putComment() {
 
         HashMap<String, Object> map = new HashMap();

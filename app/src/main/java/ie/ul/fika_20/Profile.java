@@ -151,7 +151,7 @@ public class Profile extends AppCompatActivity {
         imageAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Profile.this, editAvatar.class));
+                startActivity(new Intent(Profile.this, EditAvatar.class));
                 finish();
             }
         });
