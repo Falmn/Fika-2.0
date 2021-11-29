@@ -54,7 +54,7 @@ public class profile2 extends Fragment {
 
 
         // Gridlayout for images
-        recyclerView = view.findViewById(R.id.recycler_view_grid_profile);
+        recyclerView = view.findViewById(R.id.profile_grid_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         photoAdapter = new RecyclerViewAdapter(getActivity(), postList);
