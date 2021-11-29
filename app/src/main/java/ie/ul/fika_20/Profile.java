@@ -50,6 +50,7 @@ public class Profile extends AppCompatActivity {
     //private ImageView image_profile;
     private String userId, profileid;
     private ImageButton logout, nav_back_profile;
+    private ImageView imageAvatar;
 
     private BottomNavigationView bottomNavigationView;
     private Fragment selectorFragment;
@@ -68,9 +69,10 @@ public class Profile extends AppCompatActivity {
         // Fetching username
         //image_profile = findViewById(R.id.image_avatar);
         userName_profile = findViewById(R.id.username_profile);
-        //ImageButton
+        //ImageButton/imageview
         logout = findViewById(R.id.nav_logout);
         nav_back_profile = findViewById(R.id.nav_back_profile);
+        imageAvatar = findViewById(R.id.image_avatar);
 
         // Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -142,7 +144,17 @@ public class Profile extends AppCompatActivity {
                 finish();
             }
         });
+
+        imageAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Profile.this, editAvatar.class));
+                finish();
+            }
+        });
     }
+
+
 
 
 // Displays username
