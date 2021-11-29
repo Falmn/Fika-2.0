@@ -1,8 +1,6 @@
 
 package ie.ul.fika_20.Fragments;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,12 +10,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
@@ -58,10 +56,17 @@ public class profile2 extends Fragment {
         // Gridlayout for images
         recyclerView = view.findViewById(R.id.recycler_view_grid_profile);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        photoAdapter = new RecyclerViewAdapter(getContext(), postList);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        photoAdapter = new RecyclerViewAdapter(getActivity(), postList);
         postList = new ArrayList<>();
         recyclerView.setAdapter(photoAdapter);
+
+
+        // Från stack overflow
+        /*LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        postList.setLayoutManager(llm);
+        postList.setAdapter( adapter );*/
         // new array
 
         // Get Data method
