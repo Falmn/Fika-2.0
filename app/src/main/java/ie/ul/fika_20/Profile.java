@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
+import ie.ul.fika_20.Fragments.FeedFragment;
 import ie.ul.fika_20.Fragments.NotificationFragment;
 import ie.ul.fika_20.Fragments.ProfileFragment;
 import ie.ul.fika_20.Fragments.SavedFragment;
@@ -81,6 +82,8 @@ public class Profile extends AppCompatActivity {
 
         userInfo();
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_profile,
+                new ProfileFragment()).commit();
 
         bottomNavigationView = findViewById(R.id.menu_navigation);
 
