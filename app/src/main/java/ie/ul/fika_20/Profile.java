@@ -159,7 +159,6 @@ public class Profile extends AppCompatActivity {
 
 
 
-
 // Displays username
     private void userInfo() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());

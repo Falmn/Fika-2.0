@@ -44,7 +44,7 @@ public class NotificationFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
 
-        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView = view.findViewById(R.id.recycler_view_notification);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         notificationList = new ArrayList<>();
@@ -54,22 +54,18 @@ public class NotificationFragment extends Fragment {
         readNotifications();
 
 
-
-
         return view;
-
-
 
     }
 
     private void readNotifications() {
         FirebaseDatabase.getInstance().getReference().child("Notifications").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                notificationList.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Notification notification = dataSnapshot.getValue(Notification.class);
-                    notificationList.add(notification);
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+               // notificationList.clear();
+                for (DataSnapshot snapshot : datasnapshot.getChildren()){
+                    //Notification notification = dataSnapshot.getValue(Notification.class);
+                    notificationList.add(snapshot.getValue(Notification.class));
                 }
 
                 Collections.reverse(notificationList);
