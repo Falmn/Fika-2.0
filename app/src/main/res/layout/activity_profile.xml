@@ -38,11 +38,11 @@
 
         <ImageView
             android:id="@+id/image_avatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="0dp"
-            tools:src="@tools:sample/avatars" />
+            android:src="@drawable/fika_logo_only" />
 
         <TextView
             android:id="@+id/username_profile"

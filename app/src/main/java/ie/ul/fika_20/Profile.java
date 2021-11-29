@@ -46,7 +46,7 @@ public class Profile extends AppCompatActivity {
     private DatabaseReference myRef;
     // Variabels
     private TextView userName_profile;
-    private ImageView image_profile;
+    //private ImageView image_profile;
     private String userId, profileid;
     private ImageButton logout, nav_back_profile;
 
@@ -65,7 +65,7 @@ public class Profile extends AppCompatActivity {
 
 
         // Fetching username
-        image_profile = findViewById(R.id.image_avatar);
+        //image_profile = findViewById(R.id.image_avatar);
         userName_profile = findViewById(R.id.username_profile);
         //ImageButton
         logout = findViewById(R.id.nav_logout);
