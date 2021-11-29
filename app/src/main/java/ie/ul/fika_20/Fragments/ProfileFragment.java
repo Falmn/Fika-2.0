@@ -1,46 +1,52 @@
-
 package ie.ul.fika_20.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import ie.ul.fika_20.Adapter.MyPhotosAdapter;
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
 import ie.ul.fika_20.Model.Post;
 import ie.ul.fika_20.R;
 
+public class ProfileFragment extends Fragment {
 
-public class profile2 extends Fragment {
-
-    private RecyclerView recyclerView;
-    private RecyclerViewAdapter photoAdapter;
-    private List<Post> postList;
-
+    private RecyclerView recyclerViewPhotos;
+    private MyPhotosAdapter photoAdapter;
+    private List<Post> myPhotosList;
     private FirebaseUser fUser;
-
     String profileId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View view = inflater.inflate(ie.ul.fika_20.R.layout.fragment_profile2, container, false);
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        recyclerViewPhotos = view.findViewById(R.id.recycler_view_photos);
+        recyclerViewPhotos.setHasFixedSize(true);
+        recyclerViewPhotos.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        myPhotosList = new ArrayList<>();
+        photoAdapter = new MyPhotosAdapter(getContext(), myPhotosList);
+        recyclerViewPhotos.setAdapter(photoAdapter);
         fUser = FirebaseAuth.getInstance().getCurrentUser();
 
         String data = getContext().getSharedPreferences("PROFILE", Context.MODE_PRIVATE).getString("profileId", "none");
@@ -53,25 +59,7 @@ public class profile2 extends Fragment {
         }
 
 
-        // Gridlayout for images
-        recyclerView = view.findViewById(R.id.recdycler_view_myposts);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        photoAdapter = new RecyclerViewAdapter(getContext(), postList);
-        postList = new ArrayList<>();
-        recyclerView.setAdapter(photoAdapter);
-
-
-        // Från stack overflow
-        /*LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        postList.setLayoutManager(llm);
-        postList.setAdapter( adapter );*/
-        // new array
-
-        // Get Data method
         myPhotos();
-
 
         return view;
 
@@ -82,16 +70,16 @@ public class profile2 extends Fragment {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        postList.clear();
+                        myPhotosList.clear();
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                             Post post = snapshot.getValue(Post.class);
 
                             if (post.getPublisher().equals(profileId)){
-                                postList.add(post);
+                                myPhotosList.add(post);
                             }
                         }
 
-                        Collections.reverse(postList);
+                        Collections.reverse(myPhotosList);
                         photoAdapter.notifyDataSetChanged();
                     }
 
@@ -101,9 +89,4 @@ public class profile2 extends Fragment {
                     }
                 });
     }
-
-
-
-    }
-
-
+}

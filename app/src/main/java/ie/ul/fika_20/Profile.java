@@ -32,6 +32,7 @@ import java.util.List;
 
 import ie.ul.fika_20.Adapter.RecyclerViewAdapter;
 import ie.ul.fika_20.Fragments.NotificationFragment;
+import ie.ul.fika_20.Fragments.ProfileFragment;
 import ie.ul.fika_20.Fragments.SavedFragment;
 import ie.ul.fika_20.Fragments.SearchFragment;
 import ie.ul.fika_20.Fragments.profile2;
@@ -89,7 +90,7 @@ public class Profile extends AppCompatActivity {
 
                 switch (menuItem.getItemId()) {
                     case R.id.nav_grid_profile:
-                        selectorFragment = new profile2();
+                        selectorFragment = new ProfileFragment();
                         break;
                     case R.id.nav_search_user:
                         selectorFragment = new SearchFragment();
@@ -113,7 +114,7 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        Bundle intent = getIntent().getExtras();
+        /*Bundle intent = getIntent().getExtras();
         if (intent != null) {
             String profileId = intent.getString("publisherId");
 
@@ -121,8 +122,8 @@ public class Profile extends AppCompatActivity {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_profile, new profile2()).commit();
             bottomNavigationView.setSelectedItemId(R.id.nav_profile);
-        }/* else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
+        }*//* else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new profile2()).commit();
         }*/
 
         logout.setOnClickListener(new View.OnClickListener() {
@@ -165,9 +166,4 @@ public class Profile extends AppCompatActivity {
         });
     }
 }
-
-
-
-
-
 
