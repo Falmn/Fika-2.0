@@ -7,14 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import ie.ul.fika_20.Fragments.profile2;
 import ie.ul.fika_20.Model.Post;
 import ie.ul.fika_20.R;
 

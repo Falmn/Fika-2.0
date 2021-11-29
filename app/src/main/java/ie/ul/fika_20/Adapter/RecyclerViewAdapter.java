@@ -17,7 +17,6 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import ie.ul.fika_20.Fragments.ProfileFragment;
-import ie.ul.fika_20.Fragments.profile2;
 import ie.ul.fika_20.Model.Post;
 import ie.ul.fika_20.R;
 

@@ -2,7 +2,6 @@
 package ie.ul.fika_20;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +14,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import ie.ul.fika_20.Fragments.FeedFragment;
-import ie.ul.fika_20.Fragments.profile2;
-
 
 
 public class MainActivity extends AppCompatActivity {
