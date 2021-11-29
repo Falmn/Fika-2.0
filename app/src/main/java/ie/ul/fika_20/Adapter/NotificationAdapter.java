@@ -43,7 +43,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-       Notification notification = mNotification.get(position);
+       final Notification notification = mNotification.get(position);
 
        getUser(holder.avatar, holder.username, notification.getUserid());
        holder.comment.setText(notification.getText());
