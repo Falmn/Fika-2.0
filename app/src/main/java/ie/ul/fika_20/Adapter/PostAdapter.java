@@ -266,9 +266,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
 //when we get a like vi get a notification
     private void addNotification(String postId, String publisherId){
         HashMap<String, Object> map = new HashMap<>();
-        map.put("userId", publisherId);
+        map.put("userid", publisherId);
         map.put("text", "liked your post.");
-        map.put("postId", postId);
+        map.put("postid", postId);
         map.put("isPost", true);
 
         FirebaseDatabase.getInstance().getReference().child("Notification").child(firebaseUser.getUid()).push().setValue(map);
