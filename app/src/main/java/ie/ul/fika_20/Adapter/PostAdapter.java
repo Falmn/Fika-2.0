@@ -169,7 +169,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             super(itemView);
 
             // Linking all variables to xml items
-            location = itemView.findViewById(R.id.location);
             avatarImage = itemView.findViewById(R.id.avatar_image);
             postImage = itemView.findViewById(R.id.post_image);
             like = itemView.findViewById(R.id.like);
