@@ -47,7 +47,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
        getUser(holder.avatar, holder.username, notification.getUserid());
        holder.comment.setText(notification.getText());
-//om bilden är postad
+//om det är en bild som är postad vill vi att den ska visas
        if (notification.isPost()){
            holder.postImage.setVisibility(View.VISIBLE);
            getPostImage(holder.postImage, notification.getPostid());

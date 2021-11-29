@@ -263,7 +263,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                     }
                 });
     }
-//when we get a like vi get a notification
+//when we get a like we get a notification
     private void addNotification(String postId, String publisherId){
         HashMap<String, Object> map = new HashMap<>();
         map.put("userid", publisherId);
@@ -271,6 +271,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         map.put("postid", postId);
         map.put("isPost", true);
 
-        FirebaseDatabase.getInstance().getReference().child("Notification").child(firebaseUser.getUid()).push().setValue(map);
+        FirebaseDatabase.getInstance().getReference().child("Notifications").child(firebaseUser.getUid()).push().setValue(map);
    }
 }
