@@ -7,10 +7,7 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+android:layout_margin="2dp"
         android:id="@+id/image_singleview"
         android:src="@drawable/ic_launcher_background"
         />
