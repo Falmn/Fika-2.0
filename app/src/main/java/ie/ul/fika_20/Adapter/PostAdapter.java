@@ -82,7 +82,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         // Call on methods
         isLiked(post.getPostid(), holder.like);
         noOfLikes(post.getPostid(), holder.noOfLikes);
-        getComments(post.getPostid(),holder.noOfComments);
+        getComments(post.getPostid(), holder.noOfComments);
         isSaved(post.getPostid(), holder.save);
 
         // Like pictures
@@ -121,7 +121,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                 if (holder.save.getTag().equals("save")) {
                     FirebaseDatabase.getInstance().getReference().child("Saves")
                             .child(firebaseUser.getUid()).child(post.getPostid()).setValue(true);
-                }else {
+                } else {
                     FirebaseDatabase.getInstance().getReference().child("Saves")
                             .child(firebaseUser.getUid()).child(post.getPostid()).removeValue();
                 }
@@ -173,15 +173,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
     }
 
     // Check if post is saved and sets tags & changes icon accordingly
-    private void isSaved(String postId, ImageView image){
+    private void isSaved(String postId, ImageView image) {
         FirebaseDatabase.getInstance().getReference().child("Saves").child(FirebaseAuth
                 .getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(postId).exists()){
+                if (dataSnapshot.child(postId).exists()) {
                     image.setImageResource(R.drawable.ic_bookmark_added);
                     image.setTag("saved");
-                }else {
+                } else {
                     image.setImageResource(R.drawable.ic_bookmark_border);
                     image.setTag("save");
                 }
@@ -237,7 +237,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
     }
 
     // Method to get comments
-    private void getComments (String postId, final TextView text){
+    private void getComments(String postId, final TextView text) {
         FirebaseDatabase.getInstance().getReference().child("Comments").child(postId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -251,8 +251,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                     }
                 });
     }
-//when we get a like we get a notification
-    private void addNotification(String postId, String publisherId){
+
+    //when we get a like we get a notification
+    private void addNotification(String postId, String publisherId) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("userid", publisherId);
         map.put("text", "liked your post.");
@@ -260,5 +261,5 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         map.put("isPost", true);
 
         FirebaseDatabase.getInstance().getReference().child("Notifications").child(firebaseUser.getUid()).push().setValue(map);
-   }
+    }
 }

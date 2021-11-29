@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
+import ie.ul.fika_20.Fragments.ProfileFragment;
 import ie.ul.fika_20.Fragments.profile2;
 import ie.ul.fika_20.Model.Post;
 import ie.ul.fika_20.R;
@@ -126,7 +127,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postid", post.getPostid()).apply();
 
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container_profile, new profile2()).commit();
+                        .replace(R.id.fragment_container_profile, new ProfileFragment()).commit();
             }
         });
 
