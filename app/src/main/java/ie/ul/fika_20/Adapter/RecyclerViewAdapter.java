@@ -21,7 +21,12 @@ import ie.ul.fika_20.Model.Post;
 import ie.ul.fika_20.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+    /**
+     * This class is an adapter for the recyclerview.
+     * It holds and loads images to ProfileFragment and SavedFragment.
+     */
 
+    // varibels
     private final Context mContext;
     private List<Post> postList;
 
@@ -30,96 +35,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.postList = postList;
     }
 
-
-/*
-
-    @NonNull
-    @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(mContext)
-                .inflate(R.layout.single_view, parent, false);
-        return new RecyclerViewAdapter.MyViewHolder(view);
-       *//* MyViewHolder myViewHolder = new MyViewHolder(view);
-
-
-        return myViewHolder;*//*
-    }
-
-   *//* @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-
-        // Textview username??
-        holder.textView.setText(postList.get(position).getPublisher());
-        // Imageview with glidelibary.
-        // KOLLA I User classen efter image url att den e med.
-        Glide.with(mContext)
-        .load(postList.get(position).getImageurl())
-                .into(holder.imageView);
-
-
-
-        //holder.imageView.setImageResource(arr[position]);
-//Kanske textview
-    }
-*//*
-
-    @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-
-        final Post post = postList.get(position);
-
-        Glide.with(mContext).load(post.getImageurl()).into(holder.imageView);
-
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", MODE_PRIVATE).edit();
-                editor.putString("postid", post.getPostid());
-                editor.apply();
-*//*
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new PostDetailFragment()).commit();*//*
-            }
-        });
-
-    }
-    @Override
-    public int getItemCount() {
-        return postList.size();
-    }
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-
-        ImageView imageView;
-        TextView textView;
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            imageView= itemView.findViewById(R.id.image_singleview);
-
-
-        }
-    }*/
-
-    // new code!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-
+    // Created the viewholder
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.single_view, parent, false);
         return  new RecyclerViewAdapter.MyViewHolder(view);
     }
-
+    // Gets position from database (latest post). Loads the image url into the placeholder.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         final Post post = postList.get(position);
         Picasso.get().load(post.getImageurl()).placeholder(R.mipmap.ic_launcher).into(holder.postImage);
-
+        // PostImage onclicklistner, finds the right postid and replaces the fragment_container_profile with ProfileFragment.
         holder.postImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,85 +76,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             postImage = itemView.findViewById(R.id.image_singleview);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*@NonNull
-    @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-// get data and put it in this template.
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.single_view, parent, false);
-
-
-        return new MyViewHolder(view);
-
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-
-        ImageView imageView;
-        TextView textView;
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            imageView= itemView.findViewById(R.id.image_profile);
-            textView = itemView.findViewById(R.id.userName_profile);
-
-
-        }
-    }*/
-
-  //  int [] arr;
-  /*  public RecyclerViewAdapter(int[] arr) {
-        this.arr = arr;
-    }*/
 
 
 }

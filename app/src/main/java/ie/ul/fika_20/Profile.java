@@ -45,6 +45,7 @@ public class Profile extends AppCompatActivity {
     private ImageButton logout, nav_back_profile;
     private ImageView imageAvatar;
 
+    // Connected to a fragment container.
     private BottomNavigationView bottomNavigationView;
     private Fragment selectorFragment;
 
@@ -53,16 +54,17 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
+        // Verify user
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("PREFS", MODE_PRIVATE);
         profileid = prefs.getString("profileid", "none");
 
 
         // Fetching username
-     //   image_profile = findViewById(R.id.image_avatar);
+
         userName_profile = findViewById(R.id.username_profile);
-        //ImageButton/imageview
+
+        // Image button and Image avatar
         logout = findViewById(R.id.nav_logout);
         nav_back_profile = findViewById(R.id.nav_back_profile);
         imageAvatar = findViewById(R.id.image_avatar);
@@ -75,12 +77,11 @@ public class Profile extends AppCompatActivity {
 
 
         userInfo();
-
+// Shows Profile fragment first
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_profile,
                 new ProfileFragment()).commit();
-
+        // Steps through the menu and the next fragments loads.
         bottomNavigationView = findViewById(R.id.menu_navigation);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -111,17 +112,7 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        /*Bundle intent = getIntent().getExtras();
-        if (intent != null) {
-            String profileId = intent.getString("publisherId");
-
-            getSharedPreferences("PROFILE", MODE_PRIVATE).edit().putString("profileId", profileId).apply();
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_profile, new profile2()).commit();
-            bottomNavigationView.setSelectedItemId(R.id.nav_profile);
-        }*//* else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new profile2()).commit();
-        }*/
+        // Logout button
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +123,7 @@ public class Profile extends AppCompatActivity {
                 finish();
             }
         });
+        // Back button
         nav_back_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +131,7 @@ public class Profile extends AppCompatActivity {
                 finish();
             }
         });
-
+    // If the image is pressed, the user can change the image from the libary.
         imageAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,7 +143,7 @@ public class Profile extends AppCompatActivity {
 
 
 
-// Displays username
+// Displays username and loads default profile unless a user has uploaded one.
     private void userInfo() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         reference.addValueEventListener(new ValueEventListener() {
@@ -162,7 +154,7 @@ public class Profile extends AppCompatActivity {
                 }
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user =dataSnapshot.getValue(User.class);
-                    // Glide.with(getContext()).load(user.getImageUrl()).into(image_profile);
+
                     userName_profile.setText(snapshot.getValue().toString());
                    if (user.getAvatar().equals("default")){
                        imageAvatar.setImageResource(R.drawable.ic_launcher_background);

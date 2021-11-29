@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
+    // XML stuff, buttons textviews etc.
     private EditText mEmail, mPassword;
     private Button mLoginBtn;
     private TextView mCreateBtn;
@@ -91,11 +92,5 @@ public class Login extends AppCompatActivity {
     }
 }
 
-// firebase rules if you are logged in
-// {
-//  "rules": {
-//    ".read": "auth.uid != null",
-//    ".write": "auth.uid != null"
-//  }
-//}
+
 

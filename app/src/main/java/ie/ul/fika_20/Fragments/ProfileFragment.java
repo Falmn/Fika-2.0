@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +31,12 @@ import ie.ul.fika_20.R;
 
 public class ProfileFragment extends Fragment {
 
+    /**
+     * This Fragment is index one in the switch menu and it the first one to display.
+     * its main purpuse is to display a user's photos.
+     */
+
+    // Recyclerview adapters .
     private RecyclerView recyclerViewPhotos;
     private MyPhotosAdapter photoAdapter;
     private List<Post> myPhotosList;
@@ -40,7 +47,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
+        // Setting up the recycler view and connecting it. Also creates the grid.
         recyclerViewPhotos = view.findViewById(R.id.recycler_view_photos);
         recyclerViewPhotos.setHasFixedSize(true);
         recyclerViewPhotos.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -50,7 +57,7 @@ public class ProfileFragment extends Fragment {
         fUser = FirebaseAuth.getInstance().getCurrentUser();
 
         String data = getContext().getSharedPreferences("PROFILE", Context.MODE_PRIVATE).getString("profileId", "none");
-
+        // Verifies user.
         if (data.equals("none")) {
             profileId = fUser.getUid();
         } else {
@@ -64,7 +71,7 @@ public class ProfileFragment extends Fragment {
         return view;
 
     }
-
+    // Verfyfies the user and gets the users data from realtime database. It then displays it.
     private void myPhotos(){
         FirebaseDatabase.getInstance().getReference().child("Posts")
                 .addValueEventListener(new ValueEventListener() {
@@ -82,7 +89,7 @@ public class ProfileFragment extends Fragment {
                         Collections.reverse(myPhotosList);
                         photoAdapter.notifyDataSetChanged();
                     }
-
+                //
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
