@@ -113,17 +113,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             }
         });
 
-        // Number of comments
-        /*holder.noOfComments.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, CommentActivity.class);
-                intent.putExtra("postId", post.getPostid());
-                intent.putExtra("authorId", post.getPublisher());
-                mContext.startActivity(intent);
-            }
-        });*/
-
 
         // Save picture/remove save - and update database
         holder.save.setOnClickListener(new View.OnClickListener() {
@@ -270,6 +259,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         map.put("postid", postId);
         map.put("isPost", true);
 
-        FirebaseDatabase.getInstance().getReference().child("Notification").child(firebaseUser.getUid()).push().setValue(map);
+        FirebaseDatabase.getInstance().getReference().child("Notifications").child(firebaseUser.getUid()).push().setValue(map);
    }
 }
