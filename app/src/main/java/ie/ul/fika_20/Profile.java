@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,7 @@ import ie.ul.fika_20.Fragments.SavedFragment;
 import ie.ul.fika_20.Fragments.SearchFragment;
 import ie.ul.fika_20.Fragments.profile2;
 import ie.ul.fika_20.Model.Post;
+import ie.ul.fika_20.Model.User;
 
 
 public class Profile extends AppCompatActivity {
@@ -48,7 +50,7 @@ public class Profile extends AppCompatActivity {
     private DatabaseReference myRef;
     // Variabels
     private TextView userName_profile;
-    //private ImageView image_profile;
+    private ImageView image_profile;
     private String userId, profileid;
     private ImageButton logout, nav_back_profile;
     private ImageView imageAvatar;
@@ -68,7 +70,7 @@ public class Profile extends AppCompatActivity {
 
 
         // Fetching username
-        //image_profile = findViewById(R.id.image_avatar);
+     //   image_profile = findViewById(R.id.image_avatar);
         userName_profile = findViewById(R.id.username_profile);
         //ImageButton/imageview
         logout = findViewById(R.id.nav_logout);
@@ -169,8 +171,10 @@ public class Profile extends AppCompatActivity {
                     return;
                 }
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User user =dataSnapshot.getValue(User.class);
                     // Glide.with(getContext()).load(user.getImageUrl()).into(image_profile);
                     userName_profile.setText(snapshot.getValue().toString());
+                    Picasso.get().load(user.getAvatar()).into(imageAvatar);
                 }
             }
 
