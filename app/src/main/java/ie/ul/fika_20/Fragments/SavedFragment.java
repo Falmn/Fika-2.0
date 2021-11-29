@@ -31,6 +31,7 @@ import ie.ul.fika_20.Model.Post;
 import ie.ul.fika_20.R;
 
 public class SavedFragment extends Fragment {
+    // Declare variables
     private RecyclerView recyclerViewSaves;
     private RecyclerViewAdapter postAdapterSaves;
     private List<Post> mySavedPosts;
@@ -41,7 +42,7 @@ public class SavedFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_saved_, container, false);
 
-        // Declare variables and set Grid layout
+        //Connect variables with xml and set Grid layout
         recyclerViewSaves = view.findViewById(R.id.recycler_view_saved);
         recyclerViewSaves.setHasFixedSize(true);
         recyclerViewSaves.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -50,6 +51,7 @@ public class SavedFragment extends Fragment {
         recyclerViewSaves.setAdapter(postAdapterSaves);
         fUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        // Call on method to get saved posts
         getSavedPosts();
 
         return view;
