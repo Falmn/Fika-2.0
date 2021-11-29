@@ -42,7 +42,7 @@
             android:layout_height="130dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="0dp"
-            android:src="@drawable/fika_logo_only" />
+            android:src="@drawable/ic_launcher_background" />
 
         <TextView
             android:id="@+id/username_profile"
