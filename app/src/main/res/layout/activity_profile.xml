@@ -36,7 +36,7 @@
 
         </FrameLayout>
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_avatar"
             android:layout_width="130dp"
             android:layout_height="130dp"
