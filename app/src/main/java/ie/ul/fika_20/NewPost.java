@@ -70,16 +70,14 @@ public class NewPost extends AppCompatActivity {
         setContentView(R.layout.activity_new_post);
 
         selectedImage = findViewById(R.id.displayImageView);
-        //    cameraBtn = findViewById(R.id.cameraButton);
+        //cameraBtn = findViewById(R.id.cameraButton);
         postBtn = findViewById(R.id.post_button);
         libraryBtn = findViewById(R.id.library_button);
         backButtonNewPost = findViewById(R.id.nav_back);
         Caption = findViewById(R.id.write_caption);
         storageReference = FirebaseStorage.getInstance().getReference(); // to store in storage
 
-        //  databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        // newpostdatabase = FirebaseDatabase.getInstance(); // to save in database
 
 
         /*        cameraBtn.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +86,8 @@ public class NewPost extends AppCompatActivity {
                 askCameraPermissions();
             }
         });*/
-        // is a backbutton to go back to mainpage
+
+        //Backbutton to go back to mainpage
         backButtonNewPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,7 +97,7 @@ public class NewPost extends AppCompatActivity {
             }
         });
 
-        //opens the phone photogallery
+        //Opens the phone photogallery
         libraryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,6 +136,9 @@ public class NewPost extends AppCompatActivity {
                 Log.d("tag", "onActivityResult: Gallery Image Uri:  " + imageFileName);
                 selectedImage.setImageURI(contentUri);
 
+                /**
+                 *
+                 */
                 postBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -153,6 +155,9 @@ public class NewPost extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     */
     //uploads the image to firebase and creates a folder for the picture
     private void uploadImageToFirebase(String name, Uri contentUri) {
         final StorageReference image = storageReference.child("pictures/" + name); // puts the images in directory pictures
@@ -193,13 +198,18 @@ public class NewPost extends AppCompatActivity {
         });
     }
 
+    /**
+     *
+     */
     private String getFileExt(Uri contentUri) {
         ContentResolver c = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(c.getType(contentUri));
     }
 }
-
+/**
+ *
+ */
 
 /*    private void askCameraPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -208,6 +218,9 @@ public class NewPost extends AppCompatActivity {
             dispatchTakePictureIntent();
         }
     }*/
+/**
+ *
+ */
 
 
 /*    @Override
@@ -222,17 +235,12 @@ public class NewPost extends AppCompatActivity {
         }
     }*/
 
-    //   private void openCamera() {
-    //     Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-    //     startActivityForResult(camera, CAMERA_REQUEST_CODE); // constant verible 102 -> CAMERA_REQUEST_CODE
-
-    // }
 
     /*private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()); // creating timestamp
         String imageFileName = "JPEG_" + timeStamp + "_"; // creating file name
-//        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES); // sends pictures to phone gallery
         File image = File.createTempFile( // creating image file
                 imageFileName, //prefix
