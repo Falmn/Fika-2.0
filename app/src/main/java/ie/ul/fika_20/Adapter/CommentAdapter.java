@@ -48,7 +48,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        Comment comment = mComments.get(position);
+        final Comment comment = mComments.get(position);
+        holder.comment.setText(comment.getComment());
 
 
         FirebaseDatabase.getInstance().getReference().child("Users").child(comment.getPublisher()).addValueEventListener(new ValueEventListener() {
@@ -69,12 +70,13 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mComments.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
