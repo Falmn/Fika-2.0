@@ -43,6 +43,7 @@ public class StartApp extends AppCompatActivity {
 
         iconImage.setAnimation(animation);
 
+        // Register button sends user to SignUp activity
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +52,7 @@ public class StartApp extends AppCompatActivity {
             }
         });
 
+        // Login button sends user to Login Activity
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
