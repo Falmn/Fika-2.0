@@ -40,7 +40,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
-
     //Creates a viewholder for posts
     @NonNull
     @Override
@@ -94,6 +93,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                     FirebaseDatabase.getInstance().getReference().child("Likes").child(post.
                             getPostid()).child(firebaseUser.getUid()).setValue(true);
 
+                    // Adds notification for likes
                     addNotification(post.getPostid(), post.getPublisher());
                 } else {
                     FirebaseDatabase.getInstance().getReference().child("Likes").child(post.
@@ -252,7 +252,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                 });
     }
 
-    //when we get a like we get a notification
+    // Add notification for likes
     private void addNotification(String postId, String publisherId) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("userid", publisherId);

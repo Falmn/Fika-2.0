@@ -56,7 +56,6 @@ public class SignUp extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
 
         fRDB = FirebaseDatabase.getInstance().getReference();
-        //fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
 
         //If user already a member, sends them to loginActivity
@@ -197,81 +196,6 @@ public class SignUp extends AppCompatActivity {
             //Start activity
         }
     }
-
-
-  /*  // Example 2
-    //Register user to firebase
-
-private void registerUser(final String txtUsername, final String txtFullname, final String txtEmail, String txtPassword) {
-        fAuth.createUserWithEmailAndPassword(txtEmail, txtPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                if (task.isSuccessful()) {
-                    userID = fAuth.getCurrentUser().getUid();
-
-                    HashMap<String, Object> hashMap = new HashMap<>();
-
-                    hashMap.put("name", txtFullname);
-                    hashMap.put("email", txtEmail);
-                    hashMap.put("username", txtUsername);
-
-                    fStore.collection("Users").document(userID).set(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-
-                        }
-                    });
-                } else {
-                    Toast.makeText(SignUp.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-    }
-
-
-
-
-    //Nisses example
-    //Register user to firebase
-
-
-fAuth.createUserWithEmailAndPassword(txtEmail, txtPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(SignUp.this, "User created", Toast.LENGTH_SHORT);
-                            userID = fAuth.getCurrentUser().getUid();
-                            //DocumentReference documentReference = fStore.collection("Users").document(userID);
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("name", txtFullName);
-                            user.put("email", txtEmail);
-                            user.put("username", txtUsername);
-
-                            fStore.collection("Users").document(userID).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                public void onSuccess(Void unused) {
-                                    Log.d(TAG, "onSuccess: User profile created for" + userID);
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG, "onFailure: " + e.toString());
-                                }
-                            });
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
-                        } else {
-                            Toast.makeText(SignUp.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    }
-
-                });
-
-*/
-
-
 
 }
 
