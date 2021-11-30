@@ -157,7 +157,7 @@ public class Profile extends AppCompatActivity {
 
                     userName_profile.setText(snapshot.getValue().toString());
                    if (user.getAvatar().equals("default")){
-                       imageAvatar.setImageResource(R.drawable.ic_launcher_background);
+                       imageAvatar.setImageResource(R.drawable.ic_account_circle);
                    } else {
                     Picasso.get().load(user.getAvatar()).into(imageAvatar);
                 }
