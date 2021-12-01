@@ -44,16 +44,19 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+        //Connect variables with xml and set Linear layout
         recyclerView = view.findViewById(R.id.recycler_view_users);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mUsers =new ArrayList<>();
-        userAdapter = new UserAdapter(getContext(),mUsers, true);
+        mUsers = new ArrayList<>();
+        userAdapter = new UserAdapter(getContext(), mUsers, true);
         recyclerView.setAdapter(userAdapter);
         searchBar = view.findViewById(R.id.search_bar);
 
+        // Call on method to get users
         readUsers();
+
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -62,7 +65,7 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-               //call the search user method
+                //call the search user method
                 searchUser(s.toString());
 
             }
@@ -78,14 +81,15 @@ public class SearchFragment extends Fragment {
 
     }
 
+    //Method to get users from the database
     private void readUsers() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(TextUtils.isEmpty(searchBar.getText().toString())){
+                if (TextUtils.isEmpty(searchBar.getText().toString())) {
                     mUsers.clear();
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         User user = snapshot.getValue(User.class);
                         mUsers.add(user);
                     }
@@ -99,15 +103,16 @@ public class SearchFragment extends Fragment {
             }
         });
     }
-    //method for search user among the users stored i the database
-    private void searchUser (String s){
-        Query query = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("username").startAt(s).endAt(s +"\uf8ff");
+
+    //method for search user among the users stored i the database ordered by username
+    private void searchUser(String s) {
+        Query query = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("username").startAt(s).endAt(s + "\uf8ff");
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
                     mUsers.add(user);
                 }

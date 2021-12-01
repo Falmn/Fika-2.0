@@ -28,11 +28,13 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     private Context mContext;
     private List<Notification> mNotification;
 
+    // Constructor for context and notifications
     public NotificationAdapter(Context mContext, List<Notification> mNotification) {
         this.mContext = mContext;
         this.mNotification = mNotification;
     }
 
+    //Creates a viewholder for notifications
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,42 +45,31 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-       final Notification notification = mNotification.get(position);
+        final Notification notification = mNotification.get(position);
+        //get username and profile picture and sets the comment
+        getUser(holder.avatar, holder.username, notification.getUserid());
+        holder.comment.setText(notification.getText());
 
-       getUser(holder.avatar, holder.username, notification.getUserid());
-       holder.comment.setText(notification.getText());
-//om det är en bild som är postad vill vi att den ska visas
-       if (notification.isPost()){
-           holder.postImage.setVisibility(View.VISIBLE);
-           getPostImage(holder.postImage, notification.getPostid());
-       }else{//annars är det inget, använder gone för att inte platsen ska vara "sparad"
-           holder.postImage.setVisibility(View.GONE);
-       }
 
-       holder.itemView.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               if(notification.isPost()){
-                   mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postid", notification.getPostid()).apply();
+//if it is an image that is posted, we want it to be displayed
+        if (notification.isPost()) {
+            holder.postImage.setVisibility(View.VISIBLE);
+            getPostImage(holder.postImage, notification.getPostid());
+        } else {//otherwise it is nothing, using GONE so that the space is not "saved" for an image
+            holder.postImage.setVisibility(View.GONE);
+        }
 
-                  /* ((FragmentActivity)mContext).getSupportFragmentManager()
-                           .beginTransaction().replace(R.id.fragment_container, new PostDetailFragment()).commit();*/
-               } else{
-                   mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit().putString("profileId", notification.getUserid()).apply();
-
-          //         ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new );
-               }
-           }
-       });
     }
 
+    // Returns number of notifications
     @Override
     public int getItemCount() {
         return mNotification.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
+        // Declaring all variables from notification_item
         public ImageView avatar;
         public ImageView postImage;
         public TextView username;
@@ -88,6 +79,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            // Linking the variables to xml items
             avatar = itemView.findViewById(R.id.avatar);
             postImage = itemView.findViewById(R.id.post_image);
             username = itemView.findViewById(R.id.username);
@@ -95,7 +87,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         }
     }
 
-    private void getPostImage(ImageView imageView, String postId){
+    ///Method to get PostImage from firebase
+    private void getPostImage(ImageView imageView, String postId) {
         FirebaseDatabase.getInstance().getReference().child("Posts").child(postId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -109,16 +102,18 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             }
         });
     }
-//Hämta användarnamn och profilbild från firebase
-    private void getUser(final ImageView imageView, final TextView textView, String userId){
+
+    //Method to get username and profile picture from firebase
+    private void getUser(final ImageView imageView, final TextView textView, String userId) {
         FirebaseDatabase.getInstance().getReference().child("Users").child(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user =snapshot.getValue(User.class);
+                User user = snapshot.getValue(User.class);
                 //om ingen profilbild är uppladdad visas vår bruna bild
-                if (user.getAvatar().equals("default")){
-                   imageView.setImageResource(R.drawable.ic_account_circle);
-                }else {
+                if (user.getAvatar().equals("default")) {
+                    imageView.setImageResource(R.drawable.ic_account_circle);
+                } else {
+                    //men om vi har profilbild visas den
                     Picasso.get().load(user.getAvatar()).into(imageView);
                 }
                 textView.setText(user.getUsername());

@@ -8,13 +8,10 @@ public class User {
     private String avatar;
 
 
-
-    public User(){
+    public User() {
     }
 
-
-
-
+    //Constructor for user
     public User(String id, String email, String fullName, String username, String avatar) {
         this.id = id;
         this.email = email;
@@ -24,10 +21,15 @@ public class User {
 
     }
 
+    //Get & set methods for all variables
+    public String getId() {
+        return id;
+    }
 
-    public String getId(){return id;}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public void setId(String id){this.id = id;}
     public String getEmail() {
         return email;
     }

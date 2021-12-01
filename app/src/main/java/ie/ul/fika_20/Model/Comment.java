@@ -5,14 +5,16 @@ public class Comment {
     private String comment;
     private String publisher;
 
-    public Comment(){
+    public Comment() {
     }
 
+    //Constructor for comment
     public Comment(String comment, String publisher) {
         this.comment = comment;
         this.publisher = publisher;
     }
 
+    //Get & set methods for comment and publisher
     public String getComment() {
         return comment;
     }

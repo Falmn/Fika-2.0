@@ -55,50 +55,44 @@ public class CommentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
 
-        /*Toolbar toolbar = findViewById(R.id.toolbar);
-/*        setSupportActionBar(toolbar);
-        getActionBar().setTitle("Comments");
-       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });*/
 
         Intent intent = getIntent();
         postId = intent.getStringExtra("postId");
         authorId = intent.getStringExtra("authorId");
-
+        //Connect variables with xml and set Linear layout
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         commentList = new ArrayList<>();
         commentAdapter = new CommentAdapter(this, commentList);
         recyclerView.setAdapter(commentAdapter);
 
+        //Linking the variables to xml items
         backBtnComment = findViewById(R.id.nav_back_comment);
         addComment = findViewById(R.id.add_comment);
         avatar = findViewById(R.id.avatar);
         post = findViewById(R.id.post);
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
-
+        // Call on method to get profile picture
         getUserImage();
 
+        //Method for post button in comment
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(addComment.getText().toString())){
+                if (TextUtils.isEmpty(addComment.getText().toString())) {
                     Toast.makeText(CommentActivity.this, "No comment added", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
+                    //call on method to add comment
                     putComment();
                 }
             }
         });
+        // Call on method to get comment
         getComment();
 
+        //method for Back button to get back to main activity
         backBtnComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,21 +103,21 @@ public class CommentActivity extends AppCompatActivity {
         });
     }
 
+    //Method to get comment from the database
+    private void getComment() {
 
-private void getComment() {
+        FirebaseDatabase.getInstance().getReference().child("Comments").child(postId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                commentList.clear();
 
-    FirebaseDatabase.getInstance().getReference().child("Comments").child(postId).addValueEventListener(new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            commentList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Comment comment = snapshot.getValue(Comment.class);
+                    commentList.add(comment);
+                }
 
-            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                Comment comment = snapshot.getValue(Comment.class);
-                commentList.add(comment);
+                commentAdapter.notifyDataSetChanged();
             }
-
-            commentAdapter.notifyDataSetChanged();
-        }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -132,7 +126,7 @@ private void getComment() {
         });
     }
 
-    // putting comment in firebase
+    // Method to add comment to firebase
     private void putComment() {
 
         HashMap<String, Object> map = new HashMap();
@@ -142,16 +136,16 @@ private void getComment() {
         FirebaseDatabase.getInstance().getReference().child("Comments").child(postId).push().setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-               if(task.isSuccessful()){
-                   Toast.makeText(CommentActivity.this, "Comment added", Toast.LENGTH_SHORT).show();
-               } else {
-                   Toast.makeText(CommentActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-               }
+                if (task.isSuccessful()) {
+                    Toast.makeText(CommentActivity.this, "Comment added", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(CommentActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-    //hämtar profilbild från firebase så den syns när man kommenterar
+    //Retrieves profile picture from firebase so it is visible when commenting
     private void getUserImage() {
 
         FirebaseDatabase.getInstance().getReference().child("Users").child(fUser.getUid()).addValueEventListener(new ValueEventListener() {

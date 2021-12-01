@@ -42,7 +42,7 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
-
+        //Connect variables with xml and set Linear layout
         recyclerView = view.findViewById(R.id.recycler_view_notification);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -50,6 +50,7 @@ public class NotificationFragment extends Fragment {
         notificationAdapter = new NotificationAdapter(getContext(), notificationList);
         recyclerView.setAdapter(notificationAdapter);
 
+        // Call on method to get notifications
         readNotifications();
 
 
