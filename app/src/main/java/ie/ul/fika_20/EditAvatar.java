@@ -108,7 +108,7 @@ public class EditAvatar extends AppCompatActivity {
 
     //uploads the image to firebase and creates a folder for the picture
     private void uploadImageToFirebase(String name, Uri contentUri) {
-        final StorageReference image = storageReference.child("pictures/" + name); // puts the images in directory pictures
+        final StorageReference image = storageReference.child("avatarpicture/" + name); // puts the images in directory pictures
         image.putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
