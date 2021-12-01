@@ -93,7 +93,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Post post = snapshot.getValue(Post.class);
-                Picasso.get().load(post.getImageurl()).placeholder(R.drawable.ic_account_circle).into(imageView);
+                Picasso.get().load(post.getImageurl()).placeholder(R.mipmap.ic_launcher).into(imageView);
             }
 
             @Override
@@ -109,11 +109,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-                //om ingen profilbild är uppladdad visas vår bruna bild
+                //if we dont have a profile picture our default picture shows
                 if (user.getAvatar().equals("default")) {
                     imageView.setImageResource(R.drawable.ic_account_circle);
                 } else {
-                    //men om vi har profilbild visas den
+                    //but if we have one that is the one showing up
                     Picasso.get().load(user.getAvatar()).into(imageView);
                 }
                 textView.setText(user.getUsername());

@@ -59,12 +59,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         Picasso.get().load(user.getAvatar()).placeholder(R.drawable.ic_account_circle).into(holder.avatar);
         isFollowed(user.getId(), holder.btn_follow);
 
-        //if it is your own username in the list, the button should not be visible
+        //if it is your own username in the list, the button should disappear
         if (user.getId().equals(firebaseUser.getUid())) {
             holder.btn_follow.setVisibility(View.GONE);
         }
 
-        //Send friend request to people in the list
+        //Method for button to send friend request to people in the list
 
         holder.btn_follow.setOnClickListener(new View.OnClickListener() {
             @Override

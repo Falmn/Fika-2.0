@@ -92,7 +92,7 @@ public class CommentActivity extends AppCompatActivity {
         // Call on method to get comment
         getComment();
 
-        //method for Back button to get back to main activity
+        //method for Back button to get back to feed
         backBtnComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -28,6 +28,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable/app_bar_main.xml" value="0.25625" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.25625" />
+        <entry key="app/src/main/res/layout/activity_comment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_feed.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.11676798378926039" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -35,7 +36,7 @@
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/activity_start_app.xml" value="0.2441123188405797" />
-        <entry key="app/src/main/res/layout/comment_item.xml" value="0.12708333333333333" />
+        <entry key="app/src/main/res/layout/comment_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/conversations.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/copy.xml" value="0.17391304347826086" />
         <entry key="app/src/main/res/layout/edit_post.xml" value="0.2526041666666667" />
@@ -48,7 +49,7 @@
         <entry key="app/src/main/res/layout/friends.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/location.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/log_in.xml" value="0.12916666666666668" />
-        <entry key="app/src/main/res/layout/notification_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/notification_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/notifications.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/post_item.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/profile_test.xml" value="0.24010416666666667" />
