@@ -9,14 +9,14 @@ public class Notification {
 
         public Notification() {
         }
-
+//Constructor for notification
         public Notification(String userid, String text, String postid, boolean isPost) {
             this.userid = userid;
             this.text = text;
             this.postid = postid;
             this.isPost = isPost;
         }
-
+//getters and setters for notification
         public String getUserid() {
             return userid;
         }
