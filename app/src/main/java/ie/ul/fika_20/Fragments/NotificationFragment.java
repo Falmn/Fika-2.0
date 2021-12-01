@@ -1,7 +1,6 @@
 package ie.ul.fika_20.Fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +28,7 @@ import ie.ul.fika_20.Adapter.NotificationAdapter;
 
 import ie.ul.fika_20.Model.Notification;
 import ie.ul.fika_20.R;
-import ie.ul.fika_20.StartApp;
+
 
 public class NotificationFragment extends Fragment {
 
@@ -48,7 +47,7 @@ public class NotificationFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         notificationList = new ArrayList<>();
-        notificationAdapter = new NotificationAdapter(getContext() , notificationList);
+        notificationAdapter = new NotificationAdapter(getContext(), notificationList);
         recyclerView.setAdapter(notificationAdapter);
 
         readNotifications();
@@ -57,17 +56,15 @@ public class NotificationFragment extends Fragment {
         return view;
 
     }
-
+//method to get notification from firebase
     private void readNotifications() {
         FirebaseDatabase.getInstance().getReference().child("Notifications").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-               // notificationList.clear();
                 for (DataSnapshot snapshot : datasnapshot.getChildren()){
-                    //Notification notification = dataSnapshot.getValue(Notification.class);
                     notificationList.add(snapshot.getValue(Notification.class));
                 }
-
+                // to get the latest notification on the top
                 Collections.reverse(notificationList);
                 notificationAdapter.notifyDataSetChanged();
             }
