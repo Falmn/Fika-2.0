@@ -37,7 +37,7 @@ public class SearchFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<User> mUsers;
     private UserAdapter userAdapter;
-    private SocialAutoCompleteTextView search_bar;
+    private SocialAutoCompleteTextView searchBar;
 
 
     @Override
@@ -51,10 +51,10 @@ public class SearchFragment extends Fragment {
         mUsers =new ArrayList<>();
         userAdapter = new UserAdapter(getContext(),mUsers, true);
         recyclerView.setAdapter(userAdapter);
-        search_bar = view.findViewById(R.id.search_bar);
+        searchBar = view.findViewById(R.id.search_bar);
 
         readUsers();
-        search_bar.addTextChangedListener(new TextWatcher() {
+        searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -62,6 +62,7 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+               //call the search user method
                 searchUser(s.toString());
 
             }
@@ -82,7 +83,8 @@ public class SearchFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(TextUtils.isEmpty(search_bar.getText().toString())){
+                if(TextUtils.isEmpty(searchBar.getText().toString())){
+                    mUsers.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                         User user = snapshot.getValue(User.class);
                         mUsers.add(user);
@@ -97,6 +99,7 @@ public class SearchFragment extends Fragment {
             }
         });
     }
+    //method for search user among the users stored i the database
     private void searchUser (String s){
         Query query = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("username").startAt(s).endAt(s +"\uf8ff");
 
